@@ -1,0 +1,21 @@
+{
+    "name": "KPI BVNT An Giang",
+    "short_name": "KPI BVNT",
+    "description": "KPI Bảo Việt Nhân Thọ An Giang - Theo dõi tiến độ kinh doanh",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#021616",
+    "theme_color": "#0b0f14",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230b0f14'/><text x='50' y='65' font-size='48' text-anchor='middle' fill='%236cc78a' font-family='Arial' font-weight='bold'>K</text></svg>",
+            "sizes": "192x192",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        }
+    ],
+    "categories": ["business", "productivity"],
+    "lang": "vi",
+    "dir": "ltr"
+}
