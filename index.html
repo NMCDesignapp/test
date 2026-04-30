@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ thống Thi đua An Giang</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/all.min.css">
+    <style>
+        :root{--bg:#0a0a0a;--card:#1a1a1a;--border:#262626;--accent:#d4a843;--red:#b5302a;--fg:#f2ede5}
+        body{font-family:'Be Vietnam Pro',sans-serif;background:var(--bg);color:var(--fg);min-height:100vh}
+        .topnav{sticky:top;z-index:100;background:rgba(10,10,10,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+        .pcard{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:0.3s;cursor:pointer}
+        .pcard:hover{border-color:var(--accent);transform:translateY(-3px)}
+        .pop-bg{position:fixed;inset:0;z-index:800;background:rgba(0,0,0,.9);display:none;overflow-y:auto}
+        .pop-bg.open{display:block}
+        .ptw{overflow-x:auto;background:#fff;border-radius:8px;margin-top:15px}
+        .pt{width:100%;border-collapse:collapse;color:#333;font-size:14px}
+        .pt th{background:#f0dbb0;padding:12px;border:1px solid #e2d8c4;text-align:left}
+        .pt td{padding:10px;border:1px solid #e2d8c4}
+        .mdl-bg{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,0.85);display:none;align-items:center;justify-content:center}
+        .mdl-bg.open{display:flex}
+        .inp{width:100%;background:#111;border:1px solid var(--border);border-radius:6px;padding:10px;color:#fff;margin-bottom:12px}
+    </style>
+</head>
+<body>
+
+<nav class="topnav">
+    <div class="max-w-6xl mx-auto px-5 py-3 flex justify-between items-center">
+        <div class="flex items-center gap-2">
+            <i class="fa-solid fa-award text-yellow-500 text-xl"></i>
+            <span class="font-bold tracking-tight">THI ĐUA AN GIANG</span>
+        </div>
+        <button id="admBtn" onclick="loginAdmin()" class="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center">
+            <i class="fa-solid fa-user-gear text-gray-400"></i>
+        </button>
+    </div>
+</nav>
+
+<main class="max-w-6xl mx-auto px-5 py-10">
+    <div id="loading" class="text-center py-10"><i class="fa-solid fa-circle-notch fa-spin text-2xl"></i></div>
+    <div id="grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+</main>
+
+<div id="popup" class="pop-bg">
+    <div class="max-w-5xl mx-auto my-10 bg-[#131313] rounded-xl border border-gray-800 overflow-hidden">
+        <div id="popImg"></div>
+        <div class="p-6">
+            <div class="flex justify-between items-center">
+                <h2 id="popName" class="text-2xl font-bold"></h2>
+                <button onclick="closePop()" class="text-3xl">&times;</button>
+            </div>
+            <div id="popCt"></div>
+        </div>
+    </div>
+</div>
+
+<div id="mdl" class="mdl-bg">
+    <div class="bg-[#1a1a1a] p-8 rounded-xl w-full max-w-md border border-gray-700">
+        <h3 class="text-xl font-bold mb-5">Thêm chương trình mới</h3>
+        <input type="text" id="mName" class="inp" placeholder="Tên chương trình (Cột A)">
+        <input type="text" id="mUrl" class="inp" placeholder="Link ảnh Poster (Cột B)">
+        <input type="text" id="mTab" class="inp" placeholder="Tên Sheet Dữ liệu (Cột C)">
+        <div class="flex gap-3 mt-4">
+            <button onclick="saveNew()" class="bg-yellow-600 flex-1 py-2 rounded font-bold">Lưu lại</button>
+            <button onclick="closeMdl()" class="bg-gray-700 px-6 py-2 rounded">Đóng</button>
+        </div>
+    </div>
+</div>
+
+<script>
+const SHEET_ID = '1Mzag5EkMGO8YVnNDbLi7YBxuH3b6nlMknxdHsIuDA60';
+const MAIN_SHEET_NAME = 'DanhSach'; // Tên sheet mục lục của bạn
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbxuXDIIH5b1snWjaXUK87Kk6wx3Fs1hP4MG7akfhCVx7Cj_wSLJpeAEKcO-uJSadPRb/exec';
+
+let programs = [];
+let isAdmin = false;
+
+// 1. Tải danh sách từ sheet DanhSach
+async function loadMainData() {
+    const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&sheet=${encodeURIComponent(MAIN_SHEET_NAME)}`;
+    try {
+        const res = await fetch(url);
+        const csv = await res.text();
+        const rows = parseCSV(csv);
+        
+        programs = [];
+        // i=1 để bỏ qua tiêu đề cột
+        for(let i=1; i<rows.length; i++) {
+            if(!rows[i][0]) continue;
+            programs.push({
+                name: rows[i][0],      // Cột A
+                poster: rows[i][1],    // Cột B
+                sheetData: rows[i][2]  // Cột C (Tên sheet chứa bảng điểm)
+            });
+        }
+        renderGrid();
+        document.getElementById('loading').style.display = 'none';
+    } catch(e) { console.error("Lỗi:", e); }
+}
+
+function renderGrid() {
+    const grid = document.getElementById('grid');
+    grid.innerHTML = programs.map((p, i) => `
+        <div class="pcard" onclick="openDetail(${i})">
+            <img src="${p.poster || 'https://via.placeholder.com/400x200'}" class="w-full h-44 object-cover">
+            <div class="p-4 text-center">
+                <div class="font-bold text-lg">${p.name}</div>
+                <div class="text-xs text-gray-500 mt-2">Dữ liệu: ${p.sheetData}</div>
+            </div>
+        </div>
+    `).join('');
+}
+
+// 2. Mở chi tiết và lấy dữ liệu từ Sheet con (SheetDuLieu)
+async function openDetail(idx) {
+    const p = programs[idx];
+    document.getElementById('popName').textContent = p.name;
+    document.getElementById('popImg').innerHTML = `<img src="${p.poster}" class="w-full h-64 object-cover">`;
+    document.getElementById('popCt').innerHTML = '<div class="text-center py-10">Đang tải bảng điểm...</div>';
+    document.getElementById('popup').classList.add('open');
+
+    try {
+        const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&sheet=${encodeURIComponent(p.sheetData)}`;
+        const res = await fetch(url);
+        const data = parseCSV(await res.text());
+        
+        let html = '<div class="ptw"><table class="pt"><thead><tr>';
+        data[0].forEach(h => html += `<th>${h}</th>`);
+        html += '</tr></thead><tbody>';
+        for(let i=1; i<data.length; i++) {
+            html += '<tr>' + data[i].map(c => `<td>${c}</td>`).join('') + '</tr>';
+        }
+        document.getElementById('popCt').innerHTML = html + '</tbody></table></div>';
+    } catch(e) {
+        document.getElementById('popCt').innerHTML = `<p class="text-red-500 py-10">Không tìm thấy sheet: ${p.sheetData}</p>`;
+    }
+}
+
+// 3. Xử lý Thêm mới
+async function saveNew() {
+    const name = document.getElementById('mName').value;
+    const url = document.getElementById('mUrl').value;
+    const tab = document.getElementById('mTab').value;
+    if(!name || !tab) return alert("Vui lòng nhập đủ thông tin!");
+
+    const payload = { action: 'add', ten: name, poster: url, tab: tab };
+
+    try {
+        // Sử dụng mode no-cors để tránh lỗi bảo mật khi gửi sang GAS
+        fetch(GAS_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            body: JSON.stringify(payload)
+        });
+        alert("Đã gửi yêu cầu lưu. Dữ liệu sẽ xuất hiện sau vài giây.");
+        closeMdl();
+        setTimeout(loadMainData, 2000);
+    } catch(e) { alert("Lỗi kết nối!"); }
+}
+
+// 4. Các hàm tiện ích
+function loginAdmin() {
+    let pw = prompt("Mật khẩu:");
+    if(pw === "922129") {
+        isAdmin = true;
+        document.getElementById('mdl').classList.add('open');
+    }
+}
+
+function closePop() { document.getElementById('popup').classList.remove('open'); }
+function closeMdl() { document.getElementById('mdl').classList.remove('open'); }
+
+function parseCSV(text) {
+    return text.split('\n').map(row => {
+        let cells = [], cur = '', inQ = false;
+        for(let c of row) {
+            if(c === '"') inQ = !inQ;
+            else if(c === ',' && !inQ) { cells.push(cur.trim()); cur = ''; }
+            else cur += c;
+        }
+        cells.push(cur.trim()); return cells;
+    });
+}
+
+document.addEventListener('DOMContentLoaded', loadMainData);
+</script>
+</body>
+</html>
