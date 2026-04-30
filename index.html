@@ -2643,6 +2643,25 @@
         .td-page .tbl-filter.active select {
             background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 10 10'><path d='M1 3l4 4 4-4' stroke='%23052e1a' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");
         }
+        /* ===== CLB RANK COLUMN STYLING ===== */
+        .td-page .ptw.auto-wide .pt col.clb-rank-eq { width: 80px; }
+        .td-page .pt col.clb-rank-eq { width: 75px; }
+        /* CLB rank header - saturated color per column */
+        .td-page .pt th.clb-rank-hdr { color: #fff; font-size: 10px; letter-spacing: .03em; padding: 6px 4px; white-space: normal; overflow-wrap: break-word; }
+        .td-page .pt th.clb-rank-sub-hdr { color: #fff; font-size: 9px; padding: 5px 3px; white-space: normal; overflow-wrap: break-word; }
+        /* CLB rank body cell - muted tint of header color */
+        .td-page .pt td.clb-rank-cell { text-align: center; padding: 5px 4px; white-space: nowrap; }
+        /* CLB info column alignment */
+        .td-page .pt th.clb-info-ms { text-align: center; }
+        .td-page .pt td.clb-info-ms { text-align: center; }
+        .td-page .pt th.clb-info-left { text-align: left; }
+        .td-page .pt td.clb-info-left { text-align: left; padding-left: 6px; }
+        @media (max-width: 640px) {
+            .td-page .pt col.clb-rank-eq { width: 62px; }
+            .td-page .pt th.clb-rank-hdr { font-size: 8px; padding: 4px 2px; }
+            .td-page .pt th.clb-rank-sub-hdr { font-size: 7.5px; padding: 3px 1px; }
+            .td-page .pt td.clb-rank-cell { padding: 3px 2px; font-size: 8px; }
+        }
     </style>
 </head>
 <body>
@@ -4115,26 +4134,26 @@
                     infoCols: 3,  /* NHÓM KD, MSĐL, HỌ TÊN TN */
                     dataColsBeforeRanks: 1, /* FYP NHÓM lũy kế */
                     ranks: [
-                        { name: 'Hạng vàng', color: '#fff8e1', headerColor: '#f9a825', cols: 1 },
-                        { name: 'Hạng bạch kim', color: '#e8eaf6', headerColor: '#5c6bc0', cols: 1 },
-                        { name: 'Hạng kim cương', color: '#fce4ec', headerColor: '#e91e63', cols: 1 }
+                        { name: 'Hạng vàng', color: '#fef0b0', headerColor: '#f9a825', cols: 1 },
+                        { name: 'Hạng bạch kim', color: '#d1d5f0', headerColor: '#5c6bc0', cols: 1 },
+                        { name: 'Hạng kim cương', color: '#f5c2d4', headerColor: '#e91e63', cols: 1 }
                     ]
                 },
                 'CLB-TNTD': {
                     infoCols: 3,  /* NHÓM KD, MSĐL, HỌ TÊN TN */
                     dataColsBeforeRanks: 2, /* TVVm HĐC lũy kế, FYP NHÓM lũy kế */
                     ranks: [
-                        { name: 'Hạng vàng', color: '#fff8e1', headerColor: '#f9a825', cols: 2 },
-                        { name: 'Hạng bạc kim', color: '#ede7f6', headerColor: '#7e57c2', cols: 2 }
+                        { name: 'Hạng vàng', color: '#fef0b0', headerColor: '#f9a825', cols: 2 },
+                        { name: 'Hạng bạc kim', color: '#e0d4f5', headerColor: '#7e57c2', cols: 2 }
                     ]
                 },
                 'CLB-CN': {
                     infoCols: 3,  /* NHÓM KD, MÃ SỐ, HỌ TÊN TVV */
                     dataColsBeforeRanks: 2, /* FYP lũy kế, IP THÁNG 4 */
                     ranks: [
-                        { name: 'Hạng vàng', color: '#fff8e1', headerColor: '#f9a825', cols: 1 },
-                        { name: 'Hạng bạch kim', color: '#e8eaf6', headerColor: '#5c6bc0', cols: 1 },
-                        { name: 'Hạng kim cương', color: '#fce4ec', headerColor: '#e91e63', cols: 1 }
+                        { name: 'Hạng vàng', color: '#fef0b0', headerColor: '#f9a825', cols: 1 },
+                        { name: 'Hạng bạch kim', color: '#d1d5f0', headerColor: '#5c6bc0', cols: 1 },
+                        { name: 'Hạng kim cương', color: '#f5c2d4', headerColor: '#e91e63', cols: 1 }
                     ]
                 }
             };
@@ -4169,13 +4188,13 @@
 
             /* Build header with grouped rank columns */
             var rankStart = cfg.infoCols + cfg.dataColsBeforeRanks;
-            var headerRow1 = '<tr><th rowspan="2" class="mini-col">STT</th>';
+            var headerRow1 = '<tr><th rowspan="2" class="mini-col" style="text-align:center">STT</th>';
             /* Info columns */
             for (var ic = 0; ic < cfg.infoCols; ic++) {
                 var infoH = String(hd[ic] || '').trim();
                 var infoKey = infoH.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[đĐ]/g, 'd').replace(/[^a-z0-9]+/g, ' ').trim();
-                var infoCls = 'col-name';
-                if (/(ma so|msdl|ms dl|ms dai ly|ma tn|^ma$|^ms$)/.test(infoKey)) infoCls = 'col-code';
+                var isCode = /(ma so|msdl|ms dl|ms dai ly|ma tn|^ma$|^ms$)/.test(infoKey);
+                var infoCls = isCode ? 'col-code clb-info-ms' : 'col-name clb-info-left';
                 headerRow1 += '<th rowspan="2" class="' + infoCls + '">' + esc(infoH) + '</th>';
             }
             /* Data columns before ranks */
@@ -4186,7 +4205,7 @@
             /* Rank group headers (row 1) */
             for (var ri = 0; ri < cfg.ranks.length; ri++) {
                 var rank = cfg.ranks[ri];
-                headerRow1 += '<th colspan="' + rank.cols + '" class="clb-rank-group" style="background:' + rank.headerColor + ';color:#fff;font-size:10px;letter-spacing:.03em">' + esc(rank.name) + '</th>';
+                headerRow1 += '<th colspan="' + rank.cols + '" class="clb-rank-hdr" style="background:' + rank.headerColor + '">' + esc(rank.name) + '</th>';
             }
             headerRow1 += '</tr>';
 
@@ -4199,7 +4218,7 @@
                 for (var rp = 0; rp < ri2; rp++) rankColStart += cfg.ranks[rp].cols;
                 for (var rc = 0; rc < rank2.cols; rc++) {
                     var subH = String(hd[rankColStart + rc] || '').trim();
-                    headerRow2 += '<th class="mini-col clb-rank-sub" style="background:' + rank2.headerColor + 'cc;color:#fff;font-size:9px">' + esc(subH) + '</th>';
+                    headerRow2 += '<th class="clb-rank-sub-hdr" style="background:' + rank2.headerColor + '">' + esc(subH) + '</th>';
                 }
             }
             headerRow2 += '</tr>';
@@ -4214,9 +4233,9 @@
                     var infoVal = String(row[ic2] || '').trim();
                     var iKey = String(hd[ic2] || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[đĐ]/g, 'd').replace(/[^a-z0-9]+/g, ' ').trim();
                     if (/(ma so|msdl|ms dl|ms dai ly|ma tn|^ma$|^ms$)/.test(iKey)) {
-                        body += '<td class="td-text col-code">' + esc(infoVal) + '</td>';
+                        body += '<td class="td-text col-code clb-info-ms">' + esc(infoVal) + '</td>';
                     } else {
-                        body += '<td class="td-text col-name">' + esc(infoVal) + '</td>';
+                        body += '<td class="td-text col-name clb-info-left">' + esc(infoVal) + '</td>';
                     }
                 }
                 /* Data columns before ranks */
@@ -4244,7 +4263,7 @@
                             var rn = Number(rankCompact.replace(/\./g, '').replace(',', '.'));
                             if (isFinite(rn)) rankDisplay = rn.toLocaleString('vi-VN');
                         }
-                        var cellCls = 'td-num';
+                        var cellCls = 'td-num clb-rank-cell';
                         var cellStyle = 'background:' + rank3.color + ' !important;';
                         if (rankVal === '10000001111') {
                             rankDisplay = '<span class="ach-pill"><i class="fa-solid fa-circle-check" style="margin-right:3px"></i>Đạt</span>';
@@ -4262,7 +4281,18 @@
                 body += '</tr>';
             }
 
-            var tableHtml = '<div class="ptw auto-wide"><table class="pt"><thead>' + headerRow1 + headerRow2 + '</thead><tbody>' + body + '</tbody></table></div>';
+            /* Build colgroup for column widths - rank columns equal */
+            var cgHtml = '<colgroup><col style="width:28px">';
+            for (var ci = 0; ci < cfg.infoCols; ci++) {
+                var cKey = String(hd[ci] || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[đĐ]/g, 'd').replace(/[^a-z0-9]+/g, ' ').trim();
+                cgHtml += (/(ma so|msdl|ms dl|ms dai ly|ma tn|^ma$|^ms$)/.test(cKey)) ? '<col style="width:90px">' : '<col>';
+            }
+            for (var di = 0; di < cfg.dataColsBeforeRanks; di++) cgHtml += '<col>';
+            var totalRankCols = 0;
+            for (var rci = 0; rci < cfg.ranks.length; rci++) totalRankCols += cfg.ranks[rci].cols;
+            for (var rci2 = 0; rci2 < totalRankCols; rci2++) cgHtml += '<col class="clb-rank-eq">';
+            cgHtml += '</colgroup>';
+            var tableHtml = '<div class="ptw auto-wide"><table class="pt">' + cgHtml + '<thead>' + headerRow1 + headerRow2 + '</thead><tbody>' + body + '</tbody></table></div>';
             ct.innerHTML = tableHtml;
 
             /* Fix sticky top for 2nd header row */
