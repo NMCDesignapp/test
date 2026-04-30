@@ -1688,7 +1688,7 @@
         .td-page .pop-ct > * + * { margin-top: 12px; }
         .td-page .pop-ct > :first-child { margin-top: 10px; }
         .td-page .pop-ct > :last-child { margin-bottom: 10px; }
-        .td-page .pop-ct > .ptw, .td-page .pop-ct > .po-ptw, .td-page .pop-ct > .policy-tl-wrap, .td-page .pop-ct > .policy-qtn-wrap, .td-page .pop-ct > .tn-wrap, .td-page .pop-ct > .tn-title, .td-page .pop-ct > .tn-note { margin-left: 10px; margin-right: 10px; }
+        .td-page .pop-ct > .ptw, .td-page .pop-ct > .po-ptw, .td-page .pop-ct > .policy-tl-wrap, .td-page .pop-ct > .policy-qtn-wrap, .td-page .pop-ct > .tn-wrap, .td-page .pop-ct > .tn-title, .td-page .pop-ct > .tn-note, .td-page .pop-ct > .policy-tvvm-wrap, .td-page .pop-ct > .policy-nst-wrap, .td-page .pop-ct > .policy-nsq-wrap, .td-page .pop-ct > .policy-nsqn-wrap, .td-page .pop-ct > .policy-ptkd-wrap { margin-left: 10px; margin-right: 10px; }
         
         /* Tables — WHITE bg, BLUE header, sticky, no rounded corners */
         .td-page .ptw { overflow: visible; border-radius: 0; box-shadow: 0 0 0 1px #1a3a4a18; max-height: none; background: transparent; min-width: min-content; }
@@ -1846,6 +1846,25 @@
         .td-page .policy-tl td.tl-name { text-align: left; }
         .td-page .policy-tl .tl-reward-title { display: block; font-size: .54rem; line-height: 1.05; }
         .td-page .policy-tl .tl-reward-note { display: block; margin-top: 4px; color: #ffe95d; font-size: .34rem; font-weight: 900; line-height: 1.25; text-transform: none; }
+        /* Policy TVVM wrap */
+        .td-page .policy-tvvm-wrap { overflow: auto; border-radius: 0; background: #ffffff; box-shadow: 0 0 0 1px #1a3a4a18; }
+        .td-page .po-pt thead th.tvvm-thang { background: #1e3a5f; }
+        .td-page .po-pt thead th.tvvm-chang { background: #4a3520; color: #fbbf24; }
+        /* Policy NST wrap */
+        .td-page .policy-nst-wrap { overflow: auto; border-radius: 0; background: #ffffff; box-shadow: 0 0 0 1px #1a3a4a18; }
+        /* Policy NSQ wrap */
+        .td-page .policy-nsq-wrap { overflow: auto; border-radius: 0; background: #ffffff; box-shadow: 0 0 0 1px #1a3a4a18; }
+        /* Policy NSQ-N wrap */
+        .td-page .policy-nsqn-wrap { overflow: auto; border-radius: 0; background: #ffffff; box-shadow: 0 0 0 1px #1a3a4a18; }
+        /* Policy PTKD wrap */
+        .td-page .policy-ptkd-wrap { overflow: auto; border-radius: 0; background: #ffffff; box-shadow: 0 0 0 1px #1a3a4a18; }
+        /* Tier header colors for NSQ/NSQ-N levels */
+        .td-page .po-pt thead th.tier-lv1 { background: #2d6a4f; color: #d8f3dc; }
+        .td-page .po-pt thead th.tier-lv2 { background: #40916c; color: #d8f3dc; }
+        .td-page .po-pt thead th.tier-lv3 { background: #52b788; color: #1b4332; }
+        .td-page .po-pt thead th.tier-lv4 { background: #74c69d; color: #1b4332; }
+        .td-page .po-pt thead th.tier-lv5 { background: #95d5b2; color: #1b4332; }
+        .td-page .po-pt thead th.tier-lv6 { background: #b7e4c7; color: #1b4332; }
         .td-page .policy-qtn-wrap { overflow: visible; border-radius: 0; background: #ffffff; box-shadow: 0 0 0 1px #1a3a4a18; }
         .td-page .policy-qtn { width: 100%; border-collapse: separate; border-spacing: 0; table-layout: auto; background: #ffffff; }
         .td-page .policy-qtn th, .td-page .policy-qtn td { border-bottom: 1px solid #7aa8cf; border-right: 1px solid #7aa8cf; padding: 6px 5px; text-align: center; font-family: Tahoma, Arial, Helvetica, sans-serif; }
@@ -2283,7 +2302,7 @@
             .td-page .pt td.td-num, .td-page .pt td.td-money { padding-right: 5px; }
             .td-page .ptw.auto-wide .pt { font-size: .38rem; }
             .td-page .pop-ct { }
-            .td-page .pop-ct > .ptw, .td-page .pop-ct > .po-ptw, .td-page .pop-ct > .policy-tl-wrap, .td-page .pop-ct > .policy-qtn-wrap, .td-page .pop-ct > .tn-wrap, .td-page .pop-ct > .tn-title, .td-page .pop-ct > .tn-note { margin-left: 6px; margin-right: 6px; }
+            .td-page .pop-ct > .ptw, .td-page .pop-ct > .po-ptw, .td-page .pop-ct > .policy-tl-wrap, .td-page .pop-ct > .policy-qtn-wrap, .td-page .pop-ct > .tn-wrap, .td-page .pop-ct > .tn-title, .td-page .pop-ct > .tn-note, .td-page .pop-ct > .policy-tvvm-wrap, .td-page .pop-ct > .policy-nst-wrap, .td-page .pop-ct > .policy-nsq-wrap, .td-page .pop-ct > .policy-nsqn-wrap, .td-page .pop-ct > .policy-ptkd-wrap { margin-left: 6px; margin-right: 6px; }
             .td-page .pop-ct > :first-child { margin-top: 6px; }
             /* Policy page responsive - same size scale as original */
             .td-page .po-pt { font-size: .40rem; }
@@ -2337,7 +2356,7 @@
             .td-page .pop-bar h2 { font-size: 1.42rem; }
             .td-page .pop-bar h2.po-title { font-size: 1.42rem; }
             .td-page .pop-subline { font-size: .82rem; padding: 8px 14px; }
-            .td-page .pop-ct > .ptw, .td-page .pop-ct > .po-ptw, .td-page .pop-ct > .policy-tl-wrap, .td-page .pop-ct > .policy-qtn-wrap, .td-page .pop-ct > .tn-wrap, .td-page .pop-ct > .tn-title, .td-page .pop-ct > .tn-note { margin-left: 16px; margin-right: 16px; }
+            .td-page .pop-ct > .ptw, .td-page .pop-ct > .po-ptw, .td-page .pop-ct > .policy-tl-wrap, .td-page .pop-ct > .policy-qtn-wrap, .td-page .pop-ct > .tn-wrap, .td-page .pop-ct > .tn-title, .td-page .pop-ct > .tn-note, .td-page .pop-ct > .policy-tvvm-wrap, .td-page .pop-ct > .policy-nst-wrap, .td-page .pop-ct > .policy-nsq-wrap, .td-page .pop-ct > .policy-nsqn-wrap, .td-page .pop-ct > .policy-ptkd-wrap { margin-left: 16px; margin-right: 16px; }
 
             /* Table readability: larger fonts and padding */
             .td-page .pt { font-size: .62rem; }
@@ -4082,6 +4101,191 @@
             });
         }
 
+        /* ===== CLB Custom Render with Rank Group Headers ===== */
+        function TD_renderCLB(ct, csv, cols, rows, sheetName) {
+            var all = TD_csv(csv);
+            if (!all.length || all.length < 2) {
+                ct.innerHTML = '<div style="text-align:center;padding:40px;color:var(--td-fgm)">Tab trống</div>';
+                return;
+            }
+
+            /* Define rank configs per CLB sheet */
+            var rankConfigs = {
+                'CLB-TNKTM': {
+                    infoCols: 3,  /* NHÓM KD, MSĐL, HỌ TÊN TN */
+                    dataColsBeforeRanks: 1, /* FYP NHÓM lũy kế */
+                    ranks: [
+                        { name: 'Hạng vàng', color: '#fff8e1', headerColor: '#f9a825', cols: 1 },
+                        { name: 'Hạng bạch kim', color: '#e8eaf6', headerColor: '#5c6bc0', cols: 1 },
+                        { name: 'Hạng kim cương', color: '#fce4ec', headerColor: '#e91e63', cols: 1 }
+                    ]
+                },
+                'CLB-TNTD': {
+                    infoCols: 3,  /* NHÓM KD, MSĐL, HỌ TÊN TN */
+                    dataColsBeforeRanks: 2, /* TVVm HĐC lũy kế, FYP NHÓM lũy kế */
+                    ranks: [
+                        { name: 'Hạng vàng', color: '#fff8e1', headerColor: '#f9a825', cols: 2 },
+                        { name: 'Hạng bạc kim', color: '#ede7f6', headerColor: '#7e57c2', cols: 2 }
+                    ]
+                },
+                'CLB-CN': {
+                    infoCols: 3,  /* NHÓM KD, MÃ SỐ, HỌ TÊN TVV */
+                    dataColsBeforeRanks: 2, /* FYP lũy kế, IP THÁNG 4 */
+                    ranks: [
+                        { name: 'Hạng vàng', color: '#fff8e1', headerColor: '#f9a825', cols: 1 },
+                        { name: 'Hạng bạch kim', color: '#e8eaf6', headerColor: '#5c6bc0', cols: 1 },
+                        { name: 'Hạng kim cương', color: '#fce4ec', headerColor: '#e91e63', cols: 1 }
+                    ]
+                }
+            };
+
+            var cfg = rankConfigs[sheetName];
+            if (!cfg) {
+                /* Fallback: use default rpt */
+                var defaultRpt = createTDPage._defaultRpt;
+                if (defaultRpt) defaultRpt(ct, csv, cols, rows);
+                else ct.innerHTML = '<div style="text-align:center;padding:40px;color:var(--td-fgm)">Chưa hỗ trợ sheet này</div>';
+                return;
+            }
+
+            var hd = all[0] || [];
+            var dc = Math.min(hd.length, cols || 99);
+            /* Trim trailing empty columns */
+            while (dc > 0) {
+                var anyData = false;
+                for (var rr = 1; rr < all.length; rr++) {
+                    var cv = all[rr] && all[rr][dc - 1];
+                    if (cv != null && String(cv).trim() !== '') { anyData = true; break; }
+                }
+                if (anyData || String(hd[dc - 1] || '').trim()) break;
+                dc--;
+            }
+
+            var data = all.slice(1);
+            /* Sort by achievement (rows with more "Đạt" / 10000001111 come first) */
+            var si = [];
+            for (var r = 0; r < data.length; r++) si.push(r);
+            si.sort(function(a, b) { return TD_ced(data[b] || [], dc) - TD_ced(data[a] || [], dc); });
+
+            /* Build header with grouped rank columns */
+            var rankStart = cfg.infoCols + cfg.dataColsBeforeRanks;
+            var headerRow1 = '<tr><th rowspan="2" class="mini-col">STT</th>';
+            /* Info columns */
+            for (var ic = 0; ic < cfg.infoCols; ic++) {
+                var infoH = String(hd[ic] || '').trim();
+                var infoKey = infoH.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[đĐ]/g, 'd').replace(/[^a-z0-9]+/g, ' ').trim();
+                var infoCls = 'col-name';
+                if (/(ma so|msdl|ms dl|ms dai ly|ma tn|^ma$|^ms$)/.test(infoKey)) infoCls = 'col-code';
+                headerRow1 += '<th rowspan="2" class="' + infoCls + '">' + esc(infoH) + '</th>';
+            }
+            /* Data columns before ranks */
+            for (var dc2 = 0; dc2 < cfg.dataColsBeforeRanks; dc2++) {
+                var dataH = String(hd[rankStart - cfg.dataColsBeforeRanks + dc2] || '').trim();
+                headerRow1 += '<th rowspan="2" class="num-col col-thuong">' + esc(dataH) + '</th>';
+            }
+            /* Rank group headers (row 1) */
+            for (var ri = 0; ri < cfg.ranks.length; ri++) {
+                var rank = cfg.ranks[ri];
+                headerRow1 += '<th colspan="' + rank.cols + '" class="clb-rank-group" style="background:' + rank.headerColor + ';color:#fff;font-size:10px;letter-spacing:.03em">' + esc(rank.name) + '</th>';
+            }
+            headerRow1 += '</tr>';
+
+            /* Rank sub-headers (row 2) */
+            var headerRow2 = '<tr>';
+            for (var ri2 = 0; ri2 < cfg.ranks.length; ri2++) {
+                var rank2 = cfg.ranks[ri2];
+                /* Find the starting column index for this rank */
+                var rankColStart = rankStart;
+                for (var rp = 0; rp < ri2; rp++) rankColStart += cfg.ranks[rp].cols;
+                for (var rc = 0; rc < rank2.cols; rc++) {
+                    var subH = String(hd[rankColStart + rc] || '').trim();
+                    headerRow2 += '<th class="mini-col clb-rank-sub" style="background:' + rank2.headerColor + 'cc;color:#fff;font-size:9px">' + esc(subH) + '</th>';
+                }
+            }
+            headerRow2 += '</tr>';
+
+            /* Build body */
+            var body = '';
+            for (var k = 0; k < si.length; k++) {
+                var rowIndex = si[k], row = data[rowIndex] || [];
+                body += '<tr><td class="pst">' + (rowIndex + 1) + '</td>';
+                /* Info columns */
+                for (var ic2 = 0; ic2 < cfg.infoCols; ic2++) {
+                    var infoVal = String(row[ic2] || '').trim();
+                    var iKey = String(hd[ic2] || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[đĐ]/g, 'd').replace(/[^a-z0-9]+/g, ' ').trim();
+                    if (/(ma so|msdl|ms dl|ms dai ly|ma tn|^ma$|^ms$)/.test(iKey)) {
+                        body += '<td class="td-text col-code">' + esc(infoVal) + '</td>';
+                    } else {
+                        body += '<td class="td-text col-name">' + esc(infoVal) + '</td>';
+                    }
+                }
+                /* Data columns before ranks */
+                for (var dc3 = 0; dc3 < cfg.dataColsBeforeRanks; dc3++) {
+                    var dataVal = String(row[cfg.infoCols + dc3] || '').trim();
+                    var compact = dataVal.replace(/\s/g, '');
+                    var isNum = /^-?\d+(?:[.,]\d+)?$/.test(compact);
+                    var displayVal = dataVal;
+                    if (isNum) {
+                        var n = Number(compact.replace(/\./g, '').replace(',', '.'));
+                        if (isFinite(n)) displayVal = n.toLocaleString('vi-VN');
+                    }
+                    body += '<td class="td-num col-thuong-cell">' + esc(displayVal) + '</td>';
+                }
+                /* Rank columns with colored backgrounds */
+                var rankColIdx = rankStart;
+                for (var ri3 = 0; ri3 < cfg.ranks.length; ri3++) {
+                    var rank3 = cfg.ranks[ri3];
+                    for (var rc2 = 0; rc2 < rank3.cols; rc2++) {
+                        var rankVal = String(row[rankColIdx] || '').trim();
+                        var rankDisplay = rankVal;
+                        var rankCompact = rankVal.replace(/\s/g, '');
+                        var rankIsNum = /^-?\d+(?:[.,]\d+)?$/.test(rankCompact);
+                        if (rankIsNum) {
+                            var rn = Number(rankCompact.replace(/\./g, '').replace(',', '.'));
+                            if (isFinite(rn)) rankDisplay = rn.toLocaleString('vi-VN');
+                        }
+                        var cellCls = 'td-num';
+                        var cellStyle = 'background:' + rank3.color + ' !important;';
+                        if (rankVal === '10000001111') {
+                            rankDisplay = '<span class="ach-pill"><i class="fa-solid fa-circle-check" style="margin-right:3px"></i>Đạt</span>';
+                            cellCls += ' ach-cell';
+                        } else if (rankVal.toLowerCase() === 'đạt' || rankVal.toLowerCase() === 'đạt danh hiệu') {
+                            rankDisplay = '<span class="dat-badge"><i class="fa-solid fa-circle-check" style="margin-right:3px"></i>' + esc(rankDisplay) + '</span>';
+                            cellCls += ' cell-dat';
+                        } else if (rankIsNum && Number(rankCompact.replace(/\./g, '').replace(',', '.')) < 0) {
+                            cellStyle += 'color:#b91c1c;';
+                        }
+                        body += '<td class="' + cellCls + '" style="' + cellStyle + '">' + rankDisplay + '</td>';
+                        rankColIdx++;
+                    }
+                }
+                body += '</tr>';
+            }
+
+            var tableHtml = '<div class="ptw auto-wide"><table class="pt"><thead>' + headerRow1 + headerRow2 + '</thead><tbody>' + body + '</tbody></table></div>';
+            ct.innerHTML = tableHtml;
+
+            /* Fix sticky top for 2nd header row */
+            function fixCLBSticky() {
+                var thead = ct.querySelector('thead');
+                if (thead && thead.rows.length > 1) {
+                    var cumTop = 0;
+                    for (var r = 0; r < thead.rows.length; r++) {
+                        var rowH = thead.rows[r].getBoundingClientRect().height;
+                        if (r > 0 && rowH > 0) {
+                            var cells = thead.rows[r].cells;
+                            for (var c = 0; c < cells.length; c++) {
+                                cells[c].style.top = cumTop + 'px';
+                            }
+                        }
+                        cumTop += rowH;
+                    }
+                }
+            }
+            requestAnimationFrame(function() { requestAnimationFrame(fixCLBSticky); });
+            setTimeout(fixCLBSticky, 300);
+        }
+
         function TD_renderPolicyTL(ct, csv, rows, sectionName) {
             var all = TD_csv(csv);
             if (!all.length || all.length < 2) {
@@ -4294,6 +4498,480 @@
             requestAnimationFrame(function() { requestAnimationFrame(fixStickyTN); });
             setTimeout(fixStickyTN, 300);
             setTimeout(fixStickyTN, 800);
+        }
+
+        /* ===== TVVM RENDERER ===== */
+        function TD_renderPolicyTVVM(ct, csv, rows, sectionName) {
+            var all = TD_csv(csv);
+            if (!all.length || all.length < 2) {
+                ct.innerHTML = '<div style="text-align:center;padding:40px;color:var(--td-fgm)">Tab trống</div>';
+                return;
+            }
+            var body = all.slice(1, 1 + rows);
+
+            function fv(v) {
+                var s = String(v == null ? '' : v).trim();
+                if (!s) return '';
+                var compact = s.replace(/\s/g, '');
+                if (!/^-?\d+(?:[.,]\d+)?$/.test(compact)) return s;
+                var n = Number(compact.replace(/\./g, '').replace(',', '.'));
+                if (!isFinite(n)) return s;
+                return n.toLocaleString('vi-VN');
+            }
+
+            function rewardCell(v) {
+                var val = fv(v);
+                if (!val) return '<td class="col-thuong-cell"></td>';
+                return '<td class="col-thuong-cell"><span class="thuong-val"><i class="fa-solid fa-trophy"></i> ' + esc(val) + '</span></td>';
+            }
+
+            /* Grouped headers:
+               Row 1: STT(rs2), NHÓM KD(rs2), MÃ SỐ ĐẠI LÝ(rs2), HỌ TÊN TVV(rs2), NGÀY CẤP MÃ(rs2), SỐ NGÀY LV(rs2), CHẶNG XÉT THƯỞNG(rs2), THÁNG(cs2), CHẶNG XÉT(cs2)
+               Row 2: Tổng IP, THƯỞNG, Tổng IP, THƯỞNG VC */
+            var r1 = '<tr>' +
+                '<th rowspan="2">STT</th>' +
+                '<th rowspan="2">NHÓM KD</th>' +
+                '<th rowspan="2">MÃ SỐ<br>ĐẠI LÝ</th>' +
+                '<th rowspan="2">HỌ TÊN TVV</th>' +
+                '<th rowspan="2">NGÀY<br>CẤP MÃ</th>' +
+                '<th rowspan="2">SỐ NGÀY<br>LV</th>' +
+                '<th rowspan="2">CHẶNG XÉT<br>THƯỞNG</th>' +
+                '<th class="tvvm-thang" colspan="2">THÁNG</th>' +
+                '<th class="tvvm-chang" colspan="2">CHẶNG XÉT</th>' +
+                '</tr>';
+            var r2 = '<tr>' +
+                '<th class="tvvm-thang">Tổng IP</th>' +
+                '<th class="tvvm-thang">THƯỞNG</th>' +
+                '<th class="tvvm-chang">Tổng IP</th>' +
+                '<th class="tvvm-chang">THƯỞNG VC</th>' +
+                '</tr>';
+
+            var bHtml = '';
+            body.forEach(function(r, idx) {
+                /* Columns: 0=NHÓM KD, 1=MÃ SỐ ĐẠI LÝ, 2=HỌ TÊN TVV, 3=NGÀY CẤP MÃ,
+                   4=Số ngày làm việc, 5=CHẶNG XÉT THƯỞNG, 6=Tổng IP tháng, 7=THƯỞNG THÁNG,
+                   8=Tổng IP Chặng xét, 9=THƯỞNG VƯỢT CHẶNG */
+                bHtml += '<tr>' +
+                    '<td class="pst">' + (idx + 1) + '</td>' +
+                    '<td class="td-text col-name">' + esc(String(r[0] || '').trim()) + '</td>' +
+                    '<td class="td-text col-code">' + esc(String(r[1] || '').trim()) + '</td>' +
+                    '<td class="td-text col-name">' + esc(String(r[2] || '').trim()) + '</td>' +
+                    '<td class="td-text">' + esc(String(r[3] || '').trim()) + '</td>' +
+                    '<td class="td-num">' + fv(r[4]) + '</td>' +
+                    '<td class="td-num ct-dieukien">' + esc(String(r[5] || '').trim()) + '</td>' +
+                    '<td class="td-num ct-data">' + fv(r[6]) + '</td>' +
+                    rewardCell(r[7]) +
+                    '<td class="td-num ct-data">' + fv(r[8]) + '</td>' +
+                    rewardCell(r[9]) +
+                    '</tr>';
+            });
+
+            var html = '<div class="po-ptw policy-tvvm-wrap"><table class="po-pt">' +
+                '<thead>' + r1 + r2 + '</thead>' +
+                '<tbody>' + bHtml + '</tbody>' +
+                '</table></div>';
+            ct.innerHTML = html;
+
+            /* Row click highlight */
+            ct.querySelectorAll('.policy-tvvm-wrap tbody tr').forEach(function(row) {
+                row.addEventListener('click', function() {
+                    ct.querySelectorAll('tbody tr.is-focus').forEach(function(activeRow) {
+                        activeRow.classList.remove('is-focus');
+                    });
+                    row.classList.add('is-focus');
+                });
+            });
+
+            /* Fix sticky 2nd row offset */
+            function fixSticky() {
+                var thead = ct.querySelector('.policy-tvvm-wrap thead');
+                if (thead && thead.rows.length >= 2) {
+                    var h1 = thead.rows[0].getBoundingClientRect().height;
+                    if (h1 > 0) {
+                        var cells2 = thead.rows[1].cells;
+                        for (var c = 0; c < cells2.length; c++) {
+                            cells2[c].style.top = h1 + 'px';
+                        }
+                    }
+                }
+            }
+            requestAnimationFrame(function() { requestAnimationFrame(fixSticky); });
+            setTimeout(fixSticky, 300);
+        }
+
+        /* ===== NST RENDERER ===== */
+        function TD_renderPolicyNST(ct, csv, rows, sectionName) {
+            var all = TD_csv(csv);
+            if (!all.length || all.length < 2) {
+                ct.innerHTML = '<div style="text-align:center;padding:40px;color:var(--td-fgm)">Tab trống</div>';
+                return;
+            }
+            var body = all.slice(1, 1 + rows);
+
+            function fv(v) {
+                var s = String(v == null ? '' : v).trim();
+                if (!s) return '';
+                var compact = s.replace(/\s/g, '');
+                if (!/^-?\d+(?:[.,]\d+)?$/.test(compact)) return s;
+                var n = Number(compact.replace(/\./g, '').replace(',', '.'));
+                if (!isFinite(n)) return s;
+                return n.toLocaleString('vi-VN');
+            }
+
+            function rewardCell(v) {
+                var val = fv(v);
+                if (!val) return '<td class="col-thuong-cell"></td>';
+                return '<td class="col-thuong-cell"><span class="thuong-val"><i class="fa-solid fa-trophy"></i> ' + esc(val) + '</span></td>';
+            }
+
+            /* Simple flat table: STT, NHÓM KD, MÃ SỐ, HỌ TÊN TVV, TỔNG IP THÁNG 3, TỔNG IP THÁNG 4, FYC, TỶ LỆ THƯỞNG, THƯỞNG THÁNG */
+            var headerHtml = '<tr>' +
+                '<th>STT</th>' +
+                '<th>NHÓM KD</th>' +
+                '<th>MÃ SỐ</th>' +
+                '<th>HỌ TÊN TVV</th>' +
+                '<th>TỔNG IP<br>THÁNG 3</th>' +
+                '<th>TỔNG IP<br>THÁNG 4</th>' +
+                '<th>FYC<br>(HH 25%)</th>' +
+                '<th class="col-percent">TỶ LỆ<br>THƯỞNG</th>' +
+                '<th class="col-thuong">THƯỞNG<br>THÁNG</th>' +
+                '</tr>';
+
+            var bHtml = '';
+            body.forEach(function(r, idx) {
+                /* Columns: 0=NHÓM KD, 1=MS, 2=HỌ TÊN TVV, 3=IP T3, 4=IP T4, 5=FYC, 6=TL THƯỞNG, 7=THƯỞNG THÁNG */
+                bHtml += '<tr>' +
+                    '<td class="pst">' + (idx + 1) + '</td>' +
+                    '<td class="td-text col-name">' + esc(String(r[0] || '').trim()) + '</td>' +
+                    '<td class="td-text col-code">' + esc(String(r[1] || '').trim()) + '</td>' +
+                    '<td class="td-text col-name">' + esc(String(r[2] || '').trim()) + '</td>' +
+                    '<td class="td-num ct-data">' + fv(r[3]) + '</td>' +
+                    '<td class="td-num ct-data">' + fv(r[4]) + '</td>' +
+                    '<td class="td-num ct-data">' + fv(r[5]) + '</td>' +
+                    '<td class="td-num ct-percent cell-percent">' + fv(r[6]) + '</td>' +
+                    rewardCell(r[7]) +
+                    '</tr>';
+            });
+
+            var html = '<div class="po-ptw policy-nst-wrap"><table class="po-pt">' +
+                '<thead>' + headerHtml + '</thead>' +
+                '<tbody>' + bHtml + '</tbody>' +
+                '</table></div>';
+            ct.innerHTML = html;
+
+            /* Row click highlight */
+            ct.querySelectorAll('.policy-nst-wrap tbody tr').forEach(function(row) {
+                row.addEventListener('click', function() {
+                    ct.querySelectorAll('tbody tr.is-focus').forEach(function(activeRow) {
+                        activeRow.classList.remove('is-focus');
+                    });
+                    row.classList.add('is-focus');
+                });
+            });
+        }
+
+        /* ===== NSQ RENDERER ===== */
+        function TD_renderPolicyNSQ(ct, csv, rows, sectionName) {
+            var all = TD_csv(csv);
+            if (!all.length || all.length < 2) {
+                ct.innerHTML = '<div style="text-align:center;padding:40px;color:var(--td-fgm)">Tab trống</div>';
+                return;
+            }
+            var body = all.slice(1, 1 + rows);
+
+            function fv(v) {
+                var s = String(v == null ? '' : v).trim();
+                if (!s) return '';
+                var compact = s.replace(/\s/g, '');
+                if (!/^-?\d+(?:[.,]\d+)?$/.test(compact)) return s;
+                var n = Number(compact.replace(/\./g, '').replace(',', '.'));
+                if (!isFinite(n)) return s;
+                return n.toLocaleString('vi-VN');
+            }
+
+            function rewardCell(v) {
+                var val = fv(v);
+                if (!val) return '<td class="col-thuong-cell"></td>';
+                return '<td class="col-thuong-cell"><span class="thuong-val"><i class="fa-solid fa-trophy"></i> ' + esc(val) + '</span></td>';
+            }
+
+            /* Grouped headers:
+               Row 1: STT(rs2), AD(rs2), NHÓM KD(rs2), MÃ SỐ ĐẠI LÝ(rs2), HỌ TÊN TVV(rs2), TỔNG FYP QUÝ(rs2), FYC(rs2), TỶ LỆ THƯỞNG(cs6), TIỀN THƯỞNG DỰ KIẾN(rs2)
+               Row 2: ≥24tr 8%, ≥60tr 10%, ≥90tr 13%, ≥150tr 15%, ≥250tr 18%, ≥350tr 20% */
+            var r1 = '<tr>' +
+                '<th rowspan="2">STT</th>' +
+                '<th rowspan="2">AD</th>' +
+                '<th rowspan="2">NHÓM KD</th>' +
+                '<th rowspan="2">MÃ SỐ<br>ĐẠI LÝ</th>' +
+                '<th rowspan="2">HỌ TÊN TVV</th>' +
+                '<th rowspan="2">TỔNG FYP<br>QUÝ</th>' +
+                '<th rowspan="2">FYC<br>(TLHH 25%)</th>' +
+                '<th class="col-dieukien" colspan="6">TỶ LỆ THƯỞNG</th>' +
+                '<th class="col-thuong" rowspan="2">TIỀN THƯỞNG<br>DỰ KIẾN</th>' +
+                '</tr>';
+            var r2 = '<tr>' +
+                '<th class="col-dieukien tier-lv1">≥24tr<br>8%</th>' +
+                '<th class="col-dieukien tier-lv2">≥60tr<br>10%</th>' +
+                '<th class="col-dieukien tier-lv3">≥90tr<br>13%</th>' +
+                '<th class="col-dieukien tier-lv4">≥150tr<br>15%</th>' +
+                '<th class="col-dieukien tier-lv5">≥250tr<br>18%</th>' +
+                '<th class="col-dieukien tier-lv6">≥350tr<br>20%</th>' +
+                '</tr>';
+
+            var bHtml = '';
+            body.forEach(function(r, idx) {
+                /* Columns: 0=NHÓM KD, 1=MÃ SỐ ĐẠI LÝ, 2=HỌ TÊN TVV, 3=FYP Q2, 4=FYC,
+                   5=FYP≥150tr 4%, 6=FYP≥150tr+TVVm 9%, 7=FYP≥270tr+TVVm 14%,
+                   8=FYP≥450tr+TVVm 18%, 9=FYP≥600tr+TVVm 22%, 10=FYP≥350tr 20%,
+                   11=TIỀN THƯỞNG DỰ KIẾN */
+                /* Find the achieved tier: highest non-empty tier column (5-10) */
+                var achievedTier = -1;
+                for (var ti = 10; ti >= 5; ti--) {
+                    var tv = String(r[ti] || '').trim();
+                    if (tv && tv !== '0' && tv !== '0%') { achievedTier = ti; break; }
+                }
+
+                bHtml += '<tr>' +
+                    '<td class="pst">' + (idx + 1) + '</td>' +
+                    '<td class="td-text" style="min-width:30px"></td>' +
+                    '<td class="td-text col-name">' + esc(String(r[0] || '').trim()) + '</td>' +
+                    '<td class="td-text col-code">' + esc(String(r[1] || '').trim()) + '</td>' +
+                    '<td class="td-text col-name">' + esc(String(r[2] || '').trim()) + '</td>' +
+                    '<td class="td-num ct-data">' + fv(r[3]) + '</td>' +
+                    '<td class="td-num ct-data">' + fv(r[4]) + '</td>';
+
+                /* Tier columns 5-10 */
+                for (var tc = 5; tc <= 10; tc++) {
+                    var tierVal = fv(r[tc]);
+                    var cls = 'td-num ct-percent';
+                    if (tc === achievedTier) cls += ' cell-dat';
+                    bHtml += '<td class="' + cls + '">' + tierVal + '</td>';
+                }
+
+                bHtml += rewardCell(r[11]) + '</tr>';
+            });
+
+            var html = '<div class="po-ptw policy-nsq-wrap"><table class="po-pt">' +
+                '<thead>' + r1 + r2 + '</thead>' +
+                '<tbody>' + bHtml + '</tbody>' +
+                '</table></div>';
+            ct.innerHTML = html;
+
+            /* Row click highlight */
+            ct.querySelectorAll('.policy-nsq-wrap tbody tr').forEach(function(row) {
+                row.addEventListener('click', function() {
+                    ct.querySelectorAll('tbody tr.is-focus').forEach(function(activeRow) {
+                        activeRow.classList.remove('is-focus');
+                    });
+                    row.classList.add('is-focus');
+                });
+            });
+
+            /* Fix sticky 2nd row offset */
+            function fixSticky() {
+                var thead = ct.querySelector('.policy-nsq-wrap thead');
+                if (thead && thead.rows.length >= 2) {
+                    var h1 = thead.rows[0].getBoundingClientRect().height;
+                    if (h1 > 0) {
+                        var cells2 = thead.rows[1].cells;
+                        for (var c = 0; c < cells2.length; c++) {
+                            cells2[c].style.top = h1 + 'px';
+                        }
+                    }
+                }
+            }
+            requestAnimationFrame(function() { requestAnimationFrame(fixSticky); });
+            setTimeout(fixSticky, 300);
+        }
+
+        /* ===== NSQ-N RENDERER ===== */
+        function TD_renderPolicyNSQN(ct, csv, rows, sectionName) {
+            var all = TD_csv(csv);
+            if (!all.length || all.length < 2) {
+                ct.innerHTML = '<div style="text-align:center;padding:40px;color:var(--td-fgm)">Tab trống</div>';
+                return;
+            }
+            var body = all.slice(1, 1 + rows);
+
+            function fv(v) {
+                var s = String(v == null ? '' : v).trim();
+                if (!s) return '';
+                var compact = s.replace(/\s/g, '');
+                if (!/^-?\d+(?:[.,]\d+)?$/.test(compact)) return s;
+                var n = Number(compact.replace(/\./g, '').replace(',', '.'));
+                if (!isFinite(n)) return s;
+                return n.toLocaleString('vi-VN');
+            }
+
+            function rewardCell(v) {
+                var val = fv(v);
+                if (!val) return '<td class="col-thuong-cell"></td>';
+                return '<td class="col-thuong-cell"><span class="thuong-val"><i class="fa-solid fa-trophy"></i> ' + esc(val) + '</span></td>';
+            }
+
+            /* Grouped headers:
+               Row 1: STT(rs2), NHÓM KD(rs2), MÃ SỐ ĐẠI LÝ(rs2), HỌ TÊN TVV(rs2), TỔNG FYP NHÓM(rs2), ĐIỀU KIỆN TVVm HĐC(rs2), TỶ LỆ THƯỞNG FYP(cs5), TỶ LỆ THƯỞNG(rs2), FYC(rs2), TIỀN THƯỞNG(rs2)
+               Row 2: ≥150tr 4%, ≥150tr+TVVm 9%, ≥270tr+TVVm 14%, ≥450tr+TVVm 18%, ≥600tr+TVVm 22% */
+            var r1 = '<tr>' +
+                '<th rowspan="2">STT</th>' +
+                '<th rowspan="2">NHÓM KD</th>' +
+                '<th rowspan="2">MÃ SỐ<br>ĐẠI LÝ</th>' +
+                '<th rowspan="2">HỌ TÊN TVV</th>' +
+                '<th rowspan="2">TỔNG FYP<br>NHÓM</th>' +
+                '<th rowspan="2">ĐIỀU KIỆN<br>TVVm HĐC</th>' +
+                '<th class="col-dieukien" colspan="5">TỶ LỆ THƯỞNG FYP</th>' +
+                '<th class="col-percent" rowspan="2">TỶ LỆ<br>THƯỞNG</th>' +
+                '<th rowspan="2">FYC<br>(TLHH 25%)</th>' +
+                '<th class="col-thuong" rowspan="2">TIỀN<br>THƯỞNG</th>' +
+                '</tr>';
+            var r2 = '<tr>' +
+                '<th class="col-dieukien tier-lv1">≥150tr<br>4%</th>' +
+                '<th class="col-dieukien tier-lv2">≥150tr<br>+TVVm 9%</th>' +
+                '<th class="col-dieukien tier-lv3">≥270tr<br>+TVVm 14%</th>' +
+                '<th class="col-dieukien tier-lv4">≥450tr<br>+TVVm 18%</th>' +
+                '<th class="col-dieukien tier-lv5">≥600tr<br>+TVVm 22%</th>' +
+                '</tr>';
+
+            var bHtml = '';
+            body.forEach(function(r, idx) {
+                /* Columns: 0=NHÓM KD, 1=MS ĐẠI LÝ, 2=HỌ TÊN TVV, 3=TỔNG FYP NHÓM, 4=Điều kiện TVVm HĐC,
+                   5=FYP≥150tr 4%, 6=FYP≥150tr+TVVm 9%, 7=FYP≥270tr+TVVm 14%,
+                   8=FYP≥450tr+TVVm 18%, 9=FYP≥600tr+TVVm 22%,
+                   10=TỶ LỆ THƯỞNG (tạm tính), 11=FYC Giả định TLHH 25%, 12=TIỀN THƯỞNG (Tạm tính) */
+                /* Find the achieved tier: highest non-empty tier column (5-9) */
+                var achievedTier = -1;
+                for (var ti = 9; ti >= 5; ti--) {
+                    var tv = String(r[ti] || '').trim();
+                    if (tv && tv !== '0' && tv !== '0%') { achievedTier = ti; break; }
+                }
+
+                bHtml += '<tr>' +
+                    '<td class="pst">' + (idx + 1) + '</td>' +
+                    '<td class="td-text col-name">' + esc(String(r[0] || '').trim()) + '</td>' +
+                    '<td class="td-text col-code">' + esc(String(r[1] || '').trim()) + '</td>' +
+                    '<td class="td-text col-name">' + esc(String(r[2] || '').trim()) + '</td>' +
+                    '<td class="td-num ct-data">' + fv(r[3]) + '</td>' +
+                    '<td class="td-num ct-dieukien">' + fv(r[4]) + '</td>';
+
+                /* Tier columns 5-9 */
+                for (var tc = 5; tc <= 9; tc++) {
+                    var tierVal = fv(r[tc]);
+                    var cls = 'td-num ct-percent';
+                    if (tc === achievedTier) cls += ' cell-dat';
+                    bHtml += '<td class="' + cls + '">' + tierVal + '</td>';
+                }
+
+                bHtml +=
+                    '<td class="td-num ct-percent cell-percent">' + fv(r[10]) + '</td>' +
+                    '<td class="td-num ct-data">' + fv(r[11]) + '</td>' +
+                    rewardCell(r[12]) +
+                    '</tr>';
+            });
+
+            var html = '<div class="po-ptw policy-nsqn-wrap"><table class="po-pt">' +
+                '<thead>' + r1 + r2 + '</thead>' +
+                '<tbody>' + bHtml + '</tbody>' +
+                '</table></div>';
+            ct.innerHTML = html;
+
+            /* Row click highlight */
+            ct.querySelectorAll('.policy-nsqn-wrap tbody tr').forEach(function(row) {
+                row.addEventListener('click', function() {
+                    ct.querySelectorAll('tbody tr.is-focus').forEach(function(activeRow) {
+                        activeRow.classList.remove('is-focus');
+                    });
+                    row.classList.add('is-focus');
+                });
+            });
+
+            /* Fix sticky 2nd row offset */
+            function fixSticky() {
+                var thead = ct.querySelector('.policy-nsqn-wrap thead');
+                if (thead && thead.rows.length >= 2) {
+                    var h1 = thead.rows[0].getBoundingClientRect().height;
+                    if (h1 > 0) {
+                        var cells2 = thead.rows[1].cells;
+                        for (var c = 0; c < cells2.length; c++) {
+                            cells2[c].style.top = h1 + 'px';
+                        }
+                    }
+                }
+            }
+            requestAnimationFrame(function() { requestAnimationFrame(fixSticky); });
+            setTimeout(fixSticky, 300);
+        }
+
+        /* ===== PTKD RENDERER ===== */
+        function TD_renderPolicyPTKD(ct, csv, rows, sectionName) {
+            var all = TD_csv(csv);
+            if (!all.length || all.length < 2) {
+                ct.innerHTML = '<div style="text-align:center;padding:40px;color:var(--td-fgm)">Tab trống</div>';
+                return;
+            }
+            var body = all.slice(1, 1 + rows);
+
+            function fv(v) {
+                var s = String(v == null ? '' : v).trim();
+                if (!s) return '';
+                var compact = s.replace(/\s/g, '');
+                if (!/^-?\d+(?:[.,]\d+)?$/.test(compact)) return s;
+                var n = Number(compact.replace(/\./g, '').replace(',', '.'));
+                if (!isFinite(n)) return s;
+                return n.toLocaleString('vi-VN');
+            }
+
+            function rewardCell(v) {
+                var val = fv(v);
+                if (!val) return '<td class="col-thuong-cell"></td>';
+                return '<td class="col-thuong-cell"><span class="thuong-val"><i class="fa-solid fa-trophy"></i> ' + esc(val) + '</span></td>';
+            }
+
+            /* Simple flat table: STT, NHÓM KD, MÃ SỐ ĐẠI LÝ, HỌ TÊN TVV, CHỨC VỤ, FYP NHÓM, LƯỢT HĐC NHÓM, FYC, TỶ LỆ THƯỞNG, TIỀN THƯỞNG */
+            var headerHtml = '<tr>' +
+                '<th>STT</th>' +
+                '<th>NHÓM KD</th>' +
+                '<th>MÃ SỐ<br>ĐẠI LÝ</th>' +
+                '<th>HỌ TÊN TVV</th>' +
+                '<th>CHỨC VỤ</th>' +
+                '<th>FYP<br>NHÓM</th>' +
+                '<th>LƯỢT HĐC<br>NHÓM</th>' +
+                '<th>FYC<br>(TLHH 25%)</th>' +
+                '<th class="col-percent">TỶ LỆ<br>THƯỞNG</th>' +
+                '<th class="col-thuong">TIỀN<br>THƯỞNG</th>' +
+                '</tr>';
+
+            var bHtml = '';
+            body.forEach(function(r, idx) {
+                /* Columns: 0=NHÓM KD, 1=MS ĐẠI LÝ, 2=HỌ TÊN TVV, 3=CHỨC VỤ, 4=FYP nhóm, 5=LƯỢT HĐC nhóm, 6=FYC, 7=TỶ LỆ THƯỞNG, 8=TIỀN THƯỞNG */
+                bHtml += '<tr>' +
+                    '<td class="pst">' + (idx + 1) + '</td>' +
+                    '<td class="td-text col-name">' + esc(String(r[0] || '').trim()) + '</td>' +
+                    '<td class="td-text col-code">' + esc(String(r[1] || '').trim()) + '</td>' +
+                    '<td class="td-text col-name">' + esc(String(r[2] || '').trim()) + '</td>' +
+                    '<td class="td-text col-code">' + esc(String(r[3] || '').trim()) + '</td>' +
+                    '<td class="td-num ct-data">' + fv(r[4]) + '</td>' +
+                    '<td class="td-num ct-data">' + fv(r[5]) + '</td>' +
+                    '<td class="td-num ct-data">' + fv(r[6]) + '</td>' +
+                    '<td class="td-num ct-percent cell-percent">' + fv(r[7]) + '</td>' +
+                    rewardCell(r[8]) +
+                    '</tr>';
+            });
+
+            var html = '<div class="po-ptw policy-ptkd-wrap"><table class="po-pt">' +
+                '<thead>' + headerHtml + '</thead>' +
+                '<tbody>' + bHtml + '</tbody>' +
+                '</table></div>';
+            ct.innerHTML = html;
+
+            /* Row click highlight */
+            ct.querySelectorAll('.policy-ptkd-wrap tbody tr').forEach(function(row) {
+                row.addEventListener('click', function() {
+                    ct.querySelectorAll('tbody tr.is-focus').forEach(function(activeRow) {
+                        activeRow.classList.remove('is-focus');
+                    });
+                    row.classList.add('is-focus');
+                });
+            });
         }
 
         function TD_ws(data) {
@@ -4614,6 +5292,21 @@ if (ok) { toast('Đã xóa', 'ok'); ccf(); await lfs(); }
                     } else if (cfg.prefix === 'po' && (p.sheetName === 'TN' || p.sheetName === 'TN2' || p.sheetName === 'TN3')) {
                         var csv = await TD_fetchText([TD_gtc(p.sheetName), TD_gtcAlt(p.sheetName)]);
                         TD_renderPolicyTN(ct, csv, p.rows, p.name);
+                    } else if (cfg.prefix === 'po' && p.sheetName === 'TVVM') {
+                        var csv = await TD_fetchText([TD_gtc(p.sheetName), TD_gtcAlt(p.sheetName)]);
+                        TD_renderPolicyTVVM(ct, csv, p.rows, p.name);
+                    } else if (cfg.prefix === 'po' && p.sheetName === 'NST') {
+                        var csv = await TD_fetchText([TD_gtc(p.sheetName), TD_gtcAlt(p.sheetName)]);
+                        TD_renderPolicyNST(ct, csv, p.rows, p.name);
+                    } else if (cfg.prefix === 'po' && p.sheetName === 'NSQ') {
+                        var csv = await TD_fetchText([TD_gtc(p.sheetName), TD_gtcAlt(p.sheetName)]);
+                        TD_renderPolicyNSQ(ct, csv, p.rows, p.name);
+                    } else if (cfg.prefix === 'po' && p.sheetName === 'NSQ-N') {
+                        var csv = await TD_fetchText([TD_gtc(p.sheetName), TD_gtcAlt(p.sheetName)]);
+                        TD_renderPolicyNSQN(ct, csv, p.rows, p.name);
+                    } else if (cfg.prefix === 'po' && p.sheetName === 'PTKD') {
+                        var csv = await TD_fetchText([TD_gtc(p.sheetName), TD_gtcAlt(p.sheetName)]);
+                        TD_renderPolicyPTKD(ct, csv, p.rows, p.name);
                     } else if (cfg.useSheetLayout) {
                         try {
                             var layout = await TD_fetchSheetLayout(p.sheetName, p.cols, p.rows);
@@ -4622,6 +5315,10 @@ if (ok) { toast('Đã xóa', 'ok'); ccf(); await lfs(); }
                             var csv = await TD_fetchText([TD_gtc(p.sheetName), TD_gtcAlt(p.sheetName)]);
                             rpt(ct, csv, p.cols, p.rows);
                         }
+                    } else if (cfg.prefix === 'cb') {
+                        /* CLB pages: custom grouped headers with rank colors */
+                        var csv = await TD_fetchText([TD_gtc(p.sheetName), TD_gtcAlt(p.sheetName)]);
+                        TD_renderCLB(ct, csv, p.cols, p.rows, p.sheetName);
                     } else {
                         var csv = await TD_fetchText([TD_gtc(p.sheetName), TD_gtcAlt(p.sheetName)]);
                         rpt(ct, csv, p.cols, p.rows);
@@ -4650,7 +5347,7 @@ if (ok) { toast('Đã xóa', 'ok'); ccf(); await lfs(); }
                     var key = headerKey(header);
                     if (/(stt|xep hang)/.test(key)) return 'col-stt num-col';
                     if (/(ho ten|ten ho|ten nhom|nhom tvv|ten tn|ten tvv|ten ns|ten cad|ten tv$|ten tvv$|^ten$|ten$)/.test(key)) return 'col-name';
-                    if (/(ma so|ma tn|m a|ma s|ma tvv|^ma$|^ms$|ma kd|ma dai ly|hl chuc vu)/.test(key)) return 'col-code';
+                    if (/(ma so|ma tn|m a|ma s|ma tvv|^ma$|^ms$|ma kd|ma dai ly|hl chuc vu|msdl|ms dl|ms dai ly)/.test(key)) return 'col-code';
                     if (/(nhom kd|nhom|don vi|doi tvv)/.test(key)) return 'col-name';
                     if (/(chuc vu|cv$)/.test(key)) return 'col-code num-col';
                     /* === TỔNG FYP/FYC NHÓM (trước tong chung) === */
@@ -4687,7 +5384,7 @@ if (ok) { toast('Đã xóa', 'ok'); ccf(); await lfs(); }
                     var key = headerKey(header);
                     if (/(stt|xep hang)/.test(key)) return 'info';
                     if (/(ho ten|ten ho|ten nhom|nhom tvv|ten tn|ten tvv|ten ns|ten cad|ten tv$|ten tvv$|^ten$|ten$)/.test(key)) return 'info';
-                    if (/(ma so|ma tn|m a|ma s|ma tvv|^ma$|^ms$|ma kd|ma dai ly|hl chuc vu)/.test(key)) return 'info';
+                    if (/(ma so|ma tn|m a|ma s|ma tvv|^ma$|^ms$|ma kd|ma dai ly|hl chuc vu|msdl|ms dl|ms dai ly)/.test(key)) return 'info';
                     if (/(nhom kd|nhom|don vi|doi tvv)/.test(key)) return 'info';
                     if (/(chuc vu|cv$)/.test(key)) return 'info';
                     /* === TỔNG FYP/FYC NHÓM === */
@@ -4727,12 +5424,12 @@ if (ok) { toast('Đã xóa', 'ok'); ccf(); await lfs(); }
 
                 function cellClass(header, rawVal, displayVal, colIndex, headers, isPolicy) {
                     var key = headerKey(header);
-                    var isInfoCol = /(stt|xep hang|ho ten|ten ho|ten nhom|nhom tvv|ten tn|ten tvv|ten ns|ten cad|ten tv$|ten tvv$|^ten$|ten$|ma so|ma tn|m a|ma s|ma tvv|^ma$|^ms$|ma kd|ma dai ly|hl chuc vu|nhom kd|nhom|don vi|doi tvv|chuc vu|cv$)/.test(key);
+                    var isInfoCol = /(stt|xep hang|ho ten|ten ho|ten nhom|nhom tvv|ten tn|ten tvv|ten ns|ten cad|ten tv$|ten tvv$|^ten$|ten$|ma so|ma tn|m a|ma s|ma tvv|^ma$|^ms$|ma kd|ma dai ly|hl chuc vu|msdl|ms dl|ms dai ly|nhom kd|nhom|don vi|doi tvv|chuc vu|cv$)/.test(key);
                     /* 4 cột đầu (STT, Nhóm, Mã số, Họ tên) → trắng, không tô màu */
                     if (isInfoCol) {
                         if (/(stt|xep hang)/.test(key)) return 'td-num col-stt';
                         if (/(ho ten|ten ho|ten nhom|nhom tvv|ten tn|ten tvv|ten ns|ten cad|ten tv$|ten tvv$|^ten$|ten$|nhom kd|nhom|don vi|doi tvv)/.test(key)) return 'td-text col-name';
-                        if (/(ma so|ma tn|m a|ma s|ma tvv|^ma$|^ms$|ma kd|ma dai ly|hl chuc vu|chuc vu|cv$)/.test(key)) return 'td-text col-code';
+                        if (/(ma so|ma tn|m a|ma s|ma tvv|^ma$|^ms$|ma kd|ma dai ly|hl chuc vu|msdl|ms dl|ms dai ly|chuc vu|cv$)/.test(key)) return 'td-text col-code';
                     }
                     /* === TỔNG FYP/FYC NHÓM → hồng nhạt, trái, đậm === */
                     if (/(tong fyp nhom|tong fyc nhom)/.test(key)) return 'td-text col-fypnhom-cell';
