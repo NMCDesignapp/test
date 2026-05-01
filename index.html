@@ -9,6 +9,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="KPI BVNT">
     <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- PapaParse for CSV -->
@@ -4386,30 +4388,62 @@ if (ok) { toast('Đã xóa', 'ok'); ccf(); await lfs(); }
         <div class="pwa-banner-icon"><i class="fa-solid fa-download"></i></div>
         <div class="pwa-banner-text">
             <strong>Cài đặt ứng dụng</strong>
-            Truy cập nhanh hơn từ màn hình chính
+            <span id="pwa-instruction">Truy cập nhanh hơn từ màn hình chính</span>
         </div>
         <button class="pwa-banner-btn" id="pwa-install-btn">Cài đặt</button>
         <button class="pwa-banner-close" id="pwa-close-btn">&times;</button>
     </div>
     <script>
     (function() {
+        /* Xóa dismissed sau 7 ngày để hiện lại banner */
+        var dismissedTs = localStorage.getItem('pwa_dismissed_ts');
+        if (dismissedTs && Date.now() - parseInt(dismissedTs, 10) > 7 * 86400000) {
+            localStorage.removeItem('pwa_dismissed');
+            localStorage.removeItem('pwa_dismissed_ts');
+        }
         var dismissed = localStorage.getItem('pwa_dismissed');
-        var isStandalone = window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches;
+        var isStandalone = window.navigator.standalone === true || window.matchMedia('(display-mode: standalone)').matches;
         var banner = document.getElementById('pwa-banner');
         var installBtn = document.getElementById('pwa-install-btn');
         var closeBtn = document.getElementById('pwa-close-btn');
+        var instructionEl = document.getElementById('pwa-instruction');
         var deferredPrompt = null;
 
+        /* Detect iOS */
+        var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+        var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+        function showBanner() {
+            if (dismissed || isStandalone) return;
+            setTimeout(function() {
+                banner.classList.add('show');
+                document.body.classList.add('has-pwa-banner');
+            }, 2000);
+        }
+
+        /* === ANDROID CHROME: beforeinstallprompt === */
         window.addEventListener('beforeinstallprompt', function(e) {
             e.preventDefault();
             deferredPrompt = e;
-            if (!dismissed && !isStandalone) {
-                setTimeout(function() {
-                    banner.classList.add('show');
-                    document.body.classList.add('has-pwa-banner');
-                }, 3000);
-            }
+            /* Cập nhật text cho Android */
+            instructionEl.textContent = 'Truy cập nhanh hơn từ màn hình chính';
+            installBtn.textContent = 'Cài đặt';
+            installBtn.style.display = '';
+            showBanner();
         });
+
+        /* === iOS SAFARI: không có beforeinstallprompt → hiện hướng dẫn === */
+        if (isIOS && isSafari && !isStandalone) {
+            instructionEl.innerHTML = 'Nhấn <i class="fa-solid fa-arrow-up-from-bracket" style="color:#7a9266"></i> rồi chọn <b>"Thêm vào Màn hình chính"</b>';
+            installBtn.style.display = 'none';
+            showBanner();
+        }
+        /* iOS Chrome/Firefox trên iOS cũng không hỗ trợ — hiện hướng dẫn tương tự */
+        if (isIOS && !isSafari && !isStandalone) {
+            instructionEl.innerHTML = 'Mở trong Safari → Nhấn <i class="fa-solid fa-arrow-up-from-bracket" style="color:#7a9266"></i> → <b>"Thêm vào Màn hình chính"</b>';
+            installBtn.style.display = 'none';
+            showBanner();
+        }
 
         installBtn.addEventListener('click', function() {
             if (deferredPrompt) {
@@ -4428,6 +4462,7 @@ if (ok) { toast('Đã xóa', 'ok'); ccf(); await lfs(); }
             banner.classList.remove('show');
             document.body.classList.remove('has-pwa-banner');
             localStorage.setItem('pwa_dismissed', '1');
+            localStorage.setItem('pwa_dismissed_ts', String(Date.now()));
         });
 
         window.addEventListener('appinstalled', function() {
