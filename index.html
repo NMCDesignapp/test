@@ -1731,7 +1731,11 @@
             background: #000044;
             color: #fff;
         }
-        /* Nhóm số liệu (FYP, IP, AFYP...): nền #002200, chữ trắng */
+        /* Nhóm thông tin phụ (cột 5+): nền #103667, chữ trắng */
+        .td-page .pt thead th.h-text-info {
+            background: #103667;
+            color: #fff;
+        }
         .td-page .pt thead th.h-num {
             background: #002200;
             color: #fff;
@@ -3888,48 +3892,66 @@ if (ok) { toast('Đã xóa', 'ok'); ccf(); await lfs(); }
                 var all = TD_csv(csv);
                 if (!all.length) { ct.innerHTML = '<div style="text-align:center;padding:40px;color:var(--td-fgm)">Tab trống</div>'; return; }
 
-                /* === BƯỚC 1: Normalize header key === */
+                /* === HÀM TIỆN ÍCH === */
+                /* Normalize: bỏ dấu, lowercase, chỉ giữ a-z0-9 */
                 function hk(v) {
                     return String(v || '').trim().toLowerCase()
                         .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
                         .replace(/[đĐ]/g, 'd').replace(/[^a-z0-9]+/g, ' ')
                         .replace(/\s+/g, ' ').trim();
                 }
+                function escH(s) { return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
-                /* === BƯỚC 2: Phân loại cột — 5 nhóm === */
-                /* info: cột 1-4 (STT, nhóm KD, mã số, họ tên, chức vụ...)
-                   textInfo: thông tin phụ (ngày cấp, sl tvv, ngày làm việc, chặng...)
-                   numdata: số liệu (FYP, IP, AFYP, tổng FYP, tổng IP, quy mô, tvv HĐC...)
-                   percent: tỷ lệ phần trăm (% tỷ lệ thưởng, TLHT...)
-                   condition: chỉ tiêu có điều kiện (FYP>=, IP>=, <=, =...)
-                   money: phần thưởng, tiền thưởng */
+                /* === PHÂN LOẠI CỘT — 6 NHÓM ===
+                   Quy tắc (từ người dùng):
+                   - Cột 1–4 (index 0–3): luôn là 'info' → nền header #000044, nền body trắng
+                   - Từ cột 5 (index 4+) phân loại theo NỘI DUNG header:
+                     1) textInfo: thông tin phụ (ngày cấp, sl tvv, chức vụ, chặng...) → header #103667, body #CAE5E8
+                     2) numdata: số liệu (FYP, IP, AFYP, tổng...) → header #002200, body #CCCCFF
+                     3) percent: tỷ lệ % → header orangered, body #FFFFCC / xám
+                     4) condition: chỉ tiêu có ĐIỀU KIỆN (>=, <=, >, <, hoặc chữ "chỉ tiêu"/"điều kiện")
+                        → 2 hàng header: trên #BD6B09 (danh hiệu/mức), dưới #EC870E (chi tiết >=)
+                        → body lemonchiffon
+                     5) money: phần thưởng/tiền thưởng → header #000044 chữ vàng, body lightyellow
+                */
                 function colCategory(header, colIdx) {
-                    var k = hk(header);
-                    /* Cột 0-3 → info (STT, nhóm, mã, tên, chức vụ...) */
+                    var raw = String(header || '').trim();
+                    var k = hk(raw);
+
+                    /* Cột 1–4 (index 0–3) → luôn info */
                     if (colIdx <= 3) return 'info';
+
+                    /* ★ QUAN TRỌNG: kiểm tra HEADER GỐC (chưa normalize) cho >=, <= */
+                    /* Phải kiểm tra condition TRƯỚC money vì "Thưởng tháng (FYP>=500tr)" có cả 2 */
+                    if (/>=|<=|>[^=]|<(?!=)/.test(raw)) return 'condition';
+                    if (/chi\s*tieu|dieu\s*kien/i.test(raw)) return 'condition';
+
                     /* Phần thưởng / tiền thưởng */
+                    if (/thuong|ph.*thuong|tien.*thuong|thu.*nhap|du.*kien/i.test(raw)) return 'money';
                     if (/(thuong|ph^n thuong|tien thuong|thu nhap|du kien thuong)/.test(k)) return 'money';
-                    /* Tỷ lệ % */
-                    if (/(%|ty le|tlht|phan tram)/.test(k)) return 'percent';
-                    /* Chỉ tiêu có điều kiện >=, <=, = */
-                    if (/(>=|<=|=>|<|chi tieu|dieu kien)/.test(k)) return 'condition';
-                    if (/\(.*>=.*\)/.test(k) || /\(.*<=.*\)/.test(k)) return 'condition';
-                    /* Thông tin phụ (ngày, sl, chặng...) */
-                    if (/(ngay|thang lam|chang|so luong|sl tvv|ngay hieu luc|ngay cap|thoi gian)/.test(k)) return 'textInfo';
-                    /* Số liệu (FYP, IP, AFYP, tổng...) */
-                    if (/(fyp|afyp|ip|tong|quy mo|tvv hdk|doanh so|so tien|fyc|hdc)/.test(k)) return 'numdata';
-                    /* Mặc định: nếu không khớp nhóm nào, xét theo vị trí */
-                    if (colIdx <= 3) return 'info';
+
+                    /* Tỷ lệ % — kiểm tra % trên header gốc trước */
+                    if (raw.indexOf('%') >= 0) return 'percent';
+                    if (/(ty le|tlht|phan tram)/.test(k)) return 'percent';
+
+                    /* Thông tin phụ (cột 5+) */
+                    if (/(ngay|thang lam|chang|so luong|sl tvv|ngay hieu luc|ngay cap|thoi gian|chuc vu|^cv$|thoi han|ngay bat dau|ngay ket thuc|han)/.test(k)) return 'textInfo';
+
+                    /* Số liệu */
+                    if (/(fyp|afyp|ip|tong|quy mo|tvv hd|doanh so|so tien|fyc|hdc|thuc hien|kenh|so hd)/.test(k)) return 'numdata';
+
+                    /* Mặc định cột 5+ → numdata */
                     return 'numdata';
                 }
 
-                /* Xác định cột 1-4: 0=STT(center), 1=nhóm/left, 2=mã/center, 3=tên/left */
+                /* Căn chỉnh cột 1–4: cột 1+3 căn giữa, cột 2+4 căn trái (1-indexed) */
+                /* Trong mảng 0-indexed: index 0,2 = center; index 1,3 = left */
                 function infoAlign(colIdx) {
                     if (colIdx === 1 || colIdx === 3) return 'left';
                     return 'center';
                 }
 
-                /* === BƯỚC 3: Lấy headers, cắt cột trống === */
+                /* === LẤY HEADERS, CẮT CỘT TRỐNG === */
                 var hd = all[0] || [];
                 var dc = hd.length;
                 while (dc > 0 && !String(hd[dc - 1] || '').trim()) {
@@ -3948,87 +3970,104 @@ if (ok) { toast('Đã xóa', 'ok'); ccf(); await lfs(); }
                     if (/(^|\s)nhom(\s|$)|nhom kd/.test(hk(hd[gi]))) { groupCol = gi; break; }
                 }
 
-                /* === BƯỚC 4: Phân loại tất cả cột === */
+                /* === KIỂM TRA CỘT STT === */
+                /* Nếu cột đầu tiên là STT → dùng STT từ CSV, không thêm auto-STT */
+                var hasSttCol = (hk(hd[0]) === 'stt' || hk(hd[0]).indexOf('stt') === 0 || /xep hang/.test(hk(hd[0])));
+                var sttColIdx = hasSttCol ? 0 : -1;
+
+                /* === PHÂN LOẠI TẤT CẢ CỘT === */
                 var colCats = [];
                 for (var ci = 0; ci < dc; ci++) {
                     colCats.push(colCategory(hd[ci], ci));
                 }
 
-                /* === BƯỚC 5: Phát hiện nhóm điều kiện → tạo 2 hàng tiêu đề === */
-                /* Tìm các cột condition liên tiếp → gộp nhóm cùng mức thưởng/danh hiệu */
+                /* === PHÁT HIỆN NHÓM ĐIỀU KIỆN → TẠO 2 HÀNG TIÊU ĐỀ === */
+                /* Gom các cột condition liên tiếp có cùng "tên danh hiệu/mức" → gộp colspan hàng trên */
                 var condGroups = []; /* {start, end, topLabel} */
-                var i = 0;
-                while (i < dc) {
-                    if (colCats[i] === 'condition') {
-                        var start = i;
-                        /* Trích tên danh hiệu/mức từ header: phần trước ( ) hoặc trước >= */
-                        var topLabel = '';
-                        var hdr = String(hd[i] || '').trim();
-                        var parenIdx = hdr.indexOf('(');
-                        var geIdx = hdr.indexOf('>=');
-                        var leIdx = hdr.indexOf('<=');
-                        var cutIdx = hdr.length;
-                        if (parenIdx > 0) cutIdx = Math.min(cutIdx, parenIdx);
-                        if (geIdx > 0) cutIdx = Math.min(cutIdx, geIdx);
-                        if (leIdx > 0) cutIdx = Math.min(cutIdx, leIdx);
-                        topLabel = hdr.substring(0, cutIdx).trim();
+                var ii = 0;
+                while (ii < dc) {
+                    if (colCats[ii] === 'condition') {
+                        var cStart = ii;
+                        /* Trích tên danh hiệu/mức từ header GỐC: phần trước ( ) hoặc trước >= */
+                        var rawHdr = String(hd[ii] || '').trim();
+                        var topLabel = rawHdr;
+                        var pCut = rawHdr.length;
+                        /* Ưu tiên cắt tại '(' hoặc '>=' hoặc '<=' hoặc '>' */
+                        var mParen = rawHdr.indexOf('(');
+                        var mGe = rawHdr.indexOf('>=');
+                        var mLe = rawHdr.indexOf('<=');
+                        var mGt = rawHdr.indexOf('>');
+                        var mLt = rawHdr.indexOf('<');
+                        if (mParen > 0) pCut = Math.min(pCut, mParen);
+                        if (mGe > 0) pCut = Math.min(pCut, mGe);
+                        if (mLe > 0) pCut = Math.min(pCut, mLe);
+                        if (mGt > 0 && mGt !== mGe) pCut = Math.min(pCut, mGt);
+                        if (mLt > 0 && mLt !== mLe) pCut = Math.min(pCut, mLt);
+                        topLabel = rawHdr.substring(0, pCut).trim();
 
                         /* Gom các cột condition liên tiếp có cùng topLabel */
-                        var end = i;
-                        while (end + 1 < dc && colCats[end + 1] === 'condition') {
-                            var nextHdr = String(hd[end + 1] || '').trim();
-                            var nextTop = '';
-                            var nParenIdx = nextHdr.indexOf('(');
-                            var nGeIdx = nextHdr.indexOf('>=');
-                            var nLeIdx = nextHdr.indexOf('<=');
-                            var nCutIdx = nextHdr.length;
-                            if (nParenIdx > 0) nCutIdx = Math.min(nCutIdx, nParenIdx);
-                            if (nGeIdx > 0) nCutIdx = Math.min(nCutIdx, nGeIdx);
-                            if (nLeIdx > 0) nCutIdx = Math.min(nCutIdx, nLeIdx);
-                            nextTop = nextHdr.substring(0, nCutIdx).trim();
+                        var cEnd = ii;
+                        while (cEnd + 1 < dc && colCats[cEnd + 1] === 'condition') {
+                            var nextRaw = String(hd[cEnd + 1] || '').trim();
+                            var nextTop = nextRaw;
+                            var nCut = nextRaw.length;
+                            var np = nextRaw.indexOf('(');
+                            var nge = nextRaw.indexOf('>=');
+                            var nle = nextRaw.indexOf('<=');
+                            var ngt = nextRaw.indexOf('>');
+                            var nlt = nextRaw.indexOf('<');
+                            if (np > 0) nCut = Math.min(nCut, np);
+                            if (nge > 0) nCut = Math.min(nCut, nge);
+                            if (nle > 0) nCut = Math.min(nCut, nle);
+                            if (ngt > 0 && ngt !== nge) nCut = Math.min(nCut, ngt);
+                            if (nlt > 0 && nlt !== nle) nCut = Math.min(nCut, nlt);
+                            nextTop = nextRaw.substring(0, nCut).trim();
                             if (nextTop === topLabel) {
-                                end++;
+                                cEnd++;
                             } else {
                                 break;
                             }
                         }
-                        condGroups.push({ start: start, end: end, topLabel: topLabel });
-                        i = end + 1;
+                        condGroups.push({ start: cStart, end: cEnd, topLabel: topLabel });
+                        ii = cEnd + 1;
                     } else {
-                        i++;
+                        ii++;
                     }
                 }
 
-                var hasCondRow = condGroups.length > 0;
-
-                /* === BƯỚC 6: Tạo HTML tiêu đề === */
                 var hasCond = condGroups.length > 0;
-                var hRow1 = ''; /* Hàng 1: STT + info + numdata + percent + cond-top(gộp) + money */
-                var hRow2 = ''; /* Hàng 2: chỉ có cond-bot (chi tiết điều kiện) */
+
+                /* === TẠO HTML TIÊU ĐỀ === */
+                var hRow1 = ''; /* Hàng 1: info + numdata + percent + cond-top(gộp) + money */
+                var hRow2 = ''; /* Hàng 2: chỉ cond-bot (chi tiết điều kiện) */
 
                 /* --- Hàng 1 --- */
-                hRow1 += '<th class="pst-h" rowspan="' + (hasCond ? 2 : 1) + '">STT</th>';
                 var condProcessed = {};
                 for (var hi = 0; hi < dc; hi++) {
                     var cat = colCats[hi];
-                    var hdrText = esc(hd[hi] || ('Cột ' + (hi + 1)));
+                    var hdrText = escH(hd[hi] || ('Cột ' + (hi + 1)));
+                    var rowSpan = hasCond ? 2 : 1;
                     var hCls = '';
 
                     if (cat === 'info') {
+                        /* Cột 1–4: nền #000044, chữ trắng */
                         hCls = 'h-info';
-                        hRow1 += '<th class="' + hCls + '" rowspan="' + (hasCond ? 2 : 1) + '">' + hdrText + '</th>';
+                        /* Nếu là cột STT → thêm class pst-h */
+                        if (hi === sttColIdx) hCls += ' pst-h';
+                        hRow1 += '<th class="' + hCls + '" rowspan="' + rowSpan + '">' + hdrText + '</th>';
                     } else if (cat === 'textInfo') {
-                        hCls = 'h-info';
-                        hRow1 += '<th class="' + hCls + '" rowspan="' + (hasCond ? 2 : 1) + '">' + hdrText + '</th>';
+                        /* Thông tin phụ: nền #103667, chữ trắng */
+                        hCls = 'h-text-info';
+                        hRow1 += '<th class="' + hCls + '" rowspan="' + rowSpan + '">' + hdrText + '</th>';
                     } else if (cat === 'numdata') {
                         hCls = 'h-num';
-                        hRow1 += '<th class="' + hCls + '" rowspan="' + (hasCond ? 2 : 1) + '">' + hdrText + '</th>';
+                        hRow1 += '<th class="' + hCls + '" rowspan="' + rowSpan + '">' + hdrText + '</th>';
                     } else if (cat === 'percent') {
                         hCls = 'h-percent';
-                        hRow1 += '<th class="' + hCls + '" rowspan="' + (hasCond ? 2 : 1) + '">' + hdrText + '</th>';
+                        hRow1 += '<th class="' + hCls + '" rowspan="' + rowSpan + '">' + hdrText + '</th>';
                     } else if (cat === 'money') {
                         hCls = 'h-money';
-                        hRow1 += '<th class="' + hCls + '" rowspan="' + (hasCond ? 2 : 1) + '">' + hdrText + '</th>';
+                        hRow1 += '<th class="' + hCls + '" rowspan="' + rowSpan + '">' + hdrText + '</th>';
                     } else if (cat === 'condition') {
                         /* Tìm group chứa cột này */
                         var grp = null;
@@ -4036,26 +4075,28 @@ if (ok) { toast('Đã xóa', 'ok'); ccf(); await lfs(); }
                             if (hi >= condGroups[gci].start && hi <= condGroups[gci].end) { grp = condGroups[gci]; break; }
                         }
                         if (grp && !condProcessed[grp.start]) {
-                            /* Gộp colspan cho hàng trên */
+                            /* Hàng trên: gộp colspan, chỉ hiện tên danh hiệu/mức */
                             var span = grp.end - grp.start + 1;
-                            hRow1 += '<th class="h-cond-top" colspan="' + span + '">' + esc(grp.topLabel) + '</th>';
+                            hRow1 += '<th class="h-cond-top" colspan="' + span + '">' + escH(grp.topLabel) + '</th>';
                             condProcessed[grp.start] = true;
                         }
-                        /* Hàng 2: chi tiết điều kiện */
-                        var botText = hdrText;
-                        /* Trích phần điều kiện từ header */
-                        var bHdr = String(hd[hi] || '').trim();
-                        var bParenIdx = bHdr.indexOf('(');
-                        var bGeIdx = bHdr.indexOf('>=');
-                        var bLeIdx = bHdr.indexOf('<=');
-                        if (bParenIdx >= 0) {
-                            botText = esc(bHdr.substring(bParenIdx));
-                        } else if (bGeIdx >= 0) {
-                            botText = esc(bHdr.substring(bGeIdx));
-                        } else if (bLeIdx >= 0) {
-                            botText = esc(bHdr.substring(bLeIdx));
+                        /* Hàng dưới: chi tiết điều kiện — trích phần sau tên danh hiệu */
+                        var rawH = String(hd[hi] || '').trim();
+                        var botText = '';
+                        var bParen = rawH.indexOf('(');
+                        var bGe = rawH.indexOf('>=');
+                        var bLe = rawH.indexOf('<=');
+                        /* Ưu tiên lấy phần trong ngoặc hoặc từ >= trở đi */
+                        if (bParen >= 0) {
+                            botText = rawH.substring(bParen);
+                        } else if (bGe >= 0) {
+                            botText = rawH.substring(bGe);
+                        } else if (bLe >= 0) {
+                            botText = rawH.substring(bLe);
+                        } else {
+                            botText = rawH;
                         }
-                        hRow2 += '<th class="h-cond-bot">' + botText + '</th>';
+                        hRow2 += '<th class="h-cond-bot">' + escH(botText) + '</th>';
                     }
                 }
 
@@ -4064,12 +4105,12 @@ if (ok) { toast('Đã xóa', 'ok'); ccf(); await lfs(); }
                     theadHtml += '<tr class="cond-row">' + hRow2 + '</tr>';
                 }
 
-                /* === BƯỚC 7: Tạo HTML nội dung === */
+                /* === TẠO HTML NỘI DUNG === */
                 var data = all.slice(1);
                 var bHtml = '';
                 for (var r = 0; r < data.length; r++) {
                     var rc = data[r] || [];
-                    bHtml += '<tr data-row-index="' + r + '"><td class="pst">' + (r + 1) + '</td>';
+                    bHtml += '<tr data-row-index="' + r + '">';
                     /* Đếm số cột condition đã qua để tính shade */
                     var condCounter = 0;
                     for (var c = 0; c < dc; c++) {
@@ -4098,57 +4139,63 @@ if (ok) { toast('Đã xóa', 'ok'); ccf(); await lfs(); }
                         var cellContent = '';
 
                         if (cat2 === 'info') {
-                            /* Cột 1-4: nền trắng, chữ #111, căn giữa/trái */
+                            /* Cột 1–4: nền trắng, chữ #111, căn giữa/trái */
                             var align = infoAlign(c);
                             tdCls = 'd-info-' + align;
-                            cellContent = esc(displayVal);
+                            /* Nếu là cột STT → dùng class pst */
+                            if (c === sttColIdx) tdCls = 'pst';
+                            cellContent = escH(displayVal);
                         } else if (cat2 === 'textInfo') {
+                            /* Thông tin phụ: nền #CAE5E8, chữ trắng, căn giữa */
                             tdCls = 'd-text-info';
-                            cellContent = esc(displayVal);
+                            cellContent = escH(displayVal);
                         } else if (cat2 === 'numdata') {
+                            /* Số liệu: nền #CCCCFF, chữ #111111, căn giữa */
                             tdCls = 'd-numdata';
-                            cellContent = esc(displayVal);
+                            cellContent = escH(displayVal);
                         } else if (cat2 === 'percent') {
-                            /* > 0% → đậm nghiêng vàng; còn lại → nghiêng xám */
+                            /* Tỷ lệ % */
                             var pctNum = parseFloat(rawVal.replace('%', '').replace(',', '.'));
                             if (!isNaN(pctNum) && pctNum > 0) {
+                                /* > 0%: nền #FFFFCC, in đậm in nghiêng */
                                 tdCls = 'd-percent-pos';
-                                cellContent = esc(displayVal);
+                                cellContent = escH(displayVal);
                             } else {
+                                /* Còn lại: in nghiêng, chữ xám */
                                 tdCls = 'd-percent-zero';
-                                cellContent = esc(displayVal);
+                                cellContent = escH(displayVal);
                             }
                         } else if (cat2 === 'condition') {
-                            /* Nền lemonchiffon, tăng sắc độ theo cột */
+                            /* Điều kiện: nền lemonchiffon, tăng sắc độ theo cột */
                             var shadeIdx = condCounter % 6;
                             condCounter++;
                             if (shadeIdx === 0) tdCls = 'd-cond';
                             else tdCls = 'd-cond d-cond-shade' + Math.min(shadeIdx, 5);
 
-                            /* Kiểm tra giá trị đặc biệt */
+                            /* Giá trị đặc biệt */
                             if (rawVal === '11111') {
+                                /* Số 11111 → hiển thị "Đạt" với dấu tích nhỏ */
                                 cellContent = '<span class="dat-badge"><i class="fa-solid fa-check"></i>Đạt</span>';
                             } else if (/^Thiếu/i.test(rawVal) || /^-/.test(rawVal)) {
-                                cellContent = '<span class="thieu-val">' + esc(displayVal) + '</span>';
+                                /* "Thiếu..." hoặc "-...": chữ đỏ, in nghiêng, KHÔNG in đậm */
+                                cellContent = '<span class="thieu-val">' + escH(displayVal) + '</span>';
                             } else if (rawVal.toLowerCase() === 'đạt') {
                                 cellContent = '<span class="dat-badge"><i class="fa-solid fa-check"></i>Đạt</span>';
                             } else {
-                                cellContent = esc(displayVal);
+                                cellContent = escH(displayVal);
                             }
                         } else if (cat2 === 'money') {
+                            /* Phần thưởng: nền lightyellow, chữ #000044 IN ĐẬM */
                             tdCls = 'd-money';
-                            /* Ô không trống & > 0 → icon thưởng + hiệu ứng */
-                            var moneyNum = parseFloat(rawVal.replace(/[.,]/g, '').replace(',', '.'));
-                            if (rawVal && rawVal !== '0' && rawVal !== '-' && !isNaN(moneyNum) && moneyNum > 0) {
-                                cellContent = '<span class="thuong-highlight"><i class="fa-solid fa-trophy"></i>' + esc(displayVal) + '</span>';
-                            } else if (rawVal && rawVal !== '0' && rawVal !== '-') {
-                                cellContent = '<span class="thuong-highlight"><i class="fa-solid fa-trophy"></i>' + esc(displayVal) + '</span>';
+                            if (rawVal && rawVal !== '0' && rawVal !== '-' && rawVal !== '') {
+                                /* Ô có giá trị → icon thưởng + hiệu ứng nổi bật */
+                                cellContent = '<span class="thuong-highlight"><i class="fa-solid fa-trophy"></i>' + escH(displayVal) + '</span>';
                             } else {
-                                cellContent = esc(displayVal);
+                                cellContent = escH(displayVal);
                             }
                         } else {
                             tdCls = 'd-numdata';
-                            cellContent = esc(displayVal);
+                            cellContent = escH(displayVal);
                         }
 
                         bHtml += '<td class="' + tdCls + '">' + cellContent + '</td>';
@@ -4156,12 +4203,12 @@ if (ok) { toast('Đã xóa', 'ok'); ccf(); await lfs(); }
                     bHtml += '</tr>';
                 }
 
-                /* === BƯỚC 8: Lắp ráp bảng === */
+                /* === LẮP RÁP BẢNG === */
                 var tableHtml = '<div class="ptw"><table class="pt"><thead>' + theadHtml + '</thead><tbody>' + bHtml + '</tbody></table></div>';
                 ct.innerHTML = tableHtml;
                 TD_attachGroupFilter(ct, groupCol, 1);
 
-                /* === BƯỚC 9: Cập nhật sticky top cho hàng điều kiện dưới === */
+                /* === CẬP NHẬT STICKY TOP CHO HÀNG ĐIỀU KIỆN DƯỚI === */
                 if (hasCond) {
                     try {
                         var firstRowH = ct.querySelector('.pt thead tr:first-child');
