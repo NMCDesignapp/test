@@ -1679,549 +1679,217 @@
         .td-page .pop-bar .tag, .td-page .pop-bar p { font-size: .74rem; color: #d6e3ef; text-shadow: none; margin: 0; }
         .td-page .pop-subline { display: inline-flex; align-items: center; gap: 6px; padding: 7px 10px; border: 1px solid #ffffff12; background: #08132196; color: #e4eef7; border-radius: 10px; line-height: 1.45; flex-wrap: wrap; }
         .td-page .pop-ct { padding: 0; flex: 1 1 auto; min-height: 0; overflow: auto; -webkit-overflow-scrolling: touch; }
-        .td-page .pop-ct .ptw { }
-        .td-page .pop-ct > .ptw + .ptw,
-        .td-page .pop-ct > .po-ptw + .po-ptw,
-        .td-page .pop-ct > .po-ptw + .ptw,
-        .td-page .pop-ct > .ptw + .po-ptw,
-        .td-page .pop-ct > .policy-tl-wrap + .policy-qtn-wrap,
-        .td-page .pop-ct > * + * { margin-top: 12px; }
+        /* === TABLE: Unified for Thi đua / Chính sách / CLB === */
+        .td-page .pop-ct > .ptw + .ptw { margin-top: 12px; }
         .td-page .pop-ct > :first-child { margin-top: 10px; }
         .td-page .pop-ct > :last-child { margin-bottom: 10px; }
-        .td-page .pop-ct > .ptw, .td-page .pop-ct > .po-ptw, .td-page .pop-ct > .policy-tl-wrap, .td-page .pop-ct > .policy-qtn-wrap, .td-page .pop-ct > .tn-wrap, .td-page .pop-ct > .tn-title, .td-page .pop-ct > .tn-note, .td-page .pop-ct > .policy-tvvm-wrap, .td-page .pop-ct > .policy-nst-wrap, .td-page .pop-ct > .policy-nsq-wrap, .td-page .pop-ct > .policy-nsqn-wrap, .td-page .pop-ct > .policy-ptkd-wrap { margin-left: 10px; margin-right: 10px; }
-        
-        /* Tables — WHITE bg, BLUE header, sticky, no rounded corners */
-        .td-page .ptw { overflow: visible; border-radius: 0; box-shadow: 0 0 0 1px #1a3a4a18; max-height: none; background: transparent; min-width: min-content; }
-        .td-page .pt { width: auto; border-collapse: separate; border-spacing: 0; font-size: .44rem; color: #1e293b; table-layout: auto; background: #f9fafb; }
-        .td-page .pt thead th { background: #1e3a5f; color: #e2e8f0; font-weight: 900; text-transform: uppercase; letter-spacing: .02px; padding: 6px 4px; text-align: center !important; white-space: normal; overflow-wrap: break-word; word-break: normal; line-height: 1.18; border-bottom: 1px solid #2a4a6a; border-right: 1px solid #2a4a6a; border-top: 1px solid #2a4a6a; font-size: .46rem; position: sticky; top: 0; z-index: 2; vertical-align: middle; transform: translateZ(0); -webkit-transform: translateZ(0); will-change: transform; }
-        .td-page .pt thead tr:first-child th:first-child { border-top-left-radius: 0; }
-        .td-page .pt thead tr:first-child th:last-child { border-top-right-radius: 0; }
-        .td-page .pt tbody tr:last-child td:first-child { border-bottom-left-radius: 0; }
-        .td-page .pt tbody tr:last-child td:last-child { border-bottom-right-radius: 0; }
-        .td-page .pt thead th.num-col { background: #1a4a5a; }
-        .td-page .pt thead th:first-child, .td-page .pt tbody td:first-child { border-left: 1px solid #2a4a6a; }
-        .td-page .pt thead th.col-name { text-align: left !important; }
-        .td-page .pt thead th.col-code { min-width: 68px; }
-        .td-page .pt thead th.col-count { min-width: 34px; }
-        .td-page .pt tbody tr { transition: background .15s, box-shadow .2s, transform .2s; cursor: pointer; position: relative; }
-        .td-page .pt tbody tr:hover { background: #e0f2fe !important; }
-        .td-page .pt tbody tr.is-focus { background: #bfdbfe !important; box-shadow: 0 2px 12px rgba(37,99,235,.35), inset 3px 0 0 #2563eb; z-index: 5; }
-        .td-page .pt tbody tr.is-focus td { color: #1e3a5f !important; font-weight: 700; }
-        .td-page .pt tbody tr.is-focus td.cell-dat { background: #fef9c3 !important; color: #854d0e !important; }
-        .td-page .pt tbody tr.is-focus td.cell-chuadat { background: transparent !important; color: #dc2626 !important; }
-        .td-page .pt tbody td { padding: 5px 6px; border-bottom: 1px solid #cbd5e1; border-right: 1px solid #cbd5e1; color: #1e293b; font-size: .42rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; line-height: 1.4; font-variant-numeric: tabular-nums; text-align: center; font-weight: 600; max-width: 200px; background: transparent; }
-        /* Policy page: section title + table layout */
-        .td-page .po-section { margin-bottom: 14px; }
-        .td-page .po-section:first-child { margin-top: 0; }
-        .td-page .po-section-title {
-            display: block; width: 100%;
-            padding: 6px 10px;
-            background: linear-gradient(135deg, #1e3a5f, #162d4a);
-            color: #7dd3fc; font-weight: 900; font-size: .56rem;
-            text-transform: uppercase; letter-spacing: .04em;
-            text-align: center;
-            border-radius: 6px 6px 0 0;
-            border: 1px solid #2a4a6a;
-            border-bottom: none;
-            line-height: 1.3;
-        }
-        .td-page .po-section-title i { margin-right: 4px; color: #93c5fd; font-size: .5rem; }
-        .td-page .po-ptw { overflow-x: auto; border-radius: 0; box-shadow: 0 0 0 1px #1a3a4a18; max-height: none; background: transparent; }
-        .td-page .po-pt { width: auto; border-collapse: separate; border-spacing: 0; font-size: .44rem; color: #1e293b; table-layout: auto; background: #f9fafb; }
-        .td-page .po-pt thead th { background: #1e3a5f; color: #e2e8f0; font-weight: 900; text-transform: uppercase; letter-spacing: .02px; padding: 6px 4px; text-align: center !important; white-space: normal; overflow-wrap: break-word; word-break: normal; line-height: 1.18; border-bottom: 1px solid #2a4a6a; border-right: 1px solid #2a4a6a; border-top: 1px solid #2a4a6a; font-size: .46rem; position: sticky; top: 0; z-index: 2; vertical-align: middle; transform: translateZ(0); -webkit-transform: translateZ(0); will-change: transform; }
-        .td-page .po-pt thead tr:first-child th:first-child { border-top-left-radius: 0; }
-        .td-page .po-pt thead tr:first-child th:last-child { border-top-right-radius: 0; }
-        .td-page .po-pt tbody tr:last-child td:first-child { border-bottom-left-radius: 0; }
-        .td-page .po-pt tbody tr:last-child td:last-child { border-bottom-right-radius: 0; }
-        .td-page .po-pt thead th.num-col { background: #1a4a5a; }
-        .td-page .po-pt thead th:first-child, .td-page .po-pt tbody td:first-child { border-left: 1px solid #2a4a6a; }
-        .td-page .po-pt thead th.col-name { text-align: center !important; }
-        .td-page .po-pt thead th.col-code { min-width: 68px; }
-        .td-page .po-pt thead th.col-count { min-width: 34px; }
-        .td-page .po-pt thead th.col-thuong { background: #4a3520; color: #fbbf24; }
-        .td-page .po-pt thead th.col-dieukien { background: #b8860b; color: #fff8e1; }
-        .td-page .po-pt thead th.col-percent { background: #3a2a5a; color: #c4b5fd; }
-        .td-page .po-pt tbody tr { transition: background .15s, box-shadow .2s, transform .2s; cursor: pointer; position: relative; }
-        .td-page .po-pt tbody tr:hover { background: #e0f2fe !important; }
-        .td-page .po-pt tbody td { padding: 5px 6px; border-bottom: 1px solid #cbd5e1; border-right: 1px solid #cbd5e1; color: #1e293b; font-size: .42rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; line-height: 1.4; font-variant-numeric: tabular-nums; text-align: center; font-weight: 600; max-width: 200px; background: transparent; }
-        .td-page .po-pt tbody tr:last-child td { border-bottom: 1px solid #cbd5e1; }
-        .td-page .po-pt .pst { font-weight: 700; color: #64748b; text-align: center !important; min-width: 22px; max-width: 30px; font-size: .40rem; }
-        .td-page .po-pt td.td-num { text-align: center; font-weight: 700; color: #1e293b; }
-        .td-page .po-pt td.td-money { text-align: center; font-weight: 700; color: #1e293b; }
-        .td-page .po-pt td.td-text { text-align: left; color: #334155; padding-left: 6px; }
-        .td-page .po-pt td.col-stt { text-align: center; color: #64748b; font-weight: 700; }
-        .td-page .po-pt td.col-count { text-align: center; color: #1e293b; font-weight: 700; }
-        .td-page .po-pt th.col-stt { text-align: center !important; }
-        .td-page .po-pt th.col-count { text-align: center !important; }
-        .td-page .po-pt td.col-name { text-align: left !important; padding-left: 8px; padding-right: 6px; min-width: 90px; max-width: 180px; font-weight: 700; color: #0f172a; }
-        .td-page .po-pt th.col-name { text-align: center !important; padding-left: 6px; padding-right: 6px; }
-        .td-page .po-pt td.col-code { text-align: center !important; color: #475569; font-size: .38rem; font-weight: 600; letter-spacing: .3px; }
-        .td-page .po-pt th.col-code { text-align: center !important; }
-        .td-page .po-pt td.cell-dat { background: #fef9c3 !important; color: #1d4ed8 !important; font-weight: 800; text-align: center; }
-        .td-page .po-pt td.cell-chuadat { background: transparent !important; color: #dc2626 !important; font-weight: 800; font-style: italic; text-align: center; }
-        .td-page .po-pt td.cell-percent { color: #dc2626 !important; font-weight: 900 !important; text-align: center; }
-        .td-page .po-pt td.cell-percent.neg { color: #991b1b !important; }
-        .td-page .po-pt thead th.col-luyke { background: #4a3520; color: #fbbf24; }
-        /* === Header gradient: chỉ tiêu tăng dần cho po — vàng cam === */
-        .td-page .po-pt thead th.col-dieukien.ct-lv1 { background: #c49416; }
-        .td-page .po-pt thead th.col-dieukien.ct-lv2 { background: #d0a21f; }
-        .td-page .po-pt thead th.col-dieukien.ct-lv3 { background: #dcb029; }
-        .td-page .po-pt thead th.col-dieukien.ct-lv4 { background: #e8be33; }
-        .td-page .po-pt thead th.col-dieukien.ct-lv5 { background: #f4cc3c; }
-        /* ct-dieukien (vàng nhạt gradient: trắng → vàng nhạt) */
-        .td-page .po-pt tbody td.ct-dieukien { background: #ffffff !important; color: #92400e !important; }
-        .td-page .po-pt tbody td.ct-dieukien-lv1 { background: #fffef5 !important; color: #92400e !important; }
-        .td-page .po-pt tbody td.ct-dieukien-lv2 { background: #fffde6 !important; color: #92400e !important; }
-        .td-page .po-pt tbody td.ct-dieukien-lv3 { background: #fffcd0 !important; color: #92400e !important; }
-        .td-page .po-pt tbody td.ct-dieukien-lv4 { background: #fffbb8 !important; color: #92400e !important; }
-        .td-page .po-pt tbody td.ct-dieukien-lv5 { background: #fff9a0 !important; color: #92400e !important; }
-        /* ct-thuong (gold family) */
-        .td-page .po-pt tbody td.ct-thuong { background: #fff3cd !important; color: #92400e !important; }
-        .td-page .po-pt tbody td.ct-thuong-lv1 { background: #ffecb3 !important; color: #92400e !important; }
-        /* ct-percent (purple family) */
-        .td-page .po-pt tbody td.ct-percent { background: #ede9fe !important; color: #7c3aed !important; }
-        /* ct-count (blue family) */
-        .td-page .po-pt tbody td.ct-count { background: #dbeafe !important; color: #1e40af !important; }
-        .td-page .po-pt tbody td.ct-count-lv1 { background: #cfe2ff !important; color: #1e40af !important; }
-        /* ct-data (default data - most visible) */
-        .td-page .po-pt tbody td.ct-data { background: #dbeafe !important; color: #1e3a5f !important; }
-        .td-page .po-pt tbody td.ct-data-lv1 { background: #cfe2ff !important; color: #1e3a5f !important; }
-        /* ct-luyke (gold family) */
-        .td-page .po-pt tbody td.ct-luyke { background: #fff3cd !important; color: #92400e !important; }
-        .td-page .po-pt tbody td.ct-luyke-lv1 { background: #ffecb3 !important; color: #92400e !important; }
-        /* === THƯỞNG cell cho po === */
-        .td-page .po-pt .thuong-val {
-            font-weight: 900; color: #1d4ed8; white-space: nowrap; font-size: .52rem;
-        }
-        .td-page .po-pt .thuong-val i {
-            color: #f59e0b; font-size: .68rem; margin-right: 3px; vertical-align: middle; line-height: 1;
-        }
-        /* === THƯỞNG cell cho po (TN/TL dùng chung qua class po-pt) === */
-        .td-page .po-pt td.col-thuong-cell {
-            background: #eff6ff !important; color: #1d4ed8 !important; font-weight: 900;
-        }
-        /* po-pt even-row thuong-cell rule removed — no zebra striping */
-        /* === TỶ LỆ cho po === */
-        .td-page .po-pt .percent-val { font-weight: 900; color: #dc2626; }
-        .td-page .po-pt .percent-val.neg { color: #991b1b; }
-        /* === ĐẠT badge cho po === */
-        .td-page .po-pt tbody tr.is-focus { background: #bfdbfe !important; box-shadow: 0 2px 12px rgba(37,99,235,.35), inset 3px 0 0 #2563eb; z-index: 5; }
-        .td-page .po-pt tbody tr.is-focus td { color: #1e3a5f !important; font-weight: 700; }
-        .td-page .po-pt tbody tr.is-focus td.cell-dat { background: #fef9c3 !important; color: #1d4ed8 !important; }
-        .td-page .po-pt tbody tr.is-focus td.cell-chuadat { background: transparent !important; color: #dc2626 !important; }
-        .td-page .po-pt .ach-pill { display: inline-flex; align-items: center; justify-content: center; padding: 2px 10px; border-radius: 4px; font-size: .42rem; font-weight: 900; letter-spacing: .02em; color: #1d4ed8; background: #fef9c3; border: 1px solid #fde68a; }
-        .td-page .po-pt .dat-badge { background: #fef9c3; color: #1d4ed8; font-weight: 900; padding: 2px 10px; border-radius: 4px; letter-spacing: .2px; font-size: .42rem; white-space: nowrap; display: inline-flex; align-items: center; border: 1px solid #fde68a; }
-        /* Policy auto-wide */
-        .td-page .po-ptw.po-auto-wide { overflow: visible; }
-        .td-page .po-ptw.po-auto-wide .po-pt { table-layout: auto; width: 100%; }
-        .td-page .po-ptw.po-auto-wide .po-pt thead th { padding: 6px 6px; }
-        .td-page .po-ptw.po-auto-wide .po-pt tbody td { padding: 5px 6px; }
-        /* Policy: center + tinted color for columns 5+ */
-        .td-page .po-pt tbody td.po-cc { text-align: center !important; }
-        .td-page .po-pt tbody td.po-cc.num-col { background: #f0f8ff !important; color: #1e40af !important; }
-        .td-page .po-pt tbody td.po-cc.col-thuong { background: #fffcf0 !important; color: #92400e !important; }
-        .td-page .po-pt tbody td.po-cc.col-dieukien { background: #fffde6 !important; color: #92400e !important; }
-        .td-page .po-pt tbody td.po-cc.col-percent { background: #faf7ff !important; color: #5b21b6 !important; }
-        /* Policy-specific TL table - keep original sizes */
-        .td-page .policy-tl-wrap { overflow: visible; border-radius: 0; background: #ffffff; box-shadow: 0 0 0 1px #1a3a4a18; }
-        .td-page .policy-tl { width: 100%; border-collapse: separate; border-spacing: 0; table-layout: auto; background: #ffffff; }
-        .td-page .policy-tl th, .td-page .policy-tl td { border-bottom: 1px solid #2a4a6a; border-right: 1px solid #2a4a6a; padding: 6px 5px; text-align: center; font-family: Tahoma, Arial, Helvetica, sans-serif; }
-        .td-page .policy-tl th:first-child, .td-page .policy-tl td:first-child { border-left: 1px solid #2a4a6a; }
-        .td-page .policy-tl th { background: #1e3a5f; color: #ffffff; font-size: .48rem; font-weight: 900; line-height: 1.15; vertical-align: middle; white-space: normal; overflow-wrap: break-word; position: sticky; top: 0; z-index: 2; border-top: 1px solid #2a4a6a; border-bottom: 1px solid #2a4a6a; border-right: 1px solid #2a4a6a; transform: translateZ(0); -webkit-transform: translateZ(0); will-change: transform; }
-        .td-page .policy-tl thead tr:first-child th:first-child { border-top-left-radius: 0; }
-        .td-page .policy-tl thead tr:first-child th:last-child { border-top-right-radius: 0; }
-        .td-page .policy-tl tbody tr:last-child td:first-child { border-bottom-left-radius: 0; }
-        .td-page .policy-tl tbody tr:last-child td:last-child { border-bottom-right-radius: 0; }
-        .td-page .policy-tl th.tl-count { background: #134e5a; color: #67e8f9; }
-        .td-page .policy-tl th.tl-reward { background: #4a3520; color: #fbbf24; }
-        .td-page .policy-tl td { font-size: .44rem; color: #17324d; font-weight: 700; background: transparent; }
-        .td-page .policy-tl tbody tr { transition: background .15s, box-shadow .2s; cursor: pointer; position: relative; }
-        .td-page .policy-tl tbody tr:hover td { background: #e0f2fe !important; }
-        .td-page .policy-tl tbody tr.is-focus { box-shadow: 0 2px 12px rgba(37,99,235,.35); z-index: 5; }
-        .td-page .policy-tl tbody tr.is-focus td { background: #bfdbfe !important; color: #1e3a5f !important; }
-        .td-page .policy-tl tbody tr.is-focus td.tl-reward { color: #1d4ed8 !important; }
-        .td-page .policy-tl td.tl-role { text-align: center; }
-        .td-page .policy-tl td.tl-count { text-align: center; }
-        .td-page .policy-tl td.tl-reward { text-align: center; font-weight: 900; }
-        .td-page .policy-tl td.tl-name { text-align: left; }
-        .td-page .policy-tl .tl-reward-title { display: block; font-size: .54rem; line-height: 1.05; }
-        .td-page .policy-tl .tl-reward-note { display: block; margin-top: 4px; color: #ffe95d; font-size: .34rem; font-weight: 900; line-height: 1.25; text-transform: none; }
-        /* Policy TVVM wrap */
-        .td-page .policy-tvvm-wrap { overflow: auto; border-radius: 0; background: #ffffff; box-shadow: 0 0 0 1px #1a3a4a18; }
-        .td-page .po-pt thead th.tvvm-thang { background: #1e3a5f; }
-        .td-page .po-pt thead th.tvvm-chang { background: #4a3520; color: #fbbf24; }
-        /* Policy NST wrap */
-        .td-page .policy-nst-wrap { overflow: auto; border-radius: 0; background: #ffffff; box-shadow: 0 0 0 1px #1a3a4a18; }
-        /* Policy NSQ wrap */
-        .td-page .policy-nsq-wrap { overflow: auto; border-radius: 0; background: #ffffff; box-shadow: 0 0 0 1px #1a3a4a18; }
-        /* Policy NSQ-N wrap */
-        .td-page .policy-nsqn-wrap { overflow: auto; border-radius: 0; background: #ffffff; box-shadow: 0 0 0 1px #1a3a4a18; }
-        /* Policy PTKD wrap */
-        .td-page .policy-ptkd-wrap { overflow: auto; border-radius: 0; background: #ffffff; box-shadow: 0 0 0 1px #1a3a4a18; }
-        /* Tier header colors for NSQ/NSQ-N levels */
-        .td-page .po-pt thead th.tier-lv1 { background: #2d6a4f; color: #d8f3dc; }
-        .td-page .po-pt thead th.tier-lv2 { background: #40916c; color: #d8f3dc; }
-        .td-page .po-pt thead th.tier-lv3 { background: #52b788; color: #1b4332; }
-        .td-page .po-pt thead th.tier-lv4 { background: #74c69d; color: #1b4332; }
-        .td-page .po-pt thead th.tier-lv5 { background: #95d5b2; color: #1b4332; }
-        .td-page .po-pt thead th.tier-lv6 { background: #b7e4c7; color: #1b4332; }
-        .td-page .policy-qtn-wrap { overflow: visible; border-radius: 0; background: #ffffff; box-shadow: 0 0 0 1px #1a3a4a18; }
-        .td-page .policy-qtn { width: 100%; border-collapse: separate; border-spacing: 0; table-layout: auto; background: #ffffff; }
-        .td-page .policy-qtn th, .td-page .policy-qtn td { border-bottom: 1px solid #7aa8cf; border-right: 1px solid #7aa8cf; padding: 6px 5px; text-align: center; font-family: Tahoma, Arial, Helvetica, sans-serif; }
-        .td-page .policy-qtn th:first-child, .td-page .policy-qtn td:first-child { border-left: 1px solid #7aa8cf; }
-        .td-page .policy-qtn th { font-weight: 900; vertical-align: middle; white-space: normal; overflow-wrap: break-word; line-height: 1.1; font-size: .48rem; position: sticky; top: 0; z-index: 2; border-top: 1px solid #7aa8cf; border-bottom: 1px solid #7aa8cf; border-right: 1px solid #7aa8cf; transform: translateZ(0); -webkit-transform: translateZ(0); will-change: transform; }
-        .td-page .policy-qtn thead tr:first-child th:first-child { border-top-left-radius: 0; }
-        .td-page .policy-qtn thead tr:first-child th:last-child { border-top-right-radius: 0; }
-        .td-page .policy-qtn tbody tr:last-child td:first-child { border-bottom-left-radius: 0; }
-        .td-page .policy-qtn tbody tr:last-child td:last-child { border-bottom-right-radius: 0; }
-        .td-page .policy-qtn td { font-size: .43rem; color: #14304a; font-weight: 700; background: #f9fbfd; }
-        .td-page .policy-qtn tbody tr { transition: background .15s; cursor: pointer; }
-        .td-page .policy-qtn tbody tr:hover td { background: #e0f2fe !important; }
-        /* qtn even-row rule removed — no zebra striping */
-        .td-page .policy-qtn tbody tr.is-focus td { background: #bfdbfe !important; color: #1e3a5f !important; }
-        .td-page .policy-qtn td.qtn-name { text-align: left; }
-        .td-page .policy-qtn th.qtn-deep { background: #083f49; color: #ffffff; font-size: .48rem; }
-        .td-page .policy-qtn th.qtn-fyp, .td-page .policy-qtn th.qtn-fyc { background: #e7b5a9; color: #083f49; font-size: .48rem; }
-        .td-page .policy-qtn th.qtn-reward-band { background: #ffe49a; color: #0f59ff; font-size: .58rem; }
-        .td-page .policy-qtn th.qtn-proj { background: #c8ddb6; color: #0f59ff; font-size: .56rem; }
-        .td-page .policy-qtn th.qtn-sub { background: #ffe8a8; color: #083f49; font-size: .39rem; }
-        .td-page .policy-qtn .qtn-note { display: block; margin-top: 3px; color: #a62b00; font-size: .31rem; font-weight: 900; line-height: 1.15; text-transform: none; }
-        .td-page .policy-qtn td.qtn-fypv, .td-page .policy-qtn td.qtn-fycv { background: #d7e8e3; color: #003154; font-weight: 900; }
-        .td-page .policy-qtn td.qtn-band { background: #f7eed1; color: #163f8d; font-weight: 900; }
-        .td-page .policy-qtn td.qtn-projv { background: #ebe4d8; color: #003f65; font-weight: 900; }
+        .td-page .pop-ct > .ptw { margin-left: 10px; margin-right: 10px; }
 
-        /* ===== POLICY: TUYÊN NGANG TABLE ===== */
-        .td-page .tn-wrap {
-            overflow-x: auto;
-            border: 1px solid #2a4a6a; background: #fff;
-            border-radius: 0;
+        /* Table wrapper — scrollable, sticky header */
+        .td-page .ptw {
+            overflow: auto;
+            max-height: 65vh;
+            -webkit-overflow-scrolling: touch;
+            border-radius: 8px;
+            border: 1px solid slategray;
+            background: #fff;
+            box-shadow: 0 2px 12px #0000000d;
         }
-        .td-page .tn-table {
+        /* Table base — đường kẻ mỏng slategray */
+        .td-page .pt {
             width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
+            border-collapse: collapse;
+            font-size: 12px;
+            color: #1e293b;
             table-layout: auto;
-            font-family: Tahoma, Arial, Helvetica, sans-serif;
+            background: #fff;
+            min-width: max-content;
         }
-        /* Section title banner above table */
-        .td-page .tn-title {
-            background: linear-gradient(135deg, #0f2440 0%, #1e3a5f 30%, #1a4a6a 70%, #2563eb 100%);
-            color: #ffffff;
+        .td-page .pt th,
+        .td-page .pt td {
+            border: 1px solid slategray;
+        }
+
+        /* === HEADER: in đậm, căn giữa dọc & ngang, được phép xuống dòng === */
+        .td-page .pt thead th {
             font-weight: 900;
-            font-size: .72rem;
-            text-transform: uppercase;
-            letter-spacing: .08em;
             text-align: center;
-            padding: 12px 16px;
-            line-height: 1.35;
-            border: 1px solid #1e3a5f;
-            border-bottom: 3px solid #ffc505;
-            border-radius: 4px 4px 0 0;
-            box-shadow: 0 4px 16px rgba(30,58,95,.35);
-            position: relative;
-            overflow: hidden;
-        }
-        .td-page .tn-title::after {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%; width: 60%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,.06), transparent);
-            animation: tnShine 4s ease-in-out infinite;
-        }
-        @keyframes tnShine {
-            0%,100% { left: -100%; }
-            50% { left: 140%; }
-        }
-        .td-page .tn-title i { color: #ffc505; margin-right: 8px; font-size: .84rem; text-shadow: 0 0 8px rgba(255,197,5,.4); }
-        .td-page .tn-sub-label {
-            display: inline-block;
-            margin-left: 10px;
-            padding: 2px 10px;
-            border-radius: 4px;
-            background: rgba(255,197,5,.15);
-            border: 1px solid rgba(255,197,5,.35);
-            color: #ffc505;
-            font-size: .62rem;
-            font-weight: 700;
-            letter-spacing: .04em;
             vertical-align: middle;
-        }
-        /* Column widths — narrow auto */
-        .td-page .tn-table .tn-c-stt { width: 28px; }
-        .td-page .tn-table .tn-c-tn { width: 58px; }
-        .td-page .tn-table .tn-c-ms { width: 58px; }
-        .td-page .tn-table .tn-c-hoten { width: 100px; }
-        .td-page .tn-table .tn-c-cv { width: 46px; }
-        .td-page .tn-table .tn-c-hlcv { width: 50px; }
-        .td-page .tn-table .tn-c-thang { width: 44px; }
-        .td-page .tn-table .tn-c-sub { width: 50px; }
-        .td-page .tn-table .tn-c-thuong { width: 58px; }
-        .td-page .tn-table .tn-c-bkip { width: 50px; }
-        /* Header rows */
-        .td-page .tn-table thead th {
-            background: #1e3a5f;
-            color: #ffffff;
-            font-weight: 900;
-            font-size: .46rem;
-            text-transform: uppercase;
-            letter-spacing: .02em;
-            text-align: center;
-            padding: 6px 3px;
-            line-height: 1.2;
-            border-bottom: 1px solid #2a4a6a; border-right: 1px solid #2a4a6a; border-top: 1px solid #2a4a6a;
-            vertical-align: middle;
+            padding: 8px 5px;
             white-space: normal;
             overflow-wrap: break-word;
             word-break: normal;
+            line-height: 1.2;
             position: sticky;
             top: 0;
-            z-index: 3;
-            transform: translateZ(0);
-            -webkit-transform: translateZ(0);
-            will-change: transform;
+            z-index: 2;
+            font-size: 11px;
+            color: #fff;
         }
-        .td-page .tn-table thead tr:first-child th {
-            top: 0; z-index: 4;
+        /* Cột 1-4 tiêu đề: nền #000044, chữ trắng */
+        .td-page .pt thead th.h-info {
+            background: #000044;
+            color: #fff;
         }
-        .td-page .tn-table thead tr:nth-child(2) th {
-            top: 24px; z-index: 3;
+        /* Nhóm số liệu (FYP, IP, AFYP...): nền #002200, chữ trắng */
+        .td-page .pt thead th.h-num {
+            background: #002200;
+            color: #fff;
         }
-        .td-page .tn-table thead th.tn-h-stt { background: #162d4a; z-index: 5; position: sticky; left: 0; top: 0; }
-        .td-page .tn-table thead th.tn-h-tn { background: #162d4a; z-index: 4; position: sticky; left: 28px; top: 0; }
-        .td-page .tn-table thead tr:nth-child(2) th.tn-h-stt,
-        .td-page .tn-table thead tr:nth-child(2) th.tn-h-tn { z-index: 5; top: 24px; }
-        /* Group headers: CHỈ TIÊU, THỰC HIỆN THÁNG - xanh nhạt */
-        .td-page .tn-table thead th.tn-h-chitieu,
-        .td-page .tn-table thead th.tn-h-ththang {
-            background: #1a4a5a;
-            font-size: .48rem;
-            letter-spacing: .04em;
+        /* Nhóm tỷ lệ %: nền orangered, chữ xanh dương đậm */
+        .td-page .pt thead th.h-percent {
+            background: orangered;
+            color: #00008B;
         }
-        /* Group header: THỰC HIỆN LŨY KÊ - vàng (giống thưởng) */
-        .td-page .tn-table thead th.tn-h-luyke {
-            background: #4a3520;
-            color: #fff8e1;
-            font-size: .48rem;
-            letter-spacing: .04em;
+        /* Điều kiện — hàng trên (phân tầng/danh hiệu): #BD6B09, chữ xanh dương đậm */
+        .td-page .pt thead th.h-cond-top {
+            background: #BD6B09;
+            color: #00008B;
         }
-        /* Reward group header - vàng */
-        .td-page .tn-table thead th.tn-h-thuong,
-        .td-page .tn-table thead th.tn-h-bkip {
-            background: #4a3520;
-            color: #fff8e1;
-            font-size: .46rem;
+        /* Điều kiện — hàng dưới (chỉ tiêu >=, <=): #EC870E, chữ xanh dương đậm */
+        .td-page .pt thead th.h-cond-bot {
+            background: #EC870E;
+            color: #00008B;
         }
-        .td-page .tn-table thead th.tn-h-thuangr {
-            background: #4a3520;
-            color: #fff8e1;
-            font-size: .44rem;
+        /* Phần thưởng / Tiền thưởng: nền #000044, chữ vàng in đậm */
+        .td-page .pt thead th.h-money {
+            background: #000044;
+            color: #FFD700;
+            font-weight: 900;
         }
-        /* Sub-header row 2: color groups */
-        .td-page .tn-table thead tr:nth-child(2) th.tn-hs-ct {
-            background: #1e3a5f; color: #d6eaf8;
+        /* Hàng điều kiện dưới sticky phía dưới hàng trên */
+        .td-page .pt thead tr.cond-row th {
+            position: sticky;
+            top: 0;
+            z-index: 1;
         }
-        .td-page .tn-table thead tr:nth-child(2) th.tn-hs-th {
-            background: #1e3a5f; color: #d6eaf8;
-        }
-        .td-page .tn-table thead tr:nth-child(2) th.tn-hs-tw {
-            background: #4a3520; color: #fff8e1;
-        }
-        .td-page .tn-table thead tr:nth-child(2) th.tn-hs-lk {
-            background: #4a3520; color: #fff8e1;
-        }
-        /* Body cells */
-        .td-page .tn-table tbody td {
-            padding: 4px 3px;
-            text-align: center;
-            font-size: .42rem;
-            font-weight: 600;
-            color: #1a1a1a;
-            line-height: 1.3;
-            border-bottom: 1px solid #cbd5e1; border-right: 1px solid #cbd5e1; border-top: none; border-left: none;
-            background: transparent;
-            white-space: nowrap;
+
+        /* === BODY: không xuống dòng, thu gọn === */
+        .td-page .pt tbody tr { transition: background .15s; }
+        .td-page .pt tbody tr:nth-child(even) td { }
+        .td-page .pt tbody tr:hover td { background: #e0f2fe !important; }
+        .td-page .pt tbody tr.is-focus { background: #bfdbfe !important; }
+        .td-page .pt tbody tr.is-focus td { color: #1e3a5f !important; font-weight: 700; }
+        .td-page .pt tbody td {
+            padding: 5px 4px;
+            color: #334155;
+            font-size: 12px;
             overflow: hidden;
             text-overflow: ellipsis;
-            font-variant-numeric: tabular-nums;
-            max-width: 180px;
-        }
-        .td-page .tn-table tbody tr:hover td { background: #e0f2fe !important; }
-        /* Sticky columns for body */
-        .td-page .tn-table tbody td.tn-d-stt {
-            position: sticky; left: 0; z-index: 2;
-            background: transparent !important; font-weight: 700; color: #64748b;
-        }
-        .td-page .tn-table tbody tr:hover td.tn-d-stt { background: #bfdbfe !important; }
-        .td-page .tn-table tbody td.tn-d-tn {
-            position: sticky; left: 28px; z-index: 2;
-            background: transparent !important; font-weight: 700; color: #0f172a;
-        }
-        .td-page .tn-table tbody tr:hover td.tn-d-tn { background: #bfdbfe !important; }
-        /* Name column */
-        .td-page .tn-table tbody td.tn-d-hoten { text-align: left !important; padding-left: 6px; font-weight: 700; }
-        /* tn even-row rules removed — no zebra striping */
-        /* Reward cells — removed (now uses shared .col-thuong-cell via po-pt) */
-        /* Active row */
-        .td-page .tn-table tbody tr.is-focus { box-shadow: 0 2px 12px rgba(37,99,235,.35); z-index: 5; }
-        .td-page .tn-table tbody tr.is-focus td { background: #bfdbfe !important; color: #1e3a5f !important; }
-        .td-page .tn-table tbody tr.is-focus td.tn-d-stt { background: #bfdbfe !important; }
-        .td-page .tn-table tbody tr.is-focus td.tn-d-tn { background: #bfdbfe !important; }
-        /* TN is-focus thuong/luyke uses shared .po-pt rules */
-        /* TN header border alignment with po-pt */
-        .td-page .tn-table thead th { border-bottom: 1px solid #2a4a6a; border-right: 1px solid #2a4a6a; border-top: 1px solid #2a4a6a; }
-        .td-page .tn-table thead th:first-child { border-left: 1px solid #2a4a6a; }
-        .td-page .tn-table tbody td:first-child { border-left: 1px solid #cbd5e1; }
-        /* Note footer below table */
-        .td-page .tn-note {
-            margin-top: 8px;
-            padding: 8px 12px;
-            background: #f0f9ff;
-            border: 1px solid #cbd5e1;
-            border-radius: 0 0 4px 4px;
-            font-size: .42rem;
-            color: #334155;
-            line-height: 1.5;
-        }
-        .td-page .tn-note b { color: #1e3a5f; }
-        .td-page .tn-note .tn-note-warn { color: #b91c1c; font-weight: 700; }
-        @media (min-width: 1024px) {
-            .td-page .tn-note { font-size: .52rem; padding: 10px 16px; }
-        }
-
-        /* TN responsive */
-        @media (max-width: 640px) {
-            .td-page .tn-table thead th { font-size: .38rem; padding: 5px 2px; }
-            .td-page .tn-table tbody td { font-size: .36rem; padding: 4px 2px; }
-            .td-page .tn-table .tn-c-stt { width: 22px; }
-            .td-page .tn-table .tn-c-tn { width: 44px; }
-            .td-page .tn-table .tn-c-ms { width: 44px; }
-            .td-page .tn-table .tn-c-hoten { width: 72px; }
-            .td-page .tn-table .tn-c-cv { width: 36px; }
-            .td-page .tn-table .tn-c-hlcv { width: 40px; }
-            .td-page .tn-table .tn-c-thang { width: 36px; }
-            .td-page .tn-table .tn-c-sub { width: 40px; }
-            .td-page .tn-table .tn-c-thuong { width: 44px; }
-            .td-page .tn-table .tn-c-bkip { width: 40px; }
-            .td-page .tn-title { font-size: .6rem; padding: 10px 10px; }
-            .td-page .tn-title i { font-size: .7rem; }
-            .td-page .tn-table thead tr:nth-child(2) th { top: 22px; }
-        }
-        @media (min-width: 1024px) {
-            .td-page .tn-table thead th { font-size: .56rem; padding: 9px 6px; }
-            .td-page .tn-table tbody td { font-size: .52rem; padding: 6px 5px; }
-            .td-page .tn-table .tn-c-hoten { width: 120px; }
-            .td-page .tn-title { font-size: .82rem; padding: 14px 20px; }
-            .td-page .tn-title i { font-size: .94rem; }
-            .td-page .tn-table thead tr:nth-child(2) th { top: 32px; }
-        }
-
-        .td-page .pt tbody tr:last-child td { border-bottom: 1px solid #cbd5e1; }
-        .td-page .pst { font-weight: 700; color: #64748b; text-align: center !important; min-width: 22px; max-width: 30px; font-size: .40rem; }
-        .td-page .pt td.td-num { text-align: center; font-weight: 700; color: #1e293b; }
-        .td-page .pt td.td-money { text-align: center; font-weight: 700; color: #1e293b; }
-        .td-page .pt td.td-text { text-align: left; color: #334155; padding-left: 6px; }
-        .td-page .pt td.col-stt { text-align: center; color: #64748b; font-weight: 700; }
-        .td-page .pt td.col-count { text-align: center; color: #1e293b; font-weight: 700; }
-        .td-page .pt th.col-stt { text-align: center !important; }
-        .td-page .pt th.col-count { text-align: center !important; }
-        .td-page .pt td.col-name { text-align: left !important; padding-left: 8px; padding-right: 6px; min-width: 90px; max-width: 180px; font-weight: 700; color: #0f172a; }
-        .td-page .pt th.col-name { text-align: left !important; padding-left: 6px; padding-right: 6px; }
-        .td-page .pt td.col-code { text-align: center !important; color: #475569; font-size: .38rem; font-weight: 600; letter-spacing: .3px; }
-        .td-page .pt th.col-code { text-align: center !important; }
-        /* Column-specific header colors */
-        .td-page .pt thead th.col-thuong { background: #4a3520; color: #fbbf24; }
-        .td-page .pt thead th.col-dieukien { background: #b8860b; color: #fff8e1; }
-        .td-page .pt thead th.col-percent { background: #3a2a5a; color: #c4b5fd; }
-        .td-page .pt thead th.col-luyke { background: #4a3520; color: #fbbf24; }
-        /* === Header gradient: chỉ tiêu tăng dần — vàng cam === */
-        .td-page .pt thead th.col-dieukien.ct-lv1 { background: #c49416; }
-        .td-page .pt thead th.col-dieukien.ct-lv2 { background: #d0a21f; }
-        .td-page .pt thead th.col-dieukien.ct-lv3 { background: #dcb029; }
-        .td-page .pt thead th.col-dieukien.ct-lv4 { background: #e8be33; }
-        .td-page .pt thead th.col-dieukien.ct-lv5 { background: #f4cc3c; }
-        /* Cell highlights */
-        .td-page .pt td.cell-dat { background: #fef9c3 !important; color: #1d4ed8 !important; font-weight: 800; text-align: center; }
-        .td-page .pt td.cell-chuadat { background: transparent !important; color: #dc2626 !important; font-weight: 800; font-style: italic; text-align: center; }
-        .td-page .pt td.cell-percent { color: #dc2626 !important; font-weight: 900 !important; text-align: center; }
-        .td-page .pt td.cell-percent.neg { color: #991b1b !important; }
-        /* === Body cell tinting by nature group === */
-        /* ct-dieukien (vàng nhạt gradient: trắng → vàng nhạt) */
-        .td-page .pt tbody td.ct-dieukien { background: #ffffff !important; color: #92400e !important; }
-        .td-page .pt tbody td.ct-dieukien-lv1 { background: #fffef5 !important; color: #92400e !important; }
-        .td-page .pt tbody td.ct-dieukien-lv2 { background: #fffde6 !important; color: #92400e !important; }
-        .td-page .pt tbody td.ct-dieukien-lv3 { background: #fffcd0 !important; color: #92400e !important; }
-        .td-page .pt tbody td.ct-dieukien-lv4 { background: #fffbb8 !important; color: #92400e !important; }
-        .td-page .pt tbody td.ct-dieukien-lv5 { background: #fff9a0 !important; color: #92400e !important; }
-        .td-page .pt tbody td.ct-thuong { background: #fff3cd !important; color: #92400e !important; }
-        .td-page .pt tbody td.ct-thuong-lv1 { background: #ffecb3 !important; color: #92400e !important; }
-        .td-page .pt tbody td.ct-thuong-lv2 { background: #ffe099 !important; color: #92400e !important; }
-        .td-page .pt tbody td.ct-percent { background: #ede9fe !important; color: #7c3aed !important; }
-        .td-page .pt tbody td.ct-count { background: #dbeafe !important; color: #1e40af !important; }
-        .td-page .pt tbody td.ct-count-lv1 { background: #cfe2ff !important; color: #1e40af !important; }
-        .td-page .pt tbody td.ct-data { background: #dbeafe !important; color: #1e3a5f !important; }
-        .td-page .pt tbody td.ct-data-lv1 { background: #cfe2ff !important; color: #1e3a5f !important; }
-        .td-page .pt tbody td.ct-luyke { background: #fff3cd !important; color: #92400e !important; }
-        .td-page .pt tbody td.ct-luyke-lv1 { background: #ffecb3 !important; color: #92400e !important; }
-        /* === THƯỞNG cell: icon + bold + xanh dương === */
-        .td-page .pt .thuong-val {
-            font-weight: 900;
-            color: #1d4ed8;
             white-space: nowrap;
-            font-size: .52rem;
+            line-height: 1.35;
+            text-align: center;
+            font-weight: 500;
+            background: transparent;
         }
-        .td-page .pt .thuong-val i {
-            color: #f59e0b;
-            font-size: .68rem;
-            margin-right: 3px;
-            vertical-align: middle;
-            line-height: 1;
+
+        /* === NỘI DUNG CỘT 1-4: nền trắng, chữ #111111 === */
+        .td-page .pt tbody td.d-info {
+            background: #fff;
+            color: #111111;
         }
-        .td-page .pt td.col-thuong-cell {
-            background: #eff6ff !important;
-            color: #1d4ed8 !important;
-            font-weight: 900;
+        /* Cột 1+3 căn giữa, cột 2+4 căn lề trái */
+        .td-page .pt tbody td.d-info-center {
+            background: #fff;
+            color: #111111;
+            text-align: center;
         }
-        /* === TỔNG FYP NHÓM: hồng header, hồng nhạt body, trái, đậm === */
-        .td-page .pt thead th.col-fypnhom { background: #be185d; color: #fce7f3; }
-        .td-page .pt tbody td.col-fypnhom-cell { background: #fce7f3 !important; color: #1e293b !important; font-weight: 900; text-align: left !important; padding-left: 8px; }
-        .td-page .po-pt thead th.col-fypnhom { background: #be185d; color: #fce7f3; }
-        .td-page .po-pt tbody td.col-fypnhom-cell { background: #fce7f3 !important; color: #1e293b !important; font-weight: 900; text-align: left !important; padding-left: 8px; }
-        /* === FYC: bỏ tô màu === */
-        .td-page .pt tbody td.col-fyc-cell { background: transparent !important; }
-        .td-page .po-pt tbody td.col-fyc-cell { background: transparent !important; }
-        /* === Mã đại lý: đảm bảo không tô màu === */
-        .td-page .pt tbody td.po-cc.col-code { background: transparent !important; }
-        .td-page .po-pt tbody td.po-cc.col-code { background: transparent !important; }
-        /* pt even-row thuong-cell rule removed — no zebra striping */
-        /* === TỶ LỆ: bold + đỏ === */
-        .td-page .pt .percent-val { font-weight: 900; color: #dc2626; }
-        .td-page .pt .percent-val.neg { color: #991b1b; }
-        /* === ĐẠT badge: vàng nền + xanh dương chữ === */
+        .td-page .pt tbody td.d-info-left {
+            background: #fff;
+            color: #111111;
+            text-align: left;
+            padding-left: 8px;
+        }
+        /* Nhóm thông tin (ngày cấp, sl tvv...): nền #CAE5E8, chữ trắng, căn giữa */
+        .td-page .pt tbody td.d-text-info {
+            background: #CAE5E8;
+            color: #fff;
+            text-align: center;
+        }
+        /* Nhóm số liệu: nền #CCCCFF, chữ #111111, căn giữa */
+        .td-page .pt tbody td.d-numdata {
+            background: #CCCCFF;
+            color: #111111;
+            text-align: center;
+            font-weight: 600;
+        }
+        /* Nhóm tỷ lệ % — ô > 0%: nền #FFFFCC, in đậm in nghiêng, căn giữa */
+        .td-page .pt tbody td.d-percent-pos {
+            background: #FFFFCC;
+            color: #111111;
+            text-align: center;
+            font-weight: 700;
+            font-style: italic;
+        }
+        /* Nhóm tỷ lệ % — ô còn lại: in nghiêng, căn giữa, chữ xám */
+        .td-page .pt tbody td.d-percent-zero {
+            background: transparent;
+            color: #999;
+            text-align: center;
+            font-style: italic;
+        }
+        /* Nhóm điều kiện: nền lemonchiffon, chữ #111111 */
+        .td-page .pt tbody td.d-cond {
+            background: lemonchiffon;
+            color: #111111;
+            text-align: center;
+            font-weight: 600;
+        }
+        /* Cột điều kiện tăng dần sắc độ */
+        .td-page .pt tbody td.d-cond-shade1 { background: #FFFACD; }
+        .td-page .pt tbody td.d-cond-shade2 { background: #FFF8B0; }
+        .td-page .pt tbody td.d-cond-shade3 { background: #FFF59E; }
+        .td-page .pt tbody td.d-cond-shade4 { background: #FFF28A; }
+        .td-page .pt tbody td.d-cond-shade5 { background: #FFEF76; }
+        /* Đạt badge — dấu tích nhỏ, không thay đổi kích thước ô */
         .td-page .dat-badge {
-            display: inline-flex;
-            align-items: center;
-            background: #fef9c3;
-            color: #1d4ed8;
-            font-weight: 900;
-            padding: 2px 10px;
-            border-radius: 4px;
-            letter-spacing: .02em;
-            font-size: .42rem;
-            white-space: nowrap;
-            border: 1px solid #fde68a;
+            display: inline-flex; align-items: center; justify-content: center;
+            background: #22c55e; color: #fff;
+            font-weight: 900; padding: 1px 5px; border-radius: 3px;
+            font-size: 10px; white-space: nowrap; border: none;
+            line-height: 1.2;
         }
-        .td-page .ach-pill {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2px 10px;
-            border-radius: 4px;
-            font-size: .42rem;
+        .td-page .dat-badge i { margin-right: 2px; font-size: 9px; }
+        /* Thiếu / âm: chữ đỏ, in nghiêng, KHÔNG in đậm */
+        .td-page .thieu-val {
+            color: red;
+            font-style: italic;
+            font-weight: 400;
+        }
+        /* Phần thưởng / Tiền thưởng: nền lightyellow, chữ #000044 IN ĐẬM, căn giữa */
+        .td-page .pt tbody td.d-money {
+            background: lightyellow;
+            color: #000044;
+            text-align: center;
             font-weight: 900;
-            letter-spacing: .02em;
-            color: #1d4ed8;
-            background: #fef9c3;
-            border: 1px solid #fde68a;
+        }
+        /* Thưởng có giá trị — icon + hiệu ứng nổi bật */
+        .td-page .thuong-highlight {
+            display: inline-flex; align-items: center; justify-content: center;
+            gap: 3px;
+            animation: thuongPulse 1.8s ease-in-out infinite;
+        }
+        .td-page .thuong-highlight i {
+            color: #f59e0b;
+            font-size: 11px;
+        }
+        @keyframes thuongPulse {
+            0%, 100% { text-shadow: 0 0 0 transparent; }
+            50% { text-shadow: 0 0 8px #f59e0b66; }
+        }
+
+        /* STT column */
+        .td-page .pst { text-align: center; color: #94a3b8; font-weight: 700; min-width: 28px; max-width: 36px; background: #fff; }
+        .td-page .pt th.pst-h { text-align: center; background: #000044; }
+
+        /* Mobile */
+        @media (max-width: 640px) {
+            .td-page .ptw { max-height: 55vh; }
+            .td-page .pt { font-size: 10px; }
+            .td-page .pt thead th { padding: 4px 2px; font-size: 8.5px; line-height: 1.1; }
+            .td-page .pt tbody td { padding: 3px 2px; font-size: 9.5px; }
+            .td-page .pst { min-width: 20px; max-width: 26px; font-size: 8px; }
+            .td-page .dat-badge { font-size: 8px; padding: 1px 3px; }
         }
         
         /* Form Elements */
@@ -2295,57 +1963,18 @@
             .td-page .pop-bar h2 { text-align: left; font-size: 1.02rem; }
             .td-page .pop-meta { align-items: flex-start; }
             .td-page .mdl-box { padding: 18px; }
-            .td-page .pt { font-size: .40rem; }
-            .td-page .pt thead th { padding: 5px 3px; font-size: .42rem; overflow-wrap: break-word; word-break: normal; line-height: 1.12; }
-            .td-page .pt tbody td { padding: 4px 4px; font-size: .38rem; }
-            .td-page .pt td.col-name { min-width: 60px; padding-left: 5px; }
-            .td-page .pt td.td-num, .td-page .pt td.td-money { padding-right: 5px; }
-            .td-page .ptw.auto-wide .pt { font-size: .38rem; }
+            .td-page .pt { font-size: 10px; }
+            .td-page .pt thead th { padding: 4px 2px; font-size: 8.5px; overflow-wrap: break-word; word-break: normal; line-height: 1.1; }
+            .td-page .pt tbody td { padding: 3px 2px; font-size: 9.5px; }
+            .td-page .pt td.d-info-left { padding-left: 4px; }
+
             .td-page .pop-ct { }
-            .td-page .pop-ct > .ptw, .td-page .pop-ct > .po-ptw, .td-page .pop-ct > .policy-tl-wrap, .td-page .pop-ct > .policy-qtn-wrap, .td-page .pop-ct > .tn-wrap, .td-page .pop-ct > .tn-title, .td-page .pop-ct > .tn-note, .td-page .pop-ct > .policy-tvvm-wrap, .td-page .pop-ct > .policy-nst-wrap, .td-page .pop-ct > .policy-nsq-wrap, .td-page .pop-ct > .policy-nsqn-wrap, .td-page .pop-ct > .policy-ptkd-wrap { margin-left: 6px; margin-right: 6px; }
+            .td-page .pop-ct > .ptw { margin-left: 6px; margin-right: 6px; }
             .td-page .pop-ct > :first-child { margin-top: 6px; }
-            /* Policy page responsive - same size scale as original */
-            .td-page .po-pt { font-size: .40rem; }
-            .td-page .po-pt thead th { padding: 5px 3px; font-size: .42rem; line-height: 1.12; }
-            .td-page .po-pt tbody td { padding: 4px 4px; font-size: .38rem; }
-            .td-page .po-pt td.col-name { min-width: 60px; padding-left: 5px; }
-            .td-page .po-pt td.td-num, .td-page .po-pt td.td-money { padding-right: 5px; }
-            .td-page .po-ptw.po-auto-wide .po-pt { font-size: .38rem; }
-            .td-page .pop-bar h2.po-title { font-size: 1.02rem; }
-            .td-page .policy-tl th { font-size: .42rem; padding: 4px 3px; }
-            .td-page .policy-tl td { font-size: .40rem; padding: 4px 3px; }
-            .td-page .policy-tl .tl-reward-title { font-size: .48rem; }
-            .td-page .policy-tl .tl-reward-note { font-size: .30rem; }
-            .td-page .policy-qtn th { font-size: .42rem; padding: 4px 3px; }
-            .td-page .policy-qtn td { font-size: .40rem; padding: 4px 3px; }
+
         }
 
-        /* Auto-expand for small column count: stretch full width, no horizontal scroll */
-        .td-page .ptw.auto-wide { overflow: visible; }
-        .td-page .ptw.auto-wide .pt {
-            table-layout: auto;
-            width: 100%;
-            font-size: .46rem;
-        }
-        .td-page .ptw.auto-wide .pt thead th {
-            padding: 6px 6px;
-            white-space: normal;
-            overflow-wrap: break-word;
-            word-break: normal;
-        }
-        .td-page .ptw.auto-wide .pt tbody td {
-            padding: 5px 6px;
-            white-space: nowrap;
-        }
-        .td-page .ptw.auto-wide .pt thead th.sticky-blue {
-            position: sticky;
-            top: 0;
-            z-index: 5;
-            transform: translateZ(0);
-            -webkit-transform: translateZ(0);
-            will-change: transform;
-        }
-        .td-page .ptw:not(.auto-wide) .pt { width: max-content; min-width: 100%; }
+
 
         /* ===== DESKTOP OPTIMIZATION ===== */
         @media (min-width: 641px) {
@@ -2356,53 +1985,15 @@
             .td-page .pop-bar h2 { font-size: 1.42rem; }
             .td-page .pop-bar h2.po-title { font-size: 1.42rem; }
             .td-page .pop-subline { font-size: .82rem; padding: 8px 14px; }
-            .td-page .pop-ct > .ptw, .td-page .pop-ct > .po-ptw, .td-page .pop-ct > .policy-tl-wrap, .td-page .pop-ct > .policy-qtn-wrap, .td-page .pop-ct > .tn-wrap, .td-page .pop-ct > .tn-title, .td-page .pop-ct > .tn-note, .td-page .pop-ct > .policy-tvvm-wrap, .td-page .pop-ct > .policy-nst-wrap, .td-page .pop-ct > .policy-nsq-wrap, .td-page .pop-ct > .policy-nsqn-wrap, .td-page .pop-ct > .policy-ptkd-wrap { margin-left: 16px; margin-right: 16px; }
+            .td-page .pop-ct > .ptw { margin-left: 16px; margin-right: 16px; }
 
             /* Table readability: larger fonts and padding */
-            .td-page .pt { font-size: .62rem; }
-            .td-page .pt thead th { padding: 10px 8px; font-size: .64rem; line-height: 1.3; letter-spacing: .04px; }
-            .td-page .pt tbody td { padding: 8px 8px; font-size: .6rem; line-height: 1.5; max-width: 260px; }
-            .td-page .pt td.col-name { min-width: 120px; padding-left: 10px; max-width: 220px; }
-            .td-page .pt td.col-code { font-size: .56rem; }
-            .td-page .pt .pst { font-size: .58rem; min-width: 30px; }
-            .td-page .pt .ach-pill { padding: 3px 14px; font-size: .6rem; }
-            .td-page .pt .dat-badge { padding: 3px 12px; font-size: .6rem; }
-            .td-page .pt td.cell-dat, .td-page .pt td.cell-chuadat { font-size: .6rem; }
-
-            /* Auto-wide tables on desktop */
-            .td-page .ptw.auto-wide .pt { font-size: .64rem; }
-            .td-page .ptw.auto-wide .pt thead th { padding: 10px 10px; }
-            .td-page .ptw.auto-wide .pt tbody td { padding: 8px 10px; }
-
-            /* Policy tables desktop */
-            .td-page .po-pt { font-size: .62rem; }
-            .td-page .po-pt thead th { padding: 10px 8px; font-size: .64rem; line-height: 1.3; }
-            .td-page .po-pt tbody td { padding: 8px 8px; font-size: .6rem; line-height: 1.5; max-width: 260px; }
-            .td-page .po-pt td.col-name { min-width: 120px; padding-left: 10px; max-width: 220px; }
-            .td-page .po-pt td.col-code { font-size: .56rem; }
-            .td-page .po-pt .pst { font-size: .58rem; min-width: 30px; }
-            .td-page .po-ptw.po-auto-wide .po-pt { font-size: .64rem; }
-            .td-page .po-ptw.po-auto-wide .po-pt thead th { padding: 10px 10px; }
-            .td-page .po-ptw.po-auto-wide .po-pt tbody td { padding: 8px 10px; }
-            .td-page .po-pt td.po-cc { font-size: .6rem; }
-            .td-page .po-pt .ach-pill { padding: 3px 14px; font-size: .6rem; }
-            .td-page .po-pt .dat-badge { padding: 3px 12px; font-size: .6rem; }
-
-            /* Policy TL desktop */
-            .td-page .policy-tl th { font-size: .66rem; padding: 10px 8px; }
-            .td-page .policy-tl td { font-size: .62rem; padding: 8px 8px; }
-            .td-page .policy-tl .tl-reward-title { font-size: .74rem; }
-            .td-page .policy-tl .tl-reward-note { font-size: .48rem; }
-            .td-page .policy-tl td.tl-name { min-width: 130px; }
-
-            /* Policy QTN desktop */
-            .td-page .policy-qtn th { font-size: .66rem; padding: 10px 8px; }
-            .td-page .policy-qtn td { font-size: .62rem; padding: 8px 8px; }
-            .td-page .policy-qtn td.qtn-name { min-width: 130px; }
-            .td-page .policy-qtn .qtn-note { font-size: .44rem; }
-
-            /* Section title desktop */
-            .td-page .po-section-title { font-size: .72rem; padding: 8px 14px; }
+            .td-page .pt { font-size: 13px; }
+            .td-page .pt thead th { padding: 8px 6px; font-size: 12px; line-height: 1.25; }
+            .td-page .pt tbody td { padding: 6px 6px; font-size: 12px; line-height: 1.4; }
+            .td-page .pt td.d-info-left { padding-left: 10px; }
+            .td-page .pt .pst { font-size: 11px; min-width: 30px; }
+            .td-page .pt .dat-badge { padding: 2px 8px; font-size: 11px; }
 
             /* Pcard grid desktop */
             .td-page .card-grid { gap: 18px; }
@@ -2500,82 +2091,20 @@
         }
         .td-page .pop-meta { align-items: center !important; }
 
-        /* Unified header style for ALL tables in race/policy views */
-        .td-page .pt thead th,
-        .td-page .pt thead th.col-thuong,
-        .td-page .pt thead th.col-percent,
-        .td-page .pt thead th.num-col,
-        .td-page .po-pt thead th,
-        .td-page .po-pt thead th.col-thuong,
-        .td-page .po-pt thead th.col-percent,
-        .td-page .po-pt thead th.num-col,
-        .td-page .po-pt thead th.col-name,
-        .td-page .policy-tl thead th,
-        .td-page .policy-tl th,
-        .td-page .policy-tl th.tl-count,
-        .td-page .policy-tl th.tl-reward,
-        .td-page .policy-qtn thead th,
-        .td-page .policy-qtn th,
-        .td-page .policy-qtn th.qtn-deep,
-        .td-page .policy-qtn th.qtn-fyp,
-        .td-page .policy-qtn th.qtn-fyc,
-        .td-page .policy-qtn th.qtn-reward-band,
-        .td-page .policy-qtn th.qtn-proj,
-        .td-page .policy-qtn th.qtn-sub {
-            background: #1e3a5f !important;
-            color: #ffffff !important;
+        /* Override: unified header alignment */
+        .td-page .pt thead th {
             text-align: center !important;
             vertical-align: middle !important;
             white-space: normal !important;
             overflow-wrap: break-word !important;
-            word-break: keep-all !important;
             line-height: 1.2 !important;
         }
-
-        /* Body cells: never wrap content */
-        .td-page .pt tbody td,
-        .td-page .po-pt tbody td,
-        .td-page .policy-tl tbody td,
-        .td-page .policy-qtn tbody td {
+        /* Body cells: no wrap */
+        .td-page .pt tbody td {
             white-space: nowrap !important;
-            overflow-wrap: normal !important;
-            word-break: keep-all !important;
         }
-
-        /* Number/numeric cells — centered */
-        .td-page .pt tbody td.td-num,
-        .td-page .pt tbody td.td-money,
-        .td-page .pt tbody td.col-stt,
-        .td-page .pt tbody td.col-count,
-        .td-page .pt tbody td.col-code,
-        .td-page .pt tbody td.cell-dat,
-        .td-page .pt tbody td.cell-chuadat,
-        .td-page .pt tbody td.cell-percent,
-        .td-page .po-pt tbody td.td-num,
-        .td-page .po-pt tbody td.td-money,
-        .td-page .po-pt tbody td.col-stt,
-        .td-page .po-pt tbody td.col-count,
-        .td-page .po-pt tbody td.col-code,
-        .td-page .po-pt tbody td.cell-dat,
-        .td-page .po-pt tbody td.cell-chuadat,
-        .td-page .po-pt tbody td.cell-percent,
-        .td-page .policy-tl tbody td.tl-count,
-        .td-page .policy-tl tbody td.tl-role,
-        .td-page .policy-tl tbody td.tl-reward,
-        .td-page .policy-qtn tbody td.qtn-fypv,
-        .td-page .policy-qtn tbody td.qtn-fycv,
-        .td-page .policy-qtn tbody td.qtn-band,
-        .td-page .policy-qtn tbody td.qtn-projv {
-            text-align: center !important;
-        }
-
-        /* Text cells — left aligned */
-        .td-page .pt tbody td.td-text,
-        .td-page .pt tbody td.col-name,
-        .td-page .po-pt tbody td.td-text,
-        .td-page .po-pt tbody td.col-name,
-        .td-page .policy-tl tbody td.tl-name,
-        .td-page .policy-qtn tbody td.qtn-name {
+        /* Cột 2+4 (name, group): căn trái */
+        .td-page .pt tbody td.d-info-left {
             text-align: left !important;
             padding-left: 8px !important;
         }
@@ -2642,25 +2171,6 @@
         .td-page .tbl-filter.active select { color: #052e1a; }
         .td-page .tbl-filter.active select {
             background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 10 10'><path d='M1 3l4 4 4-4' stroke='%23052e1a' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");
-        }
-        /* ===== CLB RANK COLUMN STYLING ===== */
-        .td-page .ptw.auto-wide .pt col.clb-rank-eq { width: 80px; }
-        .td-page .pt col.clb-rank-eq { width: 75px; }
-        /* CLB rank header - saturated color per column */
-        .td-page .pt th.clb-rank-hdr { color: #fff; font-size: 10px; letter-spacing: .03em; padding: 6px 4px; white-space: normal; overflow-wrap: break-word; }
-        .td-page .pt th.clb-rank-sub-hdr { color: #fff; font-size: 9px; padding: 5px 3px; white-space: normal; overflow-wrap: break-word; }
-        /* CLB rank body cell - muted tint of header color */
-        .td-page .pt td.clb-rank-cell { text-align: center; padding: 5px 4px; white-space: nowrap; }
-        /* CLB info column alignment */
-        .td-page .pt th.clb-info-ms { text-align: center; }
-        .td-page .pt td.clb-info-ms { text-align: center; }
-        .td-page .pt th.clb-info-left { text-align: left; }
-        .td-page .pt td.clb-info-left { text-align: left; padding-left: 6px; }
-        @media (max-width: 640px) {
-            .td-page .pt col.clb-rank-eq { width: 62px; }
-            .td-page .pt th.clb-rank-hdr { font-size: 8px; padding: 4px 2px; }
-            .td-page .pt th.clb-rank-sub-hdr { font-size: 7.5px; padding: 3px 1px; }
-            .td-page .pt td.clb-rank-cell { padding: 3px 2px; font-size: 8px; }
         }
     </style>
 </head>
@@ -3409,7 +2919,14 @@
         }
 
         function initApp() {
+            /* Luôn tạo đủ 12 tháng của năm hiện tại + các kỳ tổng hợp */
             var kyList = [], seen = {};
+            /* 1) Thêm 12 tháng cố định */
+            for (var m = 1; m <= 12; m++) {
+                var mk = CUR_YEAR + '-' + String(m).padStart(2, '0');
+                if (!seen[mk]) { seen[mk] = true; kyList.push(mk); }
+            }
+            /* 2) Thêm các kỳ tổng hợp từ dữ liệu (6T, Q1-Q4, NAM) */
             DATA.forEach(function(x) {
                 if (x.ky && x.ky.indexOf(CUR_YEAR.toString()) !== -1 && !seen[x.ky]) {
                     seen[x.ky] = true;
@@ -3417,7 +2934,7 @@
                 }
             });
             kyList.sort(function(a, b) { return kySortWeight(a) - kySortWeight(b); });
-            
+
             var dk = CUR_YEAR + '-' + CUR_MONTH;
             var selectedKy = kyList.indexOf(dk) !== -1 ? dk : (kyList[0] || '');
             renderKySelect(kyList, selectedKy);
@@ -3995,87 +3512,13 @@
             throw lastErr;
         }
 
-        async function TD_fetchSheetLayout(sheetName, cols, rows) {
-            var url = TD_SCR + '?action=getSheetLayout&sheet=' + encodeURIComponent(sheetName) + '&cols=' + encodeURIComponent(cols || '') + '&rows=' + encodeURIComponent(rows || '');
-            var res = await fetch(url, { cache: 'no-store' });
-            if (!res.ok) throw new Error('HTTP ' + res.status);
-            var data = await res.json();
-            if (!data || !data.ok || !data.headers || !data.rows) throw new Error('Layout unavailable');
-            return data;
-        }
-
-        function TD_renderSheetLayout(ct, payload) {
-            function escCell(v) { return esc(v == null ? '' : String(v)); }
-            function renderHeaderRows(headers) {
-                return headers.map(function(row) {
-                    var html = '<tr>';
-                    row.forEach(function(cell) {
-                        if (!cell || cell.skip) return;
-                        var text = escCell(cell.text);
-                        var cls = cell.className ? ' class="' + escCell(cell.className) + '"' : '';
-                        var rs = cell.rowspan > 1 ? ' rowspan="' + Number(cell.rowspan) + '"' : '';
-                        var cs = cell.colspan > 1 ? ' colspan="' + Number(cell.colspan) + '"' : '';
-                        html += '<th' + cls + rs + cs + '>' + text + '</th>';
-                    });
-                    html += '</tr>';
-                    return html;
-                }).join('');
-            }
-            function renderBodyRows(rows) {
-                return rows.map(function(row, rowIdx) {
-                    var html = '<tr data-row-index="' + rowIdx + '">';
-                    row.forEach(function(cell) {
-                        if (!cell || cell.skip) return;
-                        var cls = cell.className ? ' class="' + escCell(cell.className) + '"' : '';
-                        var rs = cell.rowspan > 1 ? ' rowspan="' + Number(cell.rowspan) + '"' : '';
-                        var cs = cell.colspan > 1 ? ' colspan="' + Number(cell.colspan) + '"' : '';
-                        html += '<td' + cls + rs + cs + '>' + escCell(cell.text) + '</td>';
-                    });
-                    html += '</tr>';
-                    return html;
-                }).join('');
-            }
-
-            ct.innerHTML = '<div class="ptw"><table class="pt"><thead>' + renderHeaderRows(payload.headers) + '</thead><tbody>' + renderBodyRows(payload.rows) + '</tbody></table></div>';
-
-            /* Fix sticky top for 2nd+ header rows */
-            function fixStickyTop() {
-                var thead = ct.querySelector('thead');
-                if (thead && thead.rows.length > 1) {
-                    var cumTop = 0;
-                    for (var r = 0; r < thead.rows.length; r++) {
-                        var rowH = thead.rows[r].getBoundingClientRect().height;
-                        if (r > 0 && rowH > 0) {
-                            var cells = thead.rows[r].cells;
-                            for (var c = 0; c < cells.length; c++) {
-                                cells[c].style.top = cumTop + 'px';
-                            }
-                        }
-                        cumTop += rowH;
-                    }
-                }
-            }
-            requestAnimationFrame(function() { requestAnimationFrame(fixStickyTop); });
-            setTimeout(fixStickyTop, 300);
-            setTimeout(fixStickyTop, 800);
-
-            ct.querySelectorAll('tbody tr').forEach(function(row) {
-                row.addEventListener('click', function() {
-                    ct.querySelectorAll('tbody tr.is-focus').forEach(function(activeRow) {
-                        activeRow.classList.remove('is-focus');
-                    });
-                    row.classList.add('is-focus');
-                });
-            });
-        }
-
         /* Compact group filter pinned to top-right of each table wrapper.
            groupColIdx = 0-based data column index of the "nhom" column,
            tdOffset    = number of leading <td> in tbody rows before data cells (1 if STT auto-prepended, 0 otherwise). */
         function TD_attachGroupFilter(ct, groupColIdx, tdOffset) {
             if (groupColIdx == null || groupColIdx < 0) return;
             if (tdOffset == null) tdOffset = 1;
-            var wraps = ct.querySelectorAll('.ptw, .po-ptw');
+            var wraps = ct.querySelectorAll('.ptw');
             wraps.forEach(function(wrap) {
                 var table = wrap.querySelector('table');
                 if (!table || !table.tBodies.length) return;
@@ -4117,890 +3560,6 @@
                     });
                 });
                 sel.addEventListener('click', function(e) { e.stopPropagation(); });
-            });
-        }
-
-        /* ===== CLB Custom Render with Rank Group Headers ===== */
-        function TD_renderCLB(ct, csv, cols, rows, sheetName) {
-            var all = TD_csv(csv);
-            if (!all.length || all.length < 2) {
-                ct.innerHTML = '<div style="text-align:center;padding:40px;color:var(--td-fgm)">Tab trống</div>';
-                return;
-            }
-
-            /* Define rank configs per CLB sheet */
-            var rankConfigs = {
-                'CLB-TNKTM': {
-                    infoCols: 3,  /* NHÓM KD, MSĐL, HỌ TÊN TN */
-                    dataColsBeforeRanks: 1, /* FYP NHÓM lũy kế */
-                    ranks: [
-                        { name: 'Hạng vàng', color: '#fef0b0', headerColor: '#f9a825', cols: 1 },
-                        { name: 'Hạng bạch kim', color: '#d1d5f0', headerColor: '#5c6bc0', cols: 1 },
-                        { name: 'Hạng kim cương', color: '#f5c2d4', headerColor: '#e91e63', cols: 1 }
-                    ]
-                },
-                'CLB-TNTD': {
-                    infoCols: 3,  /* NHÓM KD, MSĐL, HỌ TÊN TN */
-                    dataColsBeforeRanks: 2, /* TVVm HĐC lũy kế, FYP NHÓM lũy kế */
-                    ranks: [
-                        { name: 'Hạng vàng', color: '#fef0b0', headerColor: '#f9a825', cols: 2 },
-                        { name: 'Hạng bạc kim', color: '#e0d4f5', headerColor: '#7e57c2', cols: 2 }
-                    ]
-                },
-                'CLB-CN': {
-                    infoCols: 3,  /* NHÓM KD, MÃ SỐ, HỌ TÊN TVV */
-                    dataColsBeforeRanks: 2, /* FYP lũy kế, IP THÁNG 4 */
-                    ranks: [
-                        { name: 'Hạng vàng', color: '#fef0b0', headerColor: '#f9a825', cols: 1 },
-                        { name: 'Hạng bạch kim', color: '#d1d5f0', headerColor: '#5c6bc0', cols: 1 },
-                        { name: 'Hạng kim cương', color: '#f5c2d4', headerColor: '#e91e63', cols: 1 }
-                    ]
-                }
-            };
-
-            var cfg = rankConfigs[sheetName];
-            if (!cfg) {
-                /* Fallback: use default rpt */
-                var defaultRpt = createTDPage._defaultRpt;
-                if (defaultRpt) defaultRpt(ct, csv, cols, rows);
-                else ct.innerHTML = '<div style="text-align:center;padding:40px;color:var(--td-fgm)">Chưa hỗ trợ sheet này</div>';
-                return;
-            }
-
-            var hd = all[0] || [];
-            var dc = Math.min(hd.length, cols || 99);
-            /* Trim trailing empty columns */
-            while (dc > 0) {
-                var anyData = false;
-                for (var rr = 1; rr < all.length; rr++) {
-                    var cv = all[rr] && all[rr][dc - 1];
-                    if (cv != null && String(cv).trim() !== '') { anyData = true; break; }
-                }
-                if (anyData || String(hd[dc - 1] || '').trim()) break;
-                dc--;
-            }
-
-            var data = all.slice(1);
-            /* Sort by achievement (rows with more "Đạt" / 10000001111 come first) */
-            var si = [];
-            for (var r = 0; r < data.length; r++) si.push(r);
-            si.sort(function(a, b) { return TD_ced(data[b] || [], dc) - TD_ced(data[a] || [], dc); });
-
-            /* Build header with grouped rank columns */
-            var rankStart = cfg.infoCols + cfg.dataColsBeforeRanks;
-            var headerRow1 = '<tr><th rowspan="2" class="mini-col" style="text-align:center">STT</th>';
-            /* Info columns */
-            for (var ic = 0; ic < cfg.infoCols; ic++) {
-                var infoH = String(hd[ic] || '').trim();
-                var infoKey = infoH.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[đĐ]/g, 'd').replace(/[^a-z0-9]+/g, ' ').trim();
-                var isCode = /(ma so|msdl|ms dl|ms dai ly|ma tn|^ma$|^ms$)/.test(infoKey);
-                var infoCls = isCode ? 'col-code clb-info-ms' : 'col-name clb-info-left';
-                headerRow1 += '<th rowspan="2" class="' + infoCls + '">' + esc(infoH) + '</th>';
-            }
-            /* Data columns before ranks */
-            for (var dc2 = 0; dc2 < cfg.dataColsBeforeRanks; dc2++) {
-                var dataH = String(hd[rankStart - cfg.dataColsBeforeRanks + dc2] || '').trim();
-                headerRow1 += '<th rowspan="2" class="num-col col-thuong">' + esc(dataH) + '</th>';
-            }
-            /* Rank group headers (row 1) */
-            for (var ri = 0; ri < cfg.ranks.length; ri++) {
-                var rank = cfg.ranks[ri];
-                headerRow1 += '<th colspan="' + rank.cols + '" class="clb-rank-hdr" style="background:' + rank.headerColor + '">' + esc(rank.name) + '</th>';
-            }
-            headerRow1 += '</tr>';
-
-            /* Rank sub-headers (row 2) */
-            var headerRow2 = '<tr>';
-            for (var ri2 = 0; ri2 < cfg.ranks.length; ri2++) {
-                var rank2 = cfg.ranks[ri2];
-                /* Find the starting column index for this rank */
-                var rankColStart = rankStart;
-                for (var rp = 0; rp < ri2; rp++) rankColStart += cfg.ranks[rp].cols;
-                for (var rc = 0; rc < rank2.cols; rc++) {
-                    var subH = String(hd[rankColStart + rc] || '').trim();
-                    headerRow2 += '<th class="clb-rank-sub-hdr" style="background:' + rank2.headerColor + '">' + esc(subH) + '</th>';
-                }
-            }
-            headerRow2 += '</tr>';
-
-            /* Build body */
-            var body = '';
-            for (var k = 0; k < si.length; k++) {
-                var rowIndex = si[k], row = data[rowIndex] || [];
-                body += '<tr><td class="pst">' + (rowIndex + 1) + '</td>';
-                /* Info columns */
-                for (var ic2 = 0; ic2 < cfg.infoCols; ic2++) {
-                    var infoVal = String(row[ic2] || '').trim();
-                    var iKey = String(hd[ic2] || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[đĐ]/g, 'd').replace(/[^a-z0-9]+/g, ' ').trim();
-                    if (/(ma so|msdl|ms dl|ms dai ly|ma tn|^ma$|^ms$)/.test(iKey)) {
-                        body += '<td class="td-text col-code clb-info-ms">' + esc(infoVal) + '</td>';
-                    } else {
-                        body += '<td class="td-text col-name clb-info-left">' + esc(infoVal) + '</td>';
-                    }
-                }
-                /* Data columns before ranks */
-                for (var dc3 = 0; dc3 < cfg.dataColsBeforeRanks; dc3++) {
-                    var dataVal = String(row[cfg.infoCols + dc3] || '').trim();
-                    var compact = dataVal.replace(/\s/g, '');
-                    var isNum = /^-?\d+(?:[.,]\d+)?$/.test(compact);
-                    var displayVal = dataVal;
-                    if (isNum) {
-                        var n = Number(compact.replace(/\./g, '').replace(',', '.'));
-                        if (isFinite(n)) displayVal = n.toLocaleString('vi-VN');
-                    }
-                    body += '<td class="td-num col-thuong-cell">' + esc(displayVal) + '</td>';
-                }
-                /* Rank columns with colored backgrounds */
-                var rankColIdx = rankStart;
-                for (var ri3 = 0; ri3 < cfg.ranks.length; ri3++) {
-                    var rank3 = cfg.ranks[ri3];
-                    for (var rc2 = 0; rc2 < rank3.cols; rc2++) {
-                        var rankVal = String(row[rankColIdx] || '').trim();
-                        var rankDisplay = rankVal;
-                        var rankCompact = rankVal.replace(/\s/g, '');
-                        var rankIsNum = /^-?\d+(?:[.,]\d+)?$/.test(rankCompact);
-                        if (rankIsNum) {
-                            var rn = Number(rankCompact.replace(/\./g, '').replace(',', '.'));
-                            if (isFinite(rn)) rankDisplay = rn.toLocaleString('vi-VN');
-                        }
-                        var cellCls = 'td-num clb-rank-cell';
-                        var cellStyle = 'background:' + rank3.color + ' !important;';
-                        if (rankVal === '10000001111') {
-                            rankDisplay = '<span class="ach-pill"><i class="fa-solid fa-circle-check" style="margin-right:3px"></i>Đạt</span>';
-                            cellCls += ' ach-cell';
-                        } else if (rankVal.toLowerCase() === 'đạt' || rankVal.toLowerCase() === 'đạt danh hiệu') {
-                            rankDisplay = '<span class="dat-badge"><i class="fa-solid fa-circle-check" style="margin-right:3px"></i>' + esc(rankDisplay) + '</span>';
-                            cellCls += ' cell-dat';
-                        } else if (rankIsNum && Number(rankCompact.replace(/\./g, '').replace(',', '.')) < 0) {
-                            cellStyle += 'color:#b91c1c;';
-                        }
-                        body += '<td class="' + cellCls + '" style="' + cellStyle + '">' + rankDisplay + '</td>';
-                        rankColIdx++;
-                    }
-                }
-                body += '</tr>';
-            }
-
-            /* Build colgroup for column widths - rank columns equal */
-            var cgHtml = '<colgroup><col style="width:28px">';
-            for (var ci = 0; ci < cfg.infoCols; ci++) {
-                var cKey = String(hd[ci] || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[đĐ]/g, 'd').replace(/[^a-z0-9]+/g, ' ').trim();
-                cgHtml += (/(ma so|msdl|ms dl|ms dai ly|ma tn|^ma$|^ms$)/.test(cKey)) ? '<col style="width:90px">' : '<col>';
-            }
-            for (var di = 0; di < cfg.dataColsBeforeRanks; di++) cgHtml += '<col>';
-            var totalRankCols = 0;
-            for (var rci = 0; rci < cfg.ranks.length; rci++) totalRankCols += cfg.ranks[rci].cols;
-            for (var rci2 = 0; rci2 < totalRankCols; rci2++) cgHtml += '<col class="clb-rank-eq">';
-            cgHtml += '</colgroup>';
-            var tableHtml = '<div class="ptw auto-wide"><table class="pt">' + cgHtml + '<thead>' + headerRow1 + headerRow2 + '</thead><tbody>' + body + '</tbody></table></div>';
-            ct.innerHTML = tableHtml;
-
-            /* Fix sticky top for 2nd header row */
-            function fixCLBSticky() {
-                var thead = ct.querySelector('thead');
-                if (thead && thead.rows.length > 1) {
-                    var cumTop = 0;
-                    for (var r = 0; r < thead.rows.length; r++) {
-                        var rowH = thead.rows[r].getBoundingClientRect().height;
-                        if (r > 0 && rowH > 0) {
-                            var cells = thead.rows[r].cells;
-                            for (var c = 0; c < cells.length; c++) {
-                                cells[c].style.top = cumTop + 'px';
-                            }
-                        }
-                        cumTop += rowH;
-                    }
-                }
-            }
-            requestAnimationFrame(function() { requestAnimationFrame(fixCLBSticky); });
-            setTimeout(fixCLBSticky, 300);
-        }
-
-        function TD_renderPolicyTL(ct, csv, rows, sectionName) {
-            var all = TD_csv(csv);
-            if (!all.length || all.length < 2) {
-                ct.innerHTML = '<div style="text-align:center;padding:40px;color:var(--td-fgm)">Tab trống</div>';
-                return;
-            }
-            var body = all.slice(1, 1 + rows);
-            var html = '<div class="policy-tl-wrap"><table class="po-pt policy-tl"><thead><tr>' +
-                '<th class="tl-stt">STT</th>' +
-                '<th class="tl-group">NHÓM KD</th>' +
-                '<th class="tl-code">MS ĐẠI LÝ</th>' +
-                '<th class="tl-name">HỌ TÊN TVV</th>' +
-                '<th class="tl-role">CHỨC VỤ</th>' +
-                '<th class="tl-count">SL TVV HĐC</th>' +
-                '<th class="tl-reward"><span class="tl-reward-title">THƯỞNG TUYỂN LUYỆN</span><span class="tl-reward-note">1 TVV HĐC - 100% thưởng TVVm<br>2 - 3 TVVm HĐC - 125% thưởng TVVm<br>>= 3 TVVm - 150% thưởng TVVm</span></th>' +
-                '</tr></thead><tbody>';
-
-            body.forEach(function(r, idx) {
-                var reward = String(r[5] || '').trim();
-                html += '<tr>' +
-                    '<td class="pst">' + (idx + 1) + '</td>' +
-                    '<td class="td-text col-name">' + esc(String(r[0] || '').trim()) + '</td>' +
-                    '<td class="td-text col-code">' + esc(String(r[1] || '').trim()) + '</td>' +
-                    '<td class="td-text col-name">' + esc(String(r[2] || '').trim()) + '</td>' +
-                    '<td class="td-text col-code">' + esc(String(r[3] || '').trim()) + '</td>' +
-                    '<td class="td-num ct-count">' + esc(String(r[4] || '').trim()) + '</td>' +
-                    '<td class="col-thuong-cell">' + (reward ? '<span class="thuong-val"><i class="fa-solid fa-trophy"></i> ' + esc(Number(reward.replace(/\./g, '').replace(',', '.')).toLocaleString('vi-VN')) + '</span>' : '') + '</td>' +
-                    '</tr>';
-            });
-            html += '</tbody></table></div>';
-            ct.innerHTML = html;
-
-            /* Row click highlight */
-            ct.querySelectorAll('.policy-tl tbody tr').forEach(function(row) {
-                row.addEventListener('click', function() {
-                    ct.querySelectorAll('tbody tr.is-focus').forEach(function(activeRow) {
-                        activeRow.classList.remove('is-focus');
-                    });
-                    row.classList.add('is-focus');
-                });
-            });
-        }
-
-        /* ===== TUYÊN NGANG RENDERER ===== */
-        function TD_renderPolicyTN(ct, csv, dataRows, sectionName) {
-            var all = TD_csv(csv);
-            if (!all.length || all.length < 2) {
-                ct.innerHTML = '<div style="text-align:center;padding:40px;color:var(--td-fgm)">Dữ liệu tuyển ngang trống</div>';
-                return;
-            }
-            var body = all.slice(1, 1 + dataRows);
-            var dc = (all[0] || []).length;
-
-            /* Title banner */
-            var titleHtml = '<div class="tn-title"><i class="fa-solid fa-chart-column"></i> Thống Kê Chỉ Tiêu Tuyển Ngang <span class="tn-sub-label">Tháng ' + (sectionName || '') + '</span></div>';
-
-            /* Build colgroup for fixed widths */
-            var colHtml = '<colgroup>' +
-                '<col class="tn-c-stt">' +
-                '<col class="tn-c-tn">' +
-                '<col class="tn-c-ms">' +
-                '<col class="tn-c-hoten">' +
-                '<col class="tn-c-cv">' +
-                '<col class="tn-c-hlcv">' +
-                '<col class="tn-c-thang">' +
-                '<col class="tn-c-sub">' +
-                '<col class="tn-c-sub">' +
-                '<col class="tn-c-sub">' +
-                '<col class="tn-c-thuong">' +
-                '<col class="tn-c-sub">' +
-                '<col class="tn-c-sub">' +
-                '<col class="tn-c-sub">' +
-                '<col class="tn-c-thuong">' +
-                '<col class="tn-c-sub">' +
-                '<col class="tn-c-sub">' +
-                '<col class="tn-c-sub">' +
-                '<col class="tn-c-bkip">' +
-                '</colgroup>';
-
-            /* Row 1: Group headers */
-            var r1 = '<tr>' +
-                '<th class="tn-h-stt" rowspan="2">STT</th>' +
-                '<th class="tn-h-tn" rowspan="2">Tên TN</th>' +
-                '<th rowspan="2">Mã số</th>' +
-                '<th rowspan="2">Họ tên TVV</th>' +
-                '<th rowspan="2">Chức vụ</th>' +
-                '<th rowspan="2">Ngày HL<br>chức vụ</th>' +
-                '<th rowspan="2">Thang<br>làm việc</th>' +
-                '<th class="tn-h-chitieu" colspan="3">Chỉ tiêu</th>' +
-                '<th class="tn-h-ththang" colspan="3">Thực hiện tháng</th>' +
-                '<th class="tn-h-thuong" colspan="2">Thưởng tháng</th>' +
-                '<th class="tn-h-luyke" colspan="3">Thực hiện lũy kế</th>' +
-                '<th class="tn-h-bkip" rowspan="2">Thưởng<br>bắt kịp</th>' +
-                '</tr>';
-
-            /* Row 2: Sub-headers with color group classes */
-            var r2 = '<tr>' +
-                '<th class="tn-hs-ct">Quy mô</th>' +
-                '<th class="tn-hs-ct">TVVm HDC</th>' +
-                '<th class="tn-hs-ct">Tổng FYP</th>' +
-                '<th class="tn-hs-th">Quy mô</th>' +
-                '<th class="tn-hs-th">TVVm HDC</th>' +
-                '<th class="tn-hs-th">Tổng FYP</th>' +
-                '<th class="tn-hs-tw">Q. mô</th>' +
-                '<th class="tn-hs-tw">T. FYP</th>' +
-                '<th class="tn-hs-lk">Quy mô</th>' +
-                '<th class="tn-hs-lk">TVVm HDC</th>' +
-                '<th class="tn-hs-lk">Tổng FYP</th>' +
-                '</tr>';
-
-            /* Body rows */
-            var bHtml = '';
-            body.forEach(function(r, idx) {
-                /* Parse columns based on sheet structure:
-                   0=Tên TN, 1=Mã số, 2=Họ tên TVV, 3=Chức vụ,
-                   4=Ngày HL chức vụ, 5=Thang làm việc,
-                   6=CT Quy mô, 7=CT TVVm HDC, 8=CT Tổng FYP,
-                   9=TH Quy mô, 10=TH TVVm HDC, 11=TH Tổng FYP,
-                   12=Thưởng Q.mô, 13=Thưởng T.FYP,
-                   14=LK Quy mô, 15=LK TVVm HDC, 16=LK Tổng FYP,
-                   17=Thưởng bắt kịp */
-                function fv(v) {
-                    var s = String(v == null ? '' : v).trim();
-                    if (!s) return '';
-                    var compact = s.replace(/\s/g, '');
-                    if (!/^-?\d+(?:[.,]\d+)?$/.test(compact)) return s;
-                    var n = Number(compact.replace(/\./g, '').replace(',', '.'));
-                    if (!isFinite(n)) return s;
-                    return n.toLocaleString('vi-VN');
-                }
-
-                /* Helper: reward cell with trophy icon */
-                function tnRewardCell(v) {
-                    var val = fv(v);
-                    if (!val) return '<td class="col-thuong-cell"></td>';
-                    return '<td class="col-thuong-cell"><span class="thuong-val"><i class="fa-solid fa-trophy"></i> ' + esc(val) + '</span></td>';
-                }
-
-                bHtml += '<tr>' +
-                    '<td class="pst">' + (idx + 1) + '</td>' +
-                    '<td class="td-text col-name" style="min-width:50px">' + esc(String(r[0] || '').trim()) + '</td>' +
-                    '<td class="td-text col-code">' + esc(String(r[1] || '').trim()) + '</td>' +
-                    '<td class="td-text col-name">' + esc(String(r[2] || '').trim()) + '</td>' +
-                    '<td class="td-text col-code">' + esc(String(r[3] || '').trim()) + '</td>' +
-                    '<td class="td-num">' + fv(r[4]) + '</td>' +
-                    '<td class="td-num">' + fv(r[5]) + '</td>' +
-                    '<td class="td-num ct-dieukien">' + fv(r[6]) + '</td>' +
-                    '<td class="td-num ct-dieukien ct-dieukien-lv1">' + fv(r[7]) + '</td>' +
-                    '<td class="td-num ct-dieukien ct-dieukien-lv2">' + fv(r[8]) + '</td>' +
-                    '<td class="td-num ct-data">' + fv(r[9]) + '</td>' +
-                    '<td class="td-num ct-data ct-data-lv1">' + fv(r[10]) + '</td>' +
-                    '<td class="td-num ct-data ct-data-lv2">' + fv(r[11]) + '</td>' +
-                    tnRewardCell(r[12]) +
-                    tnRewardCell(r[13]) +
-                    '<td class="td-num ct-luyke">' + fv(r[14]) + '</td>' +
-                    '<td class="td-num ct-luyke ct-luyke-lv1">' + fv(r[15]) + '</td>' +
-                    '<td class="td-num ct-luyke ct-luyke-lv2">' + fv(r[16]) + '</td>' +
-                    tnRewardCell(r[17]) +
-                    '</tr>';
-            });
-
-            var noteHtml = '<div class="tn-note">' +
-                '<b>Lưu ý:</b> ' +
-                'Số liệu <span class="tn-note-warn">Quy mô</span> tính theo đội ngũ; ' +
-                '<span class="tn-note-warn">TVVm HDC</span> = Tổng giá trị vô mặt hợp đồng mới; ' +
-                '<span class="tn-note-warn">Tổng FYP</span> = Tổng First Year Premium. ' +
-                'Cột <b>Thưởng bắt kịp</b> áp dụng điều kiện hoàn thành >= 80% chỉ tiêu lũy kế. ' +
-                'Dữ liệu được đồng bộ từ sheets năng lực tự động.' +
-                '</div>';
-
-            ct.innerHTML = titleHtml +
-                '<div class="tn-wrap"><table class="po-pt tn-table">' +
-                colHtml +
-                '<thead>' + r1 + r2 + '</thead>' +
-                '<tbody>' + bHtml + '</tbody>' +
-                '</table></div>' + noteHtml;
-
-            /* Row click highlight */
-            ct.querySelectorAll('.tn-table tbody tr').forEach(function(row) {
-                row.addEventListener('click', function() {
-                    ct.querySelectorAll('.tn-table tbody tr.is-focus').forEach(function(ar) {
-                        ar.classList.remove('is-focus');
-                    });
-                    row.classList.add('is-focus');
-                });
-            });
-
-            /* Fix sticky 2nd row offset */
-            function fixStickyTN() {
-                var thead = ct.querySelector('.tn-table thead');
-                if (thead && thead.rows.length >= 2) {
-                    var h1 = thead.rows[0].getBoundingClientRect().height;
-                    if (h1 > 0) {
-                        var cells2 = thead.rows[1].cells;
-                        for (var c = 0; c < cells2.length; c++) {
-                            cells2[c].style.top = h1 + 'px';
-                        }
-                        /* Also fix sticky+sticky combo (STT, Tên TN) */
-                        var stt1 = thead.rows[0].querySelector('.tn-h-stt');
-                        var stt2 = thead.rows[0].querySelector('.tn-h-tn');
-                        if (stt1) stt1.style.top = '0px';
-                        if (stt2) stt2.style.top = '0px';
-                        var stt1r2 = thead.rows[1].querySelector('.tn-h-stt');
-                        var stt2r2 = thead.rows[1].querySelector('.tn-h-tn');
-                        if (stt1r2) stt1r2.style.top = h1 + 'px';
-                        if (stt2r2) stt2r2.style.top = h1 + 'px';
-                    }
-                }
-            }
-            requestAnimationFrame(function() { requestAnimationFrame(fixStickyTN); });
-            setTimeout(fixStickyTN, 300);
-            setTimeout(fixStickyTN, 800);
-        }
-
-        /* ===== TVVM RENDERER ===== */
-        function TD_renderPolicyTVVM(ct, csv, rows, sectionName) {
-            var all = TD_csv(csv);
-            if (!all.length || all.length < 2) {
-                ct.innerHTML = '<div style="text-align:center;padding:40px;color:var(--td-fgm)">Tab trống</div>';
-                return;
-            }
-            var body = all.slice(1, 1 + rows);
-
-            function fv(v) {
-                var s = String(v == null ? '' : v).trim();
-                if (!s) return '';
-                var compact = s.replace(/\s/g, '');
-                if (!/^-?\d+(?:[.,]\d+)?$/.test(compact)) return s;
-                var n = Number(compact.replace(/\./g, '').replace(',', '.'));
-                if (!isFinite(n)) return s;
-                return n.toLocaleString('vi-VN');
-            }
-
-            function rewardCell(v) {
-                var val = fv(v);
-                if (!val) return '<td class="col-thuong-cell"></td>';
-                return '<td class="col-thuong-cell"><span class="thuong-val"><i class="fa-solid fa-trophy"></i> ' + esc(val) + '</span></td>';
-            }
-
-            /* Grouped headers:
-               Row 1: STT(rs2), NHÓM KD(rs2), MÃ SỐ ĐẠI LÝ(rs2), HỌ TÊN TVV(rs2), NGÀY CẤP MÃ(rs2), SỐ NGÀY LV(rs2), CHẶNG XÉT THƯỞNG(rs2), THÁNG(cs2), CHẶNG XÉT(cs2)
-               Row 2: Tổng IP, THƯỞNG, Tổng IP, THƯỞNG VC */
-            var r1 = '<tr>' +
-                '<th rowspan="2">STT</th>' +
-                '<th rowspan="2">NHÓM KD</th>' +
-                '<th rowspan="2">MÃ SỐ<br>ĐẠI LÝ</th>' +
-                '<th rowspan="2">HỌ TÊN TVV</th>' +
-                '<th rowspan="2">NGÀY<br>CẤP MÃ</th>' +
-                '<th rowspan="2">SỐ NGÀY<br>LV</th>' +
-                '<th rowspan="2">CHẶNG XÉT<br>THƯỞNG</th>' +
-                '<th class="tvvm-thang" colspan="2">THÁNG</th>' +
-                '<th class="tvvm-chang" colspan="2">CHẶNG XÉT</th>' +
-                '</tr>';
-            var r2 = '<tr>' +
-                '<th class="tvvm-thang">Tổng IP</th>' +
-                '<th class="tvvm-thang">THƯỞNG</th>' +
-                '<th class="tvvm-chang">Tổng IP</th>' +
-                '<th class="tvvm-chang">THƯỞNG VC</th>' +
-                '</tr>';
-
-            var bHtml = '';
-            body.forEach(function(r, idx) {
-                /* Columns: 0=NHÓM KD, 1=MÃ SỐ ĐẠI LÝ, 2=HỌ TÊN TVV, 3=NGÀY CẤP MÃ,
-                   4=Số ngày làm việc, 5=CHẶNG XÉT THƯỞNG, 6=Tổng IP tháng, 7=THƯỞNG THÁNG,
-                   8=Tổng IP Chặng xét, 9=THƯỞNG VƯỢT CHẶNG */
-                bHtml += '<tr>' +
-                    '<td class="pst">' + (idx + 1) + '</td>' +
-                    '<td class="td-text col-name">' + esc(String(r[0] || '').trim()) + '</td>' +
-                    '<td class="td-text col-code">' + esc(String(r[1] || '').trim()) + '</td>' +
-                    '<td class="td-text col-name">' + esc(String(r[2] || '').trim()) + '</td>' +
-                    '<td class="td-text">' + esc(String(r[3] || '').trim()) + '</td>' +
-                    '<td class="td-num">' + fv(r[4]) + '</td>' +
-                    '<td class="td-num ct-dieukien">' + esc(String(r[5] || '').trim()) + '</td>' +
-                    '<td class="td-num ct-data">' + fv(r[6]) + '</td>' +
-                    rewardCell(r[7]) +
-                    '<td class="td-num ct-data">' + fv(r[8]) + '</td>' +
-                    rewardCell(r[9]) +
-                    '</tr>';
-            });
-
-            var html = '<div class="po-ptw policy-tvvm-wrap"><table class="po-pt">' +
-                '<thead>' + r1 + r2 + '</thead>' +
-                '<tbody>' + bHtml + '</tbody>' +
-                '</table></div>';
-            ct.innerHTML = html;
-
-            /* Row click highlight */
-            ct.querySelectorAll('.policy-tvvm-wrap tbody tr').forEach(function(row) {
-                row.addEventListener('click', function() {
-                    ct.querySelectorAll('tbody tr.is-focus').forEach(function(activeRow) {
-                        activeRow.classList.remove('is-focus');
-                    });
-                    row.classList.add('is-focus');
-                });
-            });
-
-            /* Fix sticky 2nd row offset */
-            function fixSticky() {
-                var thead = ct.querySelector('.policy-tvvm-wrap thead');
-                if (thead && thead.rows.length >= 2) {
-                    var h1 = thead.rows[0].getBoundingClientRect().height;
-                    if (h1 > 0) {
-                        var cells2 = thead.rows[1].cells;
-                        for (var c = 0; c < cells2.length; c++) {
-                            cells2[c].style.top = h1 + 'px';
-                        }
-                    }
-                }
-            }
-            requestAnimationFrame(function() { requestAnimationFrame(fixSticky); });
-            setTimeout(fixSticky, 300);
-        }
-
-        /* ===== NST RENDERER ===== */
-        function TD_renderPolicyNST(ct, csv, rows, sectionName) {
-            var all = TD_csv(csv);
-            if (!all.length || all.length < 2) {
-                ct.innerHTML = '<div style="text-align:center;padding:40px;color:var(--td-fgm)">Tab trống</div>';
-                return;
-            }
-            var body = all.slice(1, 1 + rows);
-
-            function fv(v) {
-                var s = String(v == null ? '' : v).trim();
-                if (!s) return '';
-                var compact = s.replace(/\s/g, '');
-                if (!/^-?\d+(?:[.,]\d+)?$/.test(compact)) return s;
-                var n = Number(compact.replace(/\./g, '').replace(',', '.'));
-                if (!isFinite(n)) return s;
-                return n.toLocaleString('vi-VN');
-            }
-
-            function rewardCell(v) {
-                var val = fv(v);
-                if (!val) return '<td class="col-thuong-cell"></td>';
-                return '<td class="col-thuong-cell"><span class="thuong-val"><i class="fa-solid fa-trophy"></i> ' + esc(val) + '</span></td>';
-            }
-
-            /* Simple flat table: STT, NHÓM KD, MÃ SỐ, HỌ TÊN TVV, TỔNG IP THÁNG 3, TỔNG IP THÁNG 4, FYC, TỶ LỆ THƯỞNG, THƯỞNG THÁNG */
-            var headerHtml = '<tr>' +
-                '<th>STT</th>' +
-                '<th>NHÓM KD</th>' +
-                '<th>MÃ SỐ</th>' +
-                '<th>HỌ TÊN TVV</th>' +
-                '<th>TỔNG IP<br>THÁNG 3</th>' +
-                '<th>TỔNG IP<br>THÁNG 4</th>' +
-                '<th>FYC<br>(HH 25%)</th>' +
-                '<th class="col-percent">TỶ LỆ<br>THƯỞNG</th>' +
-                '<th class="col-thuong">THƯỞNG<br>THÁNG</th>' +
-                '</tr>';
-
-            var bHtml = '';
-            body.forEach(function(r, idx) {
-                /* Columns: 0=NHÓM KD, 1=MS, 2=HỌ TÊN TVV, 3=IP T3, 4=IP T4, 5=FYC, 6=TL THƯỞNG, 7=THƯỞNG THÁNG */
-                bHtml += '<tr>' +
-                    '<td class="pst">' + (idx + 1) + '</td>' +
-                    '<td class="td-text col-name">' + esc(String(r[0] || '').trim()) + '</td>' +
-                    '<td class="td-text col-code">' + esc(String(r[1] || '').trim()) + '</td>' +
-                    '<td class="td-text col-name">' + esc(String(r[2] || '').trim()) + '</td>' +
-                    '<td class="td-num ct-data">' + fv(r[3]) + '</td>' +
-                    '<td class="td-num ct-data">' + fv(r[4]) + '</td>' +
-                    '<td class="td-num ct-data">' + fv(r[5]) + '</td>' +
-                    '<td class="td-num ct-percent cell-percent">' + fv(r[6]) + '</td>' +
-                    rewardCell(r[7]) +
-                    '</tr>';
-            });
-
-            var html = '<div class="po-ptw policy-nst-wrap"><table class="po-pt">' +
-                '<thead>' + headerHtml + '</thead>' +
-                '<tbody>' + bHtml + '</tbody>' +
-                '</table></div>';
-            ct.innerHTML = html;
-
-            /* Row click highlight */
-            ct.querySelectorAll('.policy-nst-wrap tbody tr').forEach(function(row) {
-                row.addEventListener('click', function() {
-                    ct.querySelectorAll('tbody tr.is-focus').forEach(function(activeRow) {
-                        activeRow.classList.remove('is-focus');
-                    });
-                    row.classList.add('is-focus');
-                });
-            });
-        }
-
-        /* ===== NSQ RENDERER ===== */
-        function TD_renderPolicyNSQ(ct, csv, rows, sectionName) {
-            var all = TD_csv(csv);
-            if (!all.length || all.length < 2) {
-                ct.innerHTML = '<div style="text-align:center;padding:40px;color:var(--td-fgm)">Tab trống</div>';
-                return;
-            }
-            var body = all.slice(1, 1 + rows);
-
-            function fv(v) {
-                var s = String(v == null ? '' : v).trim();
-                if (!s) return '';
-                var compact = s.replace(/\s/g, '');
-                if (!/^-?\d+(?:[.,]\d+)?$/.test(compact)) return s;
-                var n = Number(compact.replace(/\./g, '').replace(',', '.'));
-                if (!isFinite(n)) return s;
-                return n.toLocaleString('vi-VN');
-            }
-
-            function rewardCell(v) {
-                var val = fv(v);
-                if (!val) return '<td class="col-thuong-cell"></td>';
-                return '<td class="col-thuong-cell"><span class="thuong-val"><i class="fa-solid fa-trophy"></i> ' + esc(val) + '</span></td>';
-            }
-
-            /* Grouped headers:
-               Row 1: STT(rs2), AD(rs2), NHÓM KD(rs2), MÃ SỐ ĐẠI LÝ(rs2), HỌ TÊN TVV(rs2), TỔNG FYP QUÝ(rs2), FYC(rs2), TỶ LỆ THƯỞNG(cs6), TIỀN THƯỞNG DỰ KIẾN(rs2)
-               Row 2: ≥24tr 8%, ≥60tr 10%, ≥90tr 13%, ≥150tr 15%, ≥250tr 18%, ≥350tr 20% */
-            var r1 = '<tr>' +
-                '<th rowspan="2">STT</th>' +
-                '<th rowspan="2">AD</th>' +
-                '<th rowspan="2">NHÓM KD</th>' +
-                '<th rowspan="2">MÃ SỐ<br>ĐẠI LÝ</th>' +
-                '<th rowspan="2">HỌ TÊN TVV</th>' +
-                '<th rowspan="2">TỔNG FYP<br>QUÝ</th>' +
-                '<th rowspan="2">FYC<br>(TLHH 25%)</th>' +
-                '<th class="col-dieukien" colspan="6">TỶ LỆ THƯỞNG</th>' +
-                '<th class="col-thuong" rowspan="2">TIỀN THƯỞNG<br>DỰ KIẾN</th>' +
-                '</tr>';
-            var r2 = '<tr>' +
-                '<th class="col-dieukien tier-lv1">≥24tr<br>8%</th>' +
-                '<th class="col-dieukien tier-lv2">≥60tr<br>10%</th>' +
-                '<th class="col-dieukien tier-lv3">≥90tr<br>13%</th>' +
-                '<th class="col-dieukien tier-lv4">≥150tr<br>15%</th>' +
-                '<th class="col-dieukien tier-lv5">≥250tr<br>18%</th>' +
-                '<th class="col-dieukien tier-lv6">≥350tr<br>20%</th>' +
-                '</tr>';
-
-            var bHtml = '';
-            body.forEach(function(r, idx) {
-                /* Columns: 0=NHÓM KD, 1=MÃ SỐ ĐẠI LÝ, 2=HỌ TÊN TVV, 3=FYP Q2, 4=FYC,
-                   5=FYP≥150tr 4%, 6=FYP≥150tr+TVVm 9%, 7=FYP≥270tr+TVVm 14%,
-                   8=FYP≥450tr+TVVm 18%, 9=FYP≥600tr+TVVm 22%, 10=FYP≥350tr 20%,
-                   11=TIỀN THƯỞNG DỰ KIẾN */
-                /* Find the achieved tier: highest non-empty tier column (5-10) */
-                var achievedTier = -1;
-                for (var ti = 10; ti >= 5; ti--) {
-                    var tv = String(r[ti] || '').trim();
-                    if (tv && tv !== '0' && tv !== '0%') { achievedTier = ti; break; }
-                }
-
-                bHtml += '<tr>' +
-                    '<td class="pst">' + (idx + 1) + '</td>' +
-                    '<td class="td-text" style="min-width:30px"></td>' +
-                    '<td class="td-text col-name">' + esc(String(r[0] || '').trim()) + '</td>' +
-                    '<td class="td-text col-code">' + esc(String(r[1] || '').trim()) + '</td>' +
-                    '<td class="td-text col-name">' + esc(String(r[2] || '').trim()) + '</td>' +
-                    '<td class="td-num ct-data">' + fv(r[3]) + '</td>' +
-                    '<td class="td-num ct-data">' + fv(r[4]) + '</td>';
-
-                /* Tier columns 5-10 */
-                for (var tc = 5; tc <= 10; tc++) {
-                    var tierVal = fv(r[tc]);
-                    var cls = 'td-num ct-percent';
-                    if (tc === achievedTier) cls += ' cell-dat';
-                    bHtml += '<td class="' + cls + '">' + tierVal + '</td>';
-                }
-
-                bHtml += rewardCell(r[11]) + '</tr>';
-            });
-
-            var html = '<div class="po-ptw policy-nsq-wrap"><table class="po-pt">' +
-                '<thead>' + r1 + r2 + '</thead>' +
-                '<tbody>' + bHtml + '</tbody>' +
-                '</table></div>';
-            ct.innerHTML = html;
-
-            /* Row click highlight */
-            ct.querySelectorAll('.policy-nsq-wrap tbody tr').forEach(function(row) {
-                row.addEventListener('click', function() {
-                    ct.querySelectorAll('tbody tr.is-focus').forEach(function(activeRow) {
-                        activeRow.classList.remove('is-focus');
-                    });
-                    row.classList.add('is-focus');
-                });
-            });
-
-            /* Fix sticky 2nd row offset */
-            function fixSticky() {
-                var thead = ct.querySelector('.policy-nsq-wrap thead');
-                if (thead && thead.rows.length >= 2) {
-                    var h1 = thead.rows[0].getBoundingClientRect().height;
-                    if (h1 > 0) {
-                        var cells2 = thead.rows[1].cells;
-                        for (var c = 0; c < cells2.length; c++) {
-                            cells2[c].style.top = h1 + 'px';
-                        }
-                    }
-                }
-            }
-            requestAnimationFrame(function() { requestAnimationFrame(fixSticky); });
-            setTimeout(fixSticky, 300);
-        }
-
-        /* ===== NSQ-N RENDERER ===== */
-        function TD_renderPolicyNSQN(ct, csv, rows, sectionName) {
-            var all = TD_csv(csv);
-            if (!all.length || all.length < 2) {
-                ct.innerHTML = '<div style="text-align:center;padding:40px;color:var(--td-fgm)">Tab trống</div>';
-                return;
-            }
-            var body = all.slice(1, 1 + rows);
-
-            function fv(v) {
-                var s = String(v == null ? '' : v).trim();
-                if (!s) return '';
-                var compact = s.replace(/\s/g, '');
-                if (!/^-?\d+(?:[.,]\d+)?$/.test(compact)) return s;
-                var n = Number(compact.replace(/\./g, '').replace(',', '.'));
-                if (!isFinite(n)) return s;
-                return n.toLocaleString('vi-VN');
-            }
-
-            function rewardCell(v) {
-                var val = fv(v);
-                if (!val) return '<td class="col-thuong-cell"></td>';
-                return '<td class="col-thuong-cell"><span class="thuong-val"><i class="fa-solid fa-trophy"></i> ' + esc(val) + '</span></td>';
-            }
-
-            /* Grouped headers:
-               Row 1: STT(rs2), NHÓM KD(rs2), MÃ SỐ ĐẠI LÝ(rs2), HỌ TÊN TVV(rs2), TỔNG FYP NHÓM(rs2), ĐIỀU KIỆN TVVm HĐC(rs2), TỶ LỆ THƯỞNG FYP(cs5), TỶ LỆ THƯỞNG(rs2), FYC(rs2), TIỀN THƯỞNG(rs2)
-               Row 2: ≥150tr 4%, ≥150tr+TVVm 9%, ≥270tr+TVVm 14%, ≥450tr+TVVm 18%, ≥600tr+TVVm 22% */
-            var r1 = '<tr>' +
-                '<th rowspan="2">STT</th>' +
-                '<th rowspan="2">NHÓM KD</th>' +
-                '<th rowspan="2">MÃ SỐ<br>ĐẠI LÝ</th>' +
-                '<th rowspan="2">HỌ TÊN TVV</th>' +
-                '<th rowspan="2">TỔNG FYP<br>NHÓM</th>' +
-                '<th rowspan="2">ĐIỀU KIỆN<br>TVVm HĐC</th>' +
-                '<th class="col-dieukien" colspan="5">TỶ LỆ THƯỞNG FYP</th>' +
-                '<th class="col-percent" rowspan="2">TỶ LỆ<br>THƯỞNG</th>' +
-                '<th rowspan="2">FYC<br>(TLHH 25%)</th>' +
-                '<th class="col-thuong" rowspan="2">TIỀN<br>THƯỞNG</th>' +
-                '</tr>';
-            var r2 = '<tr>' +
-                '<th class="col-dieukien tier-lv1">≥150tr<br>4%</th>' +
-                '<th class="col-dieukien tier-lv2">≥150tr<br>+TVVm 9%</th>' +
-                '<th class="col-dieukien tier-lv3">≥270tr<br>+TVVm 14%</th>' +
-                '<th class="col-dieukien tier-lv4">≥450tr<br>+TVVm 18%</th>' +
-                '<th class="col-dieukien tier-lv5">≥600tr<br>+TVVm 22%</th>' +
-                '</tr>';
-
-            var bHtml = '';
-            body.forEach(function(r, idx) {
-                /* Columns: 0=NHÓM KD, 1=MS ĐẠI LÝ, 2=HỌ TÊN TVV, 3=TỔNG FYP NHÓM, 4=Điều kiện TVVm HĐC,
-                   5=FYP≥150tr 4%, 6=FYP≥150tr+TVVm 9%, 7=FYP≥270tr+TVVm 14%,
-                   8=FYP≥450tr+TVVm 18%, 9=FYP≥600tr+TVVm 22%,
-                   10=TỶ LỆ THƯỞNG (tạm tính), 11=FYC Giả định TLHH 25%, 12=TIỀN THƯỞNG (Tạm tính) */
-                /* Find the achieved tier: highest non-empty tier column (5-9) */
-                var achievedTier = -1;
-                for (var ti = 9; ti >= 5; ti--) {
-                    var tv = String(r[ti] || '').trim();
-                    if (tv && tv !== '0' && tv !== '0%') { achievedTier = ti; break; }
-                }
-
-                bHtml += '<tr>' +
-                    '<td class="pst">' + (idx + 1) + '</td>' +
-                    '<td class="td-text col-name">' + esc(String(r[0] || '').trim()) + '</td>' +
-                    '<td class="td-text col-code">' + esc(String(r[1] || '').trim()) + '</td>' +
-                    '<td class="td-text col-name">' + esc(String(r[2] || '').trim()) + '</td>' +
-                    '<td class="td-num ct-data">' + fv(r[3]) + '</td>' +
-                    '<td class="td-num ct-dieukien">' + fv(r[4]) + '</td>';
-
-                /* Tier columns 5-9 */
-                for (var tc = 5; tc <= 9; tc++) {
-                    var tierVal = fv(r[tc]);
-                    var cls = 'td-num ct-percent';
-                    if (tc === achievedTier) cls += ' cell-dat';
-                    bHtml += '<td class="' + cls + '">' + tierVal + '</td>';
-                }
-
-                bHtml +=
-                    '<td class="td-num ct-percent cell-percent">' + fv(r[10]) + '</td>' +
-                    '<td class="td-num ct-data">' + fv(r[11]) + '</td>' +
-                    rewardCell(r[12]) +
-                    '</tr>';
-            });
-
-            var html = '<div class="po-ptw policy-nsqn-wrap"><table class="po-pt">' +
-                '<thead>' + r1 + r2 + '</thead>' +
-                '<tbody>' + bHtml + '</tbody>' +
-                '</table></div>';
-            ct.innerHTML = html;
-
-            /* Row click highlight */
-            ct.querySelectorAll('.policy-nsqn-wrap tbody tr').forEach(function(row) {
-                row.addEventListener('click', function() {
-                    ct.querySelectorAll('tbody tr.is-focus').forEach(function(activeRow) {
-                        activeRow.classList.remove('is-focus');
-                    });
-                    row.classList.add('is-focus');
-                });
-            });
-
-            /* Fix sticky 2nd row offset */
-            function fixSticky() {
-                var thead = ct.querySelector('.policy-nsqn-wrap thead');
-                if (thead && thead.rows.length >= 2) {
-                    var h1 = thead.rows[0].getBoundingClientRect().height;
-                    if (h1 > 0) {
-                        var cells2 = thead.rows[1].cells;
-                        for (var c = 0; c < cells2.length; c++) {
-                            cells2[c].style.top = h1 + 'px';
-                        }
-                    }
-                }
-            }
-            requestAnimationFrame(function() { requestAnimationFrame(fixSticky); });
-            setTimeout(fixSticky, 300);
-        }
-
-        /* ===== PTKD RENDERER ===== */
-        function TD_renderPolicyPTKD(ct, csv, rows, sectionName) {
-            var all = TD_csv(csv);
-            if (!all.length || all.length < 2) {
-                ct.innerHTML = '<div style="text-align:center;padding:40px;color:var(--td-fgm)">Tab trống</div>';
-                return;
-            }
-            var body = all.slice(1, 1 + rows);
-
-            function fv(v) {
-                var s = String(v == null ? '' : v).trim();
-                if (!s) return '';
-                var compact = s.replace(/\s/g, '');
-                if (!/^-?\d+(?:[.,]\d+)?$/.test(compact)) return s;
-                var n = Number(compact.replace(/\./g, '').replace(',', '.'));
-                if (!isFinite(n)) return s;
-                return n.toLocaleString('vi-VN');
-            }
-
-            function rewardCell(v) {
-                var val = fv(v);
-                if (!val) return '<td class="col-thuong-cell"></td>';
-                return '<td class="col-thuong-cell"><span class="thuong-val"><i class="fa-solid fa-trophy"></i> ' + esc(val) + '</span></td>';
-            }
-
-            /* Simple flat table: STT, NHÓM KD, MÃ SỐ ĐẠI LÝ, HỌ TÊN TVV, CHỨC VỤ, FYP NHÓM, LƯỢT HĐC NHÓM, FYC, TỶ LỆ THƯỞNG, TIỀN THƯỞNG */
-            var headerHtml = '<tr>' +
-                '<th>STT</th>' +
-                '<th>NHÓM KD</th>' +
-                '<th>MÃ SỐ<br>ĐẠI LÝ</th>' +
-                '<th>HỌ TÊN TVV</th>' +
-                '<th>CHỨC VỤ</th>' +
-                '<th>FYP<br>NHÓM</th>' +
-                '<th>LƯỢT HĐC<br>NHÓM</th>' +
-                '<th>FYC<br>(TLHH 25%)</th>' +
-                '<th class="col-percent">TỶ LỆ<br>THƯỞNG</th>' +
-                '<th class="col-thuong">TIỀN<br>THƯỞNG</th>' +
-                '</tr>';
-
-            var bHtml = '';
-            body.forEach(function(r, idx) {
-                /* Columns: 0=NHÓM KD, 1=MS ĐẠI LÝ, 2=HỌ TÊN TVV, 3=CHỨC VỤ, 4=FYP nhóm, 5=LƯỢT HĐC nhóm, 6=FYC, 7=TỶ LỆ THƯỞNG, 8=TIỀN THƯỞNG */
-                bHtml += '<tr>' +
-                    '<td class="pst">' + (idx + 1) + '</td>' +
-                    '<td class="td-text col-name">' + esc(String(r[0] || '').trim()) + '</td>' +
-                    '<td class="td-text col-code">' + esc(String(r[1] || '').trim()) + '</td>' +
-                    '<td class="td-text col-name">' + esc(String(r[2] || '').trim()) + '</td>' +
-                    '<td class="td-text col-code">' + esc(String(r[3] || '').trim()) + '</td>' +
-                    '<td class="td-num ct-data">' + fv(r[4]) + '</td>' +
-                    '<td class="td-num ct-data">' + fv(r[5]) + '</td>' +
-                    '<td class="td-num ct-data">' + fv(r[6]) + '</td>' +
-                    '<td class="td-num ct-percent cell-percent">' + fv(r[7]) + '</td>' +
-                    rewardCell(r[8]) +
-                    '</tr>';
-            });
-
-            var html = '<div class="po-ptw policy-ptkd-wrap"><table class="po-pt">' +
-                '<thead>' + headerHtml + '</thead>' +
-                '<tbody>' + bHtml + '</tbody>' +
-                '</table></div>';
-            ct.innerHTML = html;
-
-            /* Row click highlight */
-            ct.querySelectorAll('.policy-ptkd-wrap tbody tr').forEach(function(row) {
-                row.addEventListener('click', function() {
-                    ct.querySelectorAll('tbody tr.is-focus').forEach(function(activeRow) {
-                        activeRow.classList.remove('is-focus');
-                    });
-                    row.classList.add('is-focus');
-                });
             });
         }
 
@@ -5305,10 +3864,7 @@ if (ok) { toast('Đã xóa', 'ok'); ccf(); await lfs(); }
                     for(var c2=0; c2<sc; c2++) sb += '<td><div class="sk" style="width:'+(45+Math.random()*60)+'px"></div></td>';
                     sb += '</tr>';
                 }
-                var isPolicySk = cfg.prefix === 'po';
-                var skWrapCls = isPolicySk ? 'po-ptw' : 'ptw';
-                var skTblCls = isPolicySk ? 'po-pt' : 'pt';
-                var skTableHtml = '<div class="' + skWrapCls + '"><table class="' + skTblCls + '"><thead><tr>'+sh+'</thead><tbody>'+sb+'</tbody></table></div>';
+                var skTableHtml = '<div class="ptw"><table class="pt"><thead><tr>'+sh+'</thead><tbody>'+sb+'</tbody></table></div>';
                 ct.innerHTML = skTableHtml;
 
                 gid(P + 'Popup').classList.add('open');
@@ -5316,43 +3872,8 @@ if (ok) { toast('Đã xóa', 'ok'); ccf(); await lfs(); }
 
                 // Load real data
                 try {
-                    if (cfg.prefix === 'po' && p.sheetName === 'TL') {
-                        var csv = await TD_fetchText([TD_gtc(p.sheetName), TD_gtcAlt(p.sheetName)]);
-                        TD_renderPolicyTL(ct, csv, p.rows, p.name);
-                    } else if (cfg.prefix === 'po' && (p.sheetName === 'TN' || p.sheetName === 'TN2' || p.sheetName === 'TN3')) {
-                        var csv = await TD_fetchText([TD_gtc(p.sheetName), TD_gtcAlt(p.sheetName)]);
-                        TD_renderPolicyTN(ct, csv, p.rows, p.name);
-                    } else if (cfg.prefix === 'po' && p.sheetName === 'TVVM') {
-                        var csv = await TD_fetchText([TD_gtc(p.sheetName), TD_gtcAlt(p.sheetName)]);
-                        TD_renderPolicyTVVM(ct, csv, p.rows, p.name);
-                    } else if (cfg.prefix === 'po' && p.sheetName === 'NST') {
-                        var csv = await TD_fetchText([TD_gtc(p.sheetName), TD_gtcAlt(p.sheetName)]);
-                        TD_renderPolicyNST(ct, csv, p.rows, p.name);
-                    } else if (cfg.prefix === 'po' && p.sheetName === 'NSQ') {
-                        var csv = await TD_fetchText([TD_gtc(p.sheetName), TD_gtcAlt(p.sheetName)]);
-                        TD_renderPolicyNSQ(ct, csv, p.rows, p.name);
-                    } else if (cfg.prefix === 'po' && p.sheetName === 'NSQ-N') {
-                        var csv = await TD_fetchText([TD_gtc(p.sheetName), TD_gtcAlt(p.sheetName)]);
-                        TD_renderPolicyNSQN(ct, csv, p.rows, p.name);
-                    } else if (cfg.prefix === 'po' && p.sheetName === 'PTKD') {
-                        var csv = await TD_fetchText([TD_gtc(p.sheetName), TD_gtcAlt(p.sheetName)]);
-                        TD_renderPolicyPTKD(ct, csv, p.rows, p.name);
-                    } else if (cfg.useSheetLayout) {
-                        try {
-                            var layout = await TD_fetchSheetLayout(p.sheetName, p.cols, p.rows);
-                            TD_renderSheetLayout(ct, layout);
-                        } catch (layoutErr) {
-                            var csv = await TD_fetchText([TD_gtc(p.sheetName), TD_gtcAlt(p.sheetName)]);
-                            rpt(ct, csv, p.cols, p.rows);
-                        }
-                    } else if (cfg.prefix === 'cb') {
-                        /* CLB pages: custom grouped headers with rank colors */
-                        var csv = await TD_fetchText([TD_gtc(p.sheetName), TD_gtcAlt(p.sheetName)]);
-                        TD_renderCLB(ct, csv, p.cols, p.rows, p.sheetName);
-                    } else {
-                        var csv = await TD_fetchText([TD_gtc(p.sheetName), TD_gtcAlt(p.sheetName)]);
-                        rpt(ct, csv, p.cols, p.rows);
-                    }
+                    var csv = await TD_fetchText([TD_gtc(p.sheetName), TD_gtcAlt(p.sheetName)]);
+                    rpt(ct, csv, p.cols, p.rows);
                 } catch (err) {
                     ct.innerHTML = '<div style="text-align:center;padding:50px 20px;color:var(--td-fgm)"><i class="fa-solid fa-circle-exclamation block text-3xl mb-3" style="color:var(--td-red)"></i><p class="text-base font-semibold mb-1">Lỗi tải dữ liệu</p><p class="text-sm mb-4">' + esc(err.message || '') + '</p><button onclick="' + pv + '.rpop()" class="bp text-sm"><i class="fa-solid fa-rotate mr-1"></i>Thử lại</button></div>';
                 }
@@ -5362,432 +3883,303 @@ if (ok) { toast('Đã xóa', 'ok'); ccf(); await lfs(); }
             function cpop() { gid(P + 'Popup').classList.remove('open'); document.body.style.overflow = ''; s.pd = null; }
             function efp() { if (!s.pd) return; var idx = s.programs.indexOf(s.pd); cpop(); na(function() { setTimeout(function() { oe(idx); }, 350); }); }
 
+            /* === UNIFIED TABLE RENDERER — cùng 1 quy tắc cho 3 trang === */
             function rpt(ct, csv, cols, rows) {
                 var all = TD_csv(csv);
                 if (!all.length) { ct.innerHTML = '<div style="text-align:center;padding:40px;color:var(--td-fgm)">Tab trống</div>'; return; }
 
-                function headerKey(v) {
+                /* === BƯỚC 1: Normalize header key === */
+                function hk(v) {
                     return String(v || '').trim().toLowerCase()
                         .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
                         .replace(/[đĐ]/g, 'd').replace(/[^a-z0-9]+/g, ' ')
                         .replace(/\s+/g, ' ').trim();
                 }
 
-                function columnClass(header, colIndex, headers) {
-                    var key = headerKey(header);
-                    if (/(stt|xep hang)/.test(key)) return 'col-stt num-col';
-                    if (/(ho ten|ten ho|ten nhom|nhom tvv|ten tn|ten tvv|ten ns|ten cad|ten tv$|ten tvv$|^ten$|ten$)/.test(key)) return 'col-name';
-                    if (/(ma so|ma tn|m a|ma s|ma tvv|^ma$|^ms$|ma kd|ma dai ly|hl chuc vu|msdl|ms dl|ms dai ly)/.test(key)) return 'col-code';
-                    if (/(nhom kd|nhom|don vi|doi tvv)/.test(key)) return 'col-name';
-                    if (/(chuc vu|cv$)/.test(key)) return 'col-code num-col';
-                    /* === TỔNG FYP/FYC NHÓM (trước tong chung) === */
-                    if (/(tong fyp nhom|tong fyc nhom)/.test(key)) return 'num-col col-fypnhom';
-                    /* === FYC riêng (bỏ tô màu) === */
-                    if (/fyc/.test(key) && !/fyp/.test(key)) return 'num-col col-fyc';
-                    if (/(sl|so luong|tvv|count|tong|luot hd|so luong hd|thang lam viec|quy mo)/.test(key)) return 'col-count num-col';
-                    /* === THƯỞNG === */
-                    if (/(thuong|thu nhap|du kien|afyp|doanh so|tien|phat trien kinh doanh)/.test(key)) return 'num-col col-thuong';
-                    /* === ĐIỀU KIỆN / CHỈ TIÊU === */
-                    if (/(dieu kien|dat|chi tieu)/.test(key)) {
-                        /* Xác định mức chỉ tiêu (tăng dần) nếu có nhiều mức cùng bản chất */
-                        var nature = 'dieukien';
-                        var level = 0;
-                        if (headers) {
-                            for (var h = 0; h < colIndex; h++) {
-                                var hk = headerKey(headers[h]);
-                                if (/(dieu kien|dat|chi tieu)/.test(hk)) level++;
-                            }
-                        }
-                        var levelClass = level > 0 ? ' ct-lv' + Math.min(level, 5) : '';
-                        return 'num-col col-dieukien' + levelClass;
-                    }
-                    /* === TỶ LỆ === */
-                    if (/(tlht|ty le)/.test(key)) return 'num-col col-percent';
-                    /* === THỰC HIỆN / LŨY KÊ === */
-                    if (/(luy ke)/.test(key)) return 'num-col col-luyke';
-                    if (/(ip|thang|quy|nam|ngay|fyp|fyc|hd|ve)/.test(key)) return 'num-col';
-                    return '';
+                /* === BƯỚC 2: Phân loại cột — 5 nhóm === */
+                /* info: cột 1-4 (STT, nhóm KD, mã số, họ tên, chức vụ...)
+                   textInfo: thông tin phụ (ngày cấp, sl tvv, ngày làm việc, chặng...)
+                   numdata: số liệu (FYP, IP, AFYP, tổng FYP, tổng IP, quy mô, tvv HĐC...)
+                   percent: tỷ lệ phần trăm (% tỷ lệ thưởng, TLHT...)
+                   condition: chỉ tiêu có điều kiện (FYP>=, IP>=, <=, =...)
+                   money: phần thưởng, tiền thưởng */
+                function colCategory(header, colIdx) {
+                    var k = hk(header);
+                    /* Cột 0-3 → info (STT, nhóm, mã, tên, chức vụ...) */
+                    if (colIdx <= 3) return 'info';
+                    /* Phần thưởng / tiền thưởng */
+                    if (/(thuong|ph^n thuong|tien thuong|thu nhap|du kien thuong)/.test(k)) return 'money';
+                    /* Tỷ lệ % */
+                    if (/(%|ty le|tlht|phan tram)/.test(k)) return 'percent';
+                    /* Chỉ tiêu có điều kiện >=, <=, = */
+                    if (/(>=|<=|=>|<|chi tieu|dieu kien)/.test(k)) return 'condition';
+                    if (/\(.*>=.*\)/.test(k) || /\(.*<=.*\)/.test(k)) return 'condition';
+                    /* Thông tin phụ (ngày, sl, chặng...) */
+                    if (/(ngay|thang lam|chang|so luong|sl tvv|ngay hieu luc|ngay cap|thoi gian)/.test(k)) return 'textInfo';
+                    /* Số liệu (FYP, IP, AFYP, tổng...) */
+                    if (/(fyp|afyp|ip|tong|quy mo|tvv hdk|doanh so|so tien|fyc|hdc)/.test(k)) return 'numdata';
+                    /* Mặc định: nếu không khớp nhóm nào, xét theo vị trí */
+                    if (colIdx <= 3) return 'info';
+                    return 'numdata';
                 }
 
-                /* Determine column nature group for body tinting */
-                function colNatureGroup(header) {
-                    var key = headerKey(header);
-                    if (/(stt|xep hang)/.test(key)) return 'info';
-                    if (/(ho ten|ten ho|ten nhom|nhom tvv|ten tn|ten tvv|ten ns|ten cad|ten tv$|ten tvv$|^ten$|ten$)/.test(key)) return 'info';
-                    if (/(ma so|ma tn|m a|ma s|ma tvv|^ma$|^ms$|ma kd|ma dai ly|hl chuc vu|msdl|ms dl|ms dai ly)/.test(key)) return 'info';
-                    if (/(nhom kd|nhom|don vi|doi tvv)/.test(key)) return 'info';
-                    if (/(chuc vu|cv$)/.test(key)) return 'info';
-                    /* === TỔNG FYP/FYC NHÓM === */
-                    if (/(tong fyp nhom|tong fyc nhom)/.test(key)) return 'fypnhom';
-                    /* === FYC riêng (bỏ tô màu) === */
-                    if (/fyc/.test(key) && !/fyp/.test(key)) return 'fyc';
-                    if (/(thuong|thu nhap|du kien|afyp|doanh so|tien|phat trien kinh doanh)/.test(key)) return 'thuong';
-                    if (/(dieu kien|dat|chi tieu)/.test(key)) return 'dieukien';
-                    if (/(tlht|ty le)/.test(key)) return 'percent';
-                    if (/(luy ke)/.test(key)) return 'luyke';
-                    if (/(sl|so luong|tvv|count|tong|luot hd|so luong hd|thang lam viec|quy mo)/.test(key)) return 'count';
-                    if (/(ip|thang|quy|nam|ngay|fyp|fyc|hd|ve)/.test(key)) return 'data';
-                    return 'data';
+                /* Xác định cột 1-4: 0=STT(center), 1=nhóm/left, 2=mã/center, 3=tên/left */
+                function infoAlign(colIdx) {
+                    if (colIdx === 1 || colIdx === 3) return 'left';
+                    return 'center';
                 }
 
-                /* Count levels of same nature before this column (for gradient) */
-                function natureLevelBefore(headers, colIndex, nature) {
-                    var count = 0;
-                    for (var h = 0; h < colIndex; h++) {
-                        if (colNatureGroup(headers[h]) === nature) count++;
-                    }
-                    return count;
-                }
-
-                function formatCell(val, header) {
-                    var raw = String(val == null ? '' : val).trim();
-                    if (!raw || raw === '10000001111') return raw;
-                    var key = headerKey(header);
-                    var compact = raw.replace(/\s/g, '');
-                    if (!/^-?\d+(?:[.,]\d+)?$/.test(compact)) return raw;
-                    var n = Number(compact.replace(/\./g, '').replace(',', '.'));
-                    if (!isFinite(n)) return raw;
-                    if (/(thuong|thu nhap|du kien|afyp|doanh so|tien|tong fyp|tong fyc)/.test(key)) return n.toLocaleString('vi-VN');
-                    if (/(sl|so luong|tvv|nhom|count|tong|quy mo)/.test(key)) return n.toLocaleString('vi-VN');
-                    return raw;
-                }
-
-                function cellClass(header, rawVal, displayVal, colIndex, headers, isPolicy) {
-                    var key = headerKey(header);
-                    var isInfoCol = /(stt|xep hang|ho ten|ten ho|ten nhom|nhom tvv|ten tn|ten tvv|ten ns|ten cad|ten tv$|ten tvv$|^ten$|ten$|ma so|ma tn|m a|ma s|ma tvv|^ma$|^ms$|ma kd|ma dai ly|hl chuc vu|msdl|ms dl|ms dai ly|nhom kd|nhom|don vi|doi tvv|chuc vu|cv$)/.test(key);
-                    /* 4 cột đầu (STT, Nhóm, Mã số, Họ tên) → trắng, không tô màu */
-                    if (isInfoCol) {
-                        if (/(stt|xep hang)/.test(key)) return 'td-num col-stt';
-                        if (/(ho ten|ten ho|ten nhom|nhom tvv|ten tn|ten tvv|ten ns|ten cad|ten tv$|ten tvv$|^ten$|ten$|nhom kd|nhom|don vi|doi tvv)/.test(key)) return 'td-text col-name';
-                        if (/(ma so|ma tn|m a|ma s|ma tvv|^ma$|^ms$|ma kd|ma dai ly|hl chuc vu|msdl|ms dl|ms dai ly|chuc vu|cv$)/.test(key)) return 'td-text col-code';
-                    }
-                    /* === TỔNG FYP/FYC NHÓM → hồng nhạt, trái, đậm === */
-                    if (/(tong fyp nhom|tong fyc nhom)/.test(key)) return 'td-text col-fypnhom-cell';
-                    /* === FYC riêng → bỏ tô màu === */
-                    if (/fyc/.test(key) && !/fyp/.test(key)) {
-                        var isNumFyc = /^-?\d+(?:[.,]\d+)?$/.test(String(displayVal).replace(/\s/g, ''));
-                        return isNumFyc ? 'td-num col-fyc-cell' : 'td-text col-fyc-cell';
-                    }
-                    /* === ĐẠT / CHƯA ĐẠT === */
-                    if (rawVal === '10000001111') return 'td-num ach-cell';
-                    if (/(dieu kien|dat|chua dat|chi tieu)/.test(key)) {
-                        var raw2 = String(rawVal).trim().toLowerCase();
-                        if (/dat/.test(raw2) && /chua/.test(raw2) === false) return 'td-num cell-dat';
-                        if (/chua dat/.test(raw2)) return 'td-num cell-chuadat';
-                    }
-                    /* === TỶ LỆ % → bold, đỏ === */
-                    if (/(tlht|ty le)/.test(key)) return 'td-num cell-percent';
-                    /* === THƯỞNG → bold, xanh dương + icon sẽ inject ở body loop === */
-                    if (/(thuong|thu nhap|du kien|afyp|doanh so|tien|phat trien kinh doanh)/.test(key)) return 'td-money col-thuong-cell';
-                    /* === Số liệu → tô màu nhạt theo bản chất nhóm === */
-                    var nature = colNatureGroup(header);
-                    var level = natureLevelBefore(headers || [], colIndex || 0, nature);
-                    var tintClass = ' ct-' + nature + (level > 0 ? '-lv' + Math.min(level, 5) : '');
-                    /* Xác định số vs text */
-                    var isNum = /^-?\d+(?:[.,]\d+)?$/.test(String(displayVal).replace(/\s/g, ''));
-                    if (isNum) return 'td-num' + tintClass;
-                    return 'td-text' + tintClass;
-                }
-
-                function trimCell(v) {
-                    return String(v == null ? '' : v).trim();
-                }
-
-                function splitWords(v) {
-                    return trimCell(v).split(/\s+/).filter(Boolean);
-                }
-
-                function dedupeRepeatedHeader(v) {
-                    var text = trimCell(v);
-                    if (!text) return '';
-                    var words = splitWords(text);
-                    if (words.length >= 2 && words.length % 2 === 0) {
-                        var half = words.length / 2;
-                        var left = words.slice(0, half).join(' ');
-                        var right = words.slice(half).join(' ');
-                        if (left === right) return left;
-                    }
-                    return text;
-                }
-
-                function commonPrefixWords(a, b) {
-                    var aw = splitWords(a), bw = splitWords(b);
-                    var shared = [];
-                    for (var i = 0; i < Math.min(aw.length, bw.length); i++) {
-                        if (aw[i] !== bw[i]) break;
-                        shared.push(aw[i]);
-                    }
-                    return shared.length >= 2 ? shared.join(' ') : '';
-                }
-
-                function hasAdjacentDuplicate(row, limit) {
-                    for (var i = 0; i < limit - 1; i++) {
-                        var cur = trimCell(row[i]), next = trimCell(row[i + 1]);
-                        if (cur && cur === next) return true;
-                    }
-                    return false;
-                }
-
-                function buildMergedHeader(rows2, dc) {
-                    var top = rows2[0] || [];
-                    var bottom = rows2[1] || [];
-                    var row1 = '<tr><th rowspan="2">STT</th>';
-                    var row2 = '<tr>';
-                    var skipBottom = new Array(dc).fill(false);
-
-                    for (var c1 = 0; c1 < dc; ) {
-                        var topVal = trimCell(top[c1]);
-                        var bottomVal = trimCell(bottom[c1]);
-                        var classSeed = topVal || bottomVal || ('Cột ' + (c1 + 1));
-
-                        if (topVal && topVal === bottomVal) {
-                            row1 += '<th rowspan="2" class="' + columnClass(classSeed, c1, hd) + '">' + esc(topVal) + '</th>';
-                            skipBottom[c1] = true;
-                            c1++;
-                            continue;
-                        }
-                        var spanTop = 1;
-                        while (c1 + spanTop < dc) {
-                            var nextTop = trimCell(top[c1 + spanTop]);
-                            var nextBottom = trimCell(bottom[c1 + spanTop]);
-                            if (nextTop !== topVal) break;
-                            if (nextTop && nextTop === nextBottom) break;
-                            spanTop++;
-                        }
-
-                        row1 += '<th' + (spanTop > 1 ? ' colspan="' + spanTop + '"' : '') + ' class="' + columnClass(classSeed, c1, hd) + '">' + esc(topVal || bottomVal || ('Cột ' + (c1 + 1))) + '</th>';
-                        c1 += spanTop;
-                    }
-
-                    for (var c2 = 0; c2 < dc; ) {
-                        if (skipBottom[c2]) {
-                            c2++;
-                            continue;
-                        }
-
-                        var bottomText = trimCell(bottom[c2]);
-                        var topText = trimCell(top[c2]);
-                        var seed = bottomText || topText || ('Cột ' + (c2 + 1));
-                        var spanBottom = 1;
-
-                        while (c2 + spanBottom < dc) {
-                            if (skipBottom[c2 + spanBottom]) break;
-                            var nextBottomText = trimCell(bottom[c2 + spanBottom]);
-                            if (nextBottomText !== bottomText) break;
-                            spanBottom++;
-                        }
-
-                        row2 += '<th' + (spanBottom > 1 ? ' colspan="' + spanBottom + '"' : '') + ' class="' + columnClass(seed, c2, hd) + '">' + esc(bottomText || topText || ('Cột ' + (c2 + 1))) + '</th>';
-                        c2 += spanBottom;
-                    }
-
-                    row1 += '</tr>';
-                    row2 += '</tr>';
-                    return row1 + row2;
-                }
-
-                function canBuildCompositeHeader(row, dc) {
-                    var normalized = [];
-                    for (var i = 0; i < dc; i++) normalized.push(dedupeRepeatedHeader(row[i]));
-                    for (var j = 0; j < dc - 1; j++) {
-                        if (commonPrefixWords(normalized[j], normalized[j + 1])) return true;
-                    }
-                    return normalized.some(function(v, idx) { return v && v !== trimCell(row[idx]); });
-                }
-
-                function buildCompositeHeader(row, dc) {
-                    var normalized = [];
-                    for (var i = 0; i < dc; i++) normalized.push(dedupeRepeatedHeader(row[i]));
-                    var row1 = '<tr><th rowspan="2">STT</th>';
-                    var row2 = '<tr>';
-
-                    for (var c = 0; c < dc; ) {
-                        var cell = normalized[c] || ('Cột ' + (c + 1));
-                        var prefix = c < dc - 1 ? commonPrefixWords(cell, normalized[c + 1]) : '';
-
-                        if (!prefix) {
-                            row1 += '<th rowspan="2" class="' + columnClass(cell, c, hd) + '">' + esc(cell) + '</th>';
-                            c++;
-                            continue;
-                        }
-
-                        var span = 1;
-                        while (c + span < dc) {
-                            var candidate = normalized[c + span];
-                            if (!candidate || !candidate.startsWith(prefix + ' ')) break;
-                            span++;
-                        }
-
-                        row1 += '<th colspan="' + span + '">' + esc(prefix) + '</th>';
-                        for (var k = 0; k < span; k++) {
-                            var full = normalized[c + k] || ('Cột ' + (c + k + 1));
-                            var sub = full.indexOf(prefix + ' ') === 0 ? full.slice(prefix.length).trim() : full;
-                            row2 += '<th class="' + columnClass(full, c + k, hd) + '">' + esc(sub || full) + '</th>';
-                        }
-                        c += span;
-                    }
-
-                    row1 += '</tr>';
-                    row2 += '</tr>';
-                    return row1 + row2;
-                }
-
+                /* === BƯỚC 3: Lấy headers, cắt cột trống === */
                 var hd = all[0] || [];
-                var maybeSecondHeader = all[1] || [];
-                /* Trim trailing empty columns: drop columns whose header (both rows) is empty
-                   AND every data row is empty in that column. */
-                var dc = Math.max(hd.length, maybeSecondHeader.length);
-                while (dc > 0) {
-                    var topEmpty = !String(hd[dc - 1] == null ? '' : hd[dc - 1]).trim();
-                    var botEmpty = !String(maybeSecondHeader[dc - 1] == null ? '' : maybeSecondHeader[dc - 1]).trim();
-                    if (!topEmpty || !botEmpty) break;
-                    var anyDataInCol = false;
-                    for (var rr = 2; rr < all.length; rr++) {
-                        var cv = all[rr] && all[rr][dc - 1];
-                        if (cv != null && String(cv).trim() !== '') { anyDataInCol = true; break; }
+                var dc = hd.length;
+                while (dc > 0 && !String(hd[dc - 1] || '').trim()) {
+                    var hasData = false;
+                    for (var rr = 1; rr < all.length; rr++) {
+                        if (all[rr] && String(all[rr][dc - 1] || '').trim()) { hasData = true; break; }
                     }
-                    if (anyDataInCol) break;
+                    if (hasData) break;
                     dc--;
                 }
+                if (dc === 0) { ct.innerHTML = '<div style="text-align:center;padding:40px;color:var(--td-fgm)">Không có dữ liệu</div>'; return; }
+
+                /* Detect nhóm column for filter */
                 var groupCol = -1;
                 for (var gi = 0; gi < dc; gi++) {
-                    var gk = headerKey(hd[gi]);
-                    if (/(^|\s)nhom(\s|$)|nhom kd/.test(gk)) { groupCol = gi; break; }
+                    if (/(^|\s)nhom(\s|$)|nhom kd/.test(hk(hd[gi]))) { groupCol = gi; break; }
                 }
-                var useDualHeader = all.length > 1 && maybeSecondHeader.slice(0, dc).some(function(v) { return trimCell(v); }) && (
-                    hasAdjacentDuplicate(hd, dc) ||
-                    hasAdjacentDuplicate(maybeSecondHeader, dc) ||
-                    hd.slice(0, dc).some(function(v, idx) {
-                        var topVal = trimCell(v);
-                        return topVal && topVal === trimCell(maybeSecondHeader[idx]);
-                    })
-                );
-                var useCompositeHeader = !useDualHeader && canBuildCompositeHeader(hd, dc);
-                var dataStart = useDualHeader ? 2 : 1;
-                var data = all.slice(dataStart);
-                var dr = data.length;
-                var thuongCols = [];
+
+                /* === BƯỚC 4: Phân loại tất cả cột === */
+                var colCats = [];
                 for (var ci = 0; ci < dc; ci++) {
-                    if (headerKey(hd[ci]).indexOf('thuong') !== -1) thuongCols.push(ci);
+                    colCats.push(colCategory(hd[ci], ci));
                 }
 
-                var h = '';
-                if (useDualHeader) {
-                    h = buildMergedHeader([hd, maybeSecondHeader], dc);
-                } else if (useCompositeHeader) {
-                    h = buildCompositeHeader(hd, dc);
-                } else {
-                    h = '<tr><th>STT</th>';
-                    for (var i = 0; i < dc; i++) {
-                        var hCls = columnClass(hd[i], i, hd);
-                        h += '<th class="' + hCls + '">' + esc(hd[i] || ('Cột ' + (i + 1))) + '</th>';
+                /* === BƯỚC 5: Phát hiện nhóm điều kiện → tạo 2 hàng tiêu đề === */
+                /* Tìm các cột condition liên tiếp → gộp nhóm cùng mức thưởng/danh hiệu */
+                var condGroups = []; /* {start, end, topLabel} */
+                var i = 0;
+                while (i < dc) {
+                    if (colCats[i] === 'condition') {
+                        var start = i;
+                        /* Trích tên danh hiệu/mức từ header: phần trước ( ) hoặc trước >= */
+                        var topLabel = '';
+                        var hdr = String(hd[i] || '').trim();
+                        var parenIdx = hdr.indexOf('(');
+                        var geIdx = hdr.indexOf('>=');
+                        var leIdx = hdr.indexOf('<=');
+                        var cutIdx = hdr.length;
+                        if (parenIdx > 0) cutIdx = Math.min(cutIdx, parenIdx);
+                        if (geIdx > 0) cutIdx = Math.min(cutIdx, geIdx);
+                        if (leIdx > 0) cutIdx = Math.min(cutIdx, leIdx);
+                        topLabel = hdr.substring(0, cutIdx).trim();
+
+                        /* Gom các cột condition liên tiếp có cùng topLabel */
+                        var end = i;
+                        while (end + 1 < dc && colCats[end + 1] === 'condition') {
+                            var nextHdr = String(hd[end + 1] || '').trim();
+                            var nextTop = '';
+                            var nParenIdx = nextHdr.indexOf('(');
+                            var nGeIdx = nextHdr.indexOf('>=');
+                            var nLeIdx = nextHdr.indexOf('<=');
+                            var nCutIdx = nextHdr.length;
+                            if (nParenIdx > 0) nCutIdx = Math.min(nCutIdx, nParenIdx);
+                            if (nGeIdx > 0) nCutIdx = Math.min(nCutIdx, nGeIdx);
+                            if (nLeIdx > 0) nCutIdx = Math.min(nCutIdx, nLeIdx);
+                            nextTop = nextHdr.substring(0, nCutIdx).trim();
+                            if (nextTop === topLabel) {
+                                end++;
+                            } else {
+                                break;
+                            }
+                        }
+                        condGroups.push({ start: start, end: end, topLabel: topLabel });
+                        i = end + 1;
+                    } else {
+                        i++;
                     }
-                    h += '</tr>';
                 }
 
-                /* Pre-compute nature map for body tinting */
-                var colNatureMap = [];
-                for (var cm = 0; cm < dc; cm++) {
-                    colNatureMap.push(colNatureGroup(hd[cm]));
+                var hasCondRow = condGroups.length > 0;
+
+                /* === BƯỚC 6: Tạo HTML tiêu đề === */
+                var hasCond = condGroups.length > 0;
+                var hRow1 = ''; /* Hàng 1: STT + info + numdata + percent + cond-top(gộp) + money */
+                var hRow2 = ''; /* Hàng 2: chỉ có cond-bot (chi tiết điều kiện) */
+
+                /* --- Hàng 1 --- */
+                hRow1 += '<th class="pst-h" rowspan="' + (hasCond ? 2 : 1) + '">STT</th>';
+                var condProcessed = {};
+                for (var hi = 0; hi < dc; hi++) {
+                    var cat = colCats[hi];
+                    var hdrText = esc(hd[hi] || ('Cột ' + (hi + 1)));
+                    var hCls = '';
+
+                    if (cat === 'info') {
+                        hCls = 'h-info';
+                        hRow1 += '<th class="' + hCls + '" rowspan="' + (hasCond ? 2 : 1) + '">' + hdrText + '</th>';
+                    } else if (cat === 'textInfo') {
+                        hCls = 'h-info';
+                        hRow1 += '<th class="' + hCls + '" rowspan="' + (hasCond ? 2 : 1) + '">' + hdrText + '</th>';
+                    } else if (cat === 'numdata') {
+                        hCls = 'h-num';
+                        hRow1 += '<th class="' + hCls + '" rowspan="' + (hasCond ? 2 : 1) + '">' + hdrText + '</th>';
+                    } else if (cat === 'percent') {
+                        hCls = 'h-percent';
+                        hRow1 += '<th class="' + hCls + '" rowspan="' + (hasCond ? 2 : 1) + '">' + hdrText + '</th>';
+                    } else if (cat === 'money') {
+                        hCls = 'h-money';
+                        hRow1 += '<th class="' + hCls + '" rowspan="' + (hasCond ? 2 : 1) + '">' + hdrText + '</th>';
+                    } else if (cat === 'condition') {
+                        /* Tìm group chứa cột này */
+                        var grp = null;
+                        for (var gci = 0; gci < condGroups.length; gci++) {
+                            if (hi >= condGroups[gci].start && hi <= condGroups[gci].end) { grp = condGroups[gci]; break; }
+                        }
+                        if (grp && !condProcessed[grp.start]) {
+                            /* Gộp colspan cho hàng trên */
+                            var span = grp.end - grp.start + 1;
+                            hRow1 += '<th class="h-cond-top" colspan="' + span + '">' + esc(grp.topLabel) + '</th>';
+                            condProcessed[grp.start] = true;
+                        }
+                        /* Hàng 2: chi tiết điều kiện */
+                        var botText = hdrText;
+                        /* Trích phần điều kiện từ header */
+                        var bHdr = String(hd[hi] || '').trim();
+                        var bParenIdx = bHdr.indexOf('(');
+                        var bGeIdx = bHdr.indexOf('>=');
+                        var bLeIdx = bHdr.indexOf('<=');
+                        if (bParenIdx >= 0) {
+                            botText = esc(bHdr.substring(bParenIdx));
+                        } else if (bGeIdx >= 0) {
+                            botText = esc(bHdr.substring(bGeIdx));
+                        } else if (bLeIdx >= 0) {
+                            botText = esc(bHdr.substring(bLeIdx));
+                        }
+                        hRow2 += '<th class="h-cond-bot">' + botText + '</th>';
+                    }
                 }
 
-                /* Detect which columns are "info" (first N info columns = white bg) */
-                var infoColCount = 0;
-                for (var ic = 0; ic < dc; ic++) {
-                    if (colNatureMap[ic] === 'info') infoColCount++;
-                    else break;
+                var theadHtml = '<tr>' + hRow1 + '</tr>';
+                if (hasCond) {
+                    theadHtml += '<tr class="cond-row">' + hRow2 + '</tr>';
                 }
 
-                var isPolicy = cfg.prefix === 'po';
-                var si = [];
-                for (var r = 0; r < dr; r++) si.push(r);
-                si.sort(function(a, b) { return TD_ced(data[b] || [], dc) - TD_ced(data[a] || [], dc); });
-
-                var b = '';
-                for (var k = 0; k < si.length; k++) {
-                    var rowIndex = si[k], rc = data[rowIndex] || [];
-                    b += '<tr data-row-index="' + rowIndex + '"><td class="pst">' + (rowIndex + 1) + '</td>';
+                /* === BƯỚC 7: Tạo HTML nội dung === */
+                var data = all.slice(1);
+                var bHtml = '';
+                for (var r = 0; r < data.length; r++) {
+                    var rc = data[r] || [];
+                    bHtml += '<tr data-row-index="' + r + '"><td class="pst">' + (r + 1) + '</td>';
+                    /* Đếm số cột condition đã qua để tính shade */
+                    var condCounter = 0;
                     for (var c = 0; c < dc; c++) {
                         var val = rc[c] || '';
                         var rawVal = String(val).trim();
-                        var headerText = hd[c] || ('Cột ' + (c + 1));
-                        var headerKey_ = headerKey(headerText);
-                        var isAchCode = rawVal === '10000001111';
-                        var isDatText = rawVal.toLowerCase() === 'đạt';
-                        var isThuongCol = /col-thuong-cell/.test(columnClass(headerText, c, hd));
-                        var isPercentCol = /cell-percent/.test(cellClass(headerText, rawVal, rawVal, c, hd, isPolicy));
-                        var displayVal = formatCell(val, headerText);
-                        /* Cell content with formatting */
-                        var cellContent;
-                        if (isAchCode) {
-                            cellContent = '<span class="ach-pill"><i class="fa-solid fa-circle-check" style="margin-right:3px"></i>Đạt</span>';
-                        } else if (isDatText) {
-                            /* ĐẠT → vàng nền, xanh dương chữ */
-                            cellContent = '<span class="dat-badge"><i class="fa-solid fa-circle-check" style="margin-right:3px"></i>' + esc(displayVal) + '</span>';
-                        } else if (isThuongCol && rawVal && rawVal !== '0') {
-                            /* THƯỞNG → icon + bold + xanh dương */
-                            cellContent = '<span class="thuong-val"><i class="fa-solid fa-trophy"></i> ' + esc(displayVal) + '</span>';
-                        } else if (isPercentCol && rawVal) {
-                            /* TỶ LỆ → bold + đỏ */
-                            var isNeg = /^-/.test(String(displayVal).trim());
-                            cellContent = '<span class="percent-val' + (isNeg ? ' neg' : '') + '">' + esc(displayVal) + '</span>';
+                        var header = hd[c] || ('Cột ' + (c + 1));
+                        var cat2 = colCats[c];
+
+                        /* Format giá trị hiển thị */
+                        var displayVal = rawVal;
+                        var compact = rawVal.replace(/\s/g, '');
+                        if (/^-?\d+(?:[.,]\d+)?$/.test(compact)) {
+                            var n = Number(compact.replace(/\./g, '').replace(',', '.'));
+                            if (isFinite(n)) {
+                                var kh2 = hk(header);
+                                if (/(thuong|thu nhap|du kien|afyp|doanh so|tien|tong fyp|tong fyc)/.test(kh2)) {
+                                    displayVal = n.toLocaleString('vi-VN');
+                                } else if (/(sl|so luong|tvv|count|tong|quy mo)/.test(kh2)) {
+                                    displayVal = n.toLocaleString('vi-VN');
+                                }
+                            }
+                        }
+
+                        /* Xác định class và nội dung ô */
+                        var tdCls = '';
+                        var cellContent = '';
+
+                        if (cat2 === 'info') {
+                            /* Cột 1-4: nền trắng, chữ #111, căn giữa/trái */
+                            var align = infoAlign(c);
+                            tdCls = 'd-info-' + align;
+                            cellContent = esc(displayVal);
+                        } else if (cat2 === 'textInfo') {
+                            tdCls = 'd-text-info';
+                            cellContent = esc(displayVal);
+                        } else if (cat2 === 'numdata') {
+                            tdCls = 'd-numdata';
+                            cellContent = esc(displayVal);
+                        } else if (cat2 === 'percent') {
+                            /* > 0% → đậm nghiêng vàng; còn lại → nghiêng xám */
+                            var pctNum = parseFloat(rawVal.replace('%', '').replace(',', '.'));
+                            if (!isNaN(pctNum) && pctNum > 0) {
+                                tdCls = 'd-percent-pos';
+                                cellContent = esc(displayVal);
+                            } else {
+                                tdCls = 'd-percent-zero';
+                                cellContent = esc(displayVal);
+                            }
+                        } else if (cat2 === 'condition') {
+                            /* Nền lemonchiffon, tăng sắc độ theo cột */
+                            var shadeIdx = condCounter % 6;
+                            condCounter++;
+                            if (shadeIdx === 0) tdCls = 'd-cond';
+                            else tdCls = 'd-cond d-cond-shade' + Math.min(shadeIdx, 5);
+
+                            /* Kiểm tra giá trị đặc biệt */
+                            if (rawVal === '11111') {
+                                cellContent = '<span class="dat-badge"><i class="fa-solid fa-check"></i>Đạt</span>';
+                            } else if (/^Thiếu/i.test(rawVal) || /^-/.test(rawVal)) {
+                                cellContent = '<span class="thieu-val">' + esc(displayVal) + '</span>';
+                            } else if (rawVal.toLowerCase() === 'đạt') {
+                                cellContent = '<span class="dat-badge"><i class="fa-solid fa-check"></i>Đạt</span>';
+                            } else {
+                                cellContent = esc(displayVal);
+                            }
+                        } else if (cat2 === 'money') {
+                            tdCls = 'd-money';
+                            /* Ô không trống & > 0 → icon thưởng + hiệu ứng */
+                            var moneyNum = parseFloat(rawVal.replace(/[.,]/g, '').replace(',', '.'));
+                            if (rawVal && rawVal !== '0' && rawVal !== '-' && !isNaN(moneyNum) && moneyNum > 0) {
+                                cellContent = '<span class="thuong-highlight"><i class="fa-solid fa-trophy"></i>' + esc(displayVal) + '</span>';
+                            } else if (rawVal && rawVal !== '0' && rawVal !== '-') {
+                                cellContent = '<span class="thuong-highlight"><i class="fa-solid fa-trophy"></i>' + esc(displayVal) + '</span>';
+                            } else {
+                                cellContent = esc(displayVal);
+                            }
                         } else {
+                            tdCls = 'd-numdata';
                             cellContent = esc(displayVal);
                         }
-                        var colCls = columnClass(headerText, c, hd);
-                        if (isAchCode) colCls += ' ach-cell';
-                        var cCls = cellClass(headerText, rawVal, displayVal, c, hd, isPolicy);
-                        /* 4 cột đầu info → trắng */
-                        if (c < infoColCount) {
-                            cCls = cCls.replace(/ct-\w+(-lv\d+)?/g, '');
-                        }
-                        /* Negative value highlight for percent columns */
-                        if (/cell-percent/.test(cCls) && /^-/.test(String(displayVal).trim())) cCls += ' neg';
-                        /* Policy columns 3+ get po-cc */
-                        if (isPolicy && c >= infoColCount) cCls += ' po-cc';
-                        /* Code columns → không tô màu (sau khi thêm po-cc) */
-                        if (/col-code/.test(colCls)) {
-                            cCls = cCls.replace(/ct-\w+(-lv\d+)?/g, '');
-                            cCls = cCls.replace(/po-cc/g, '');
-                        }
-                        b += '<td class="' + cCls + '">' + cellContent + '</td>';
+
+                        bHtml += '<td class="' + tdCls + '">' + cellContent + '</td>';
                     }
-                    b += '</tr>';
+                    bHtml += '</tr>';
                 }
 
-                var shouldAutoWide = dc <= 10;
-                var wrapCls = isPolicy ? 'po-ptw' + (shouldAutoWide ? ' po-auto-wide' : '') : 'ptw' + (shouldAutoWide ? ' auto-wide' : '');
-                var tblCls = isPolicy ? 'po-pt' : 'pt';
-                var tableHtml = '<div class="' + wrapCls + '"><table class="' + tblCls + '"><thead>' + h + '</thead><tbody>' + b + '</tbody></table></div>';
+                /* === BƯỚC 8: Lắp ráp bảng === */
+                var tableHtml = '<div class="ptw"><table class="pt"><thead>' + theadHtml + '</thead><tbody>' + bHtml + '</tbody></table></div>';
                 ct.innerHTML = tableHtml;
                 TD_attachGroupFilter(ct, groupCol, 1);
 
-                /* Fix sticky top for 2nd+ header row - use multiple attempts for accurate height */
-                function fixStickyTop() {
-                    var thead = ct.querySelector('thead');
-                    if (thead && thead.rows.length > 1) {
-                        var cumTop = 0;
-                        for (var r = 0; r < thead.rows.length; r++) {
-                            var rowH = thead.rows[r].getBoundingClientRect().height;
-                            if (r > 0 && rowH > 0) {
-                                var cells = thead.rows[r].cells;
-                                for (var c = 0; c < cells.length; c++) {
-                                    cells[c].style.top = cumTop + 'px';
-                                }
-                            }
-                            cumTop += rowH;
+                /* === BƯỚC 9: Cập nhật sticky top cho hàng điều kiện dưới === */
+                if (hasCond) {
+                    try {
+                        var firstRowH = ct.querySelector('.pt thead tr:first-child');
+                        if (firstRowH) {
+                            var fHeight = firstRowH.offsetHeight;
+                            var secondRowCells = ct.querySelectorAll('.pt thead tr.cond-row th');
+                            secondRowCells.forEach(function(th) {
+                                th.style.top = fHeight + 'px';
+                                th.style.zIndex = '3';
+                            });
                         }
-                    }
+                    } catch(e) {}
                 }
-                requestAnimationFrame(function() { requestAnimationFrame(fixStickyTop); });
-                setTimeout(fixStickyTop, 300);
-                setTimeout(fixStickyTop, 800);
 
+                /* Row click highlight */
                 ct.querySelectorAll('tbody tr').forEach(function(row) {
                     row.addEventListener('click', function() {
-                        ct.querySelectorAll('tbody tr.is-focus').forEach(function(activeRow) {
-                            activeRow.classList.remove('is-focus');
-                        });
+                        ct.querySelectorAll('tbody tr.is-focus').forEach(function(ar) { ar.classList.remove('is-focus'); });
                         row.classList.add('is-focus');
                     });
                 });
@@ -5853,15 +4245,15 @@ if (ok) { toast('Đã xóa', 'ok'); ccf(); await lfs(); }
         };
 
         var tdPage = createTDPage({
-            prefix: 'td', varName: 'tdPage', containerId: 'view-race', title: 'Tiến Độ Thi Đua', badge: 'Thi đua', badgeIcon: 'fa-trophy', emptyTitle: 'Chưa có chương trình thi đua', emptyDesc: 'Nhấn icon <i class="fa-solid fa-user-shield" style="color:var(--td-accent)"></i> để quản trị.', useSheetLayout: false, filterFn: function(n) { return /^thi\s*đua/i.test(n); }
+            prefix: 'td', varName: 'tdPage', containerId: 'view-race', title: 'Tiến Độ Thi Đua', badge: 'Thi đua', badgeIcon: 'fa-trophy', emptyTitle: 'Chưa có chương trình thi đua', emptyDesc: 'Nhấn icon <i class="fa-solid fa-user-shield" style="color:var(--td-accent)"></i> để quản trị.', filterFn: function(n) { return /^thi\s*đua/i.test(n); }
         });
 
         var poPage = createTDPage({
-            prefix: 'po', varName: 'poPage', containerId: 'view-policy', title: 'Chính Sách', badge: 'Chính sách', badgeIcon: 'fa-book', emptyTitle: 'Chưa có chính sách nào', emptyDesc: 'Nhấn icon <i class="fa-solid fa-user-shield" style="color:var(--td-accent)"></i> để quản trị.', useSheetLayout: false, filterFn: function(n) { return /^chính\s*sách/i.test(n); }
+            prefix: 'po', varName: 'poPage', containerId: 'view-policy', title: 'Chính Sách', badge: 'Chính sách', badgeIcon: 'fa-book', emptyTitle: 'Chưa có chính sách nào', emptyDesc: 'Nhấn icon <i class="fa-solid fa-user-shield" style="color:var(--td-accent)"></i> để quản trị.', filterFn: function(n) { return /^chính\s*sách/i.test(n); }
         });
 
         var clbPage = createTDPage({
-            prefix: 'cb', varName: 'clbPage', containerId: 'view-clb', title: 'CLB Sao Việt', badge: 'CLB', badgeIcon: 'fa-star', emptyTitle: 'Chưa có chương trình CLB nào', emptyDesc: 'Nhấn icon <i class="fa-solid fa-user-shield" style="color:var(--td-accent)"></i> để quản trị.', useSheetLayout: false, filterFn: function(n) { return /CLB/i.test(n); }
+            prefix: 'cb', varName: 'clbPage', containerId: 'view-clb', title: 'CLB Sao Việt', badge: 'CLB', badgeIcon: 'fa-star', emptyTitle: 'Chưa có chương trình CLB nào', emptyDesc: 'Nhấn icon <i class="fa-solid fa-user-shield" style="color:var(--td-accent)"></i> để quản trị.', filterFn: function(n) { return /CLB/i.test(n); }
         });
 
         document.addEventListener('keydown', function(e) {
