@@ -1701,7 +1701,7 @@
         .td-page .pt {
             width: 100%;
             border-collapse: collapse;
-            font-size: 11px;
+            font-size: 10px;
             color: #1e293b;
             table-layout: auto;
             background: #fff;
@@ -1717,15 +1717,15 @@
             font-weight: 900;
             text-align: center;
             vertical-align: middle;
-            padding: 5px 3px;
+            padding: 4px 2px;
             white-space: normal;
             overflow-wrap: break-word;
             word-break: break-word;
-            line-height: 1.15;
+            line-height: 1.1;
             position: sticky;
             top: 0;
             z-index: 2;
-            font-size: 10px;
+            font-size: 9px;
             color: #fff;
         }
         /* Cột 1-4 tiêu đề: nền #000044, chữ trắng */
@@ -1777,13 +1777,13 @@
         .td-page .pt tbody tr.is-focus { background: #bfdbfe !important; }
         .td-page .pt tbody tr.is-focus td { color: #1e3a5f !important; font-weight: 700; }
         .td-page .pt tbody td {
-            padding: 3px 3px;
+            padding: 2px 2px;
             color: #334155;
-            font-size: 11px;
+            font-size: 10px;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-            line-height: 1.3;
+            line-height: 1.2;
             text-align: center;
             font-weight: 500;
             background: transparent;
@@ -1798,18 +1798,18 @@
         .td-page .pt tbody td.d-info-center {
             background: #fff;
             color: #111111;
-            text-align: center;
+            text-align: center !important;
         }
         .td-page .pt tbody td.d-info-left {
             background: #fff;
             color: #111111;
-            text-align: left;
-            padding-left: 8px;
+            text-align: left !important;
+            padding-left: 4px;
         }
-        /* Nhóm thông tin (ngày cấp, sl tvv...): nền #CAE5E8, chữ trắng, căn giữa */
+        /* Nhóm thông tin (ngày cấp, sl tvv...): nền #CAE5E8, căn giữa */
         .td-page .pt tbody td.d-text-info {
             background: #CAE5E8;
-            color: #fff;
+            color: #1e3a5f;
             text-align: center;
         }
         /* Nhóm số liệu: nền #CCCCFF, chữ #111111, căn giữa */
@@ -1858,9 +1858,9 @@
         .td-page .dat-badge i { margin-right: 2px; font-size: 9px; }
         /* Thiếu / âm: chữ đỏ, in nghiêng, KHÔNG in đậm */
         .td-page .thieu-val {
-            color: red;
-            font-style: italic;
-            font-weight: 400;
+            color: red !important;
+            font-style: italic !important;
+            font-weight: 400 !important;
         }
         /* Phần thưởng / Tiền thưởng: nền lightyellow, chữ #000044 IN ĐẬM, căn giữa */
         .td-page .pt tbody td.d-money {
@@ -1885,19 +1885,20 @@
         }
 
         /* STT column */
-        .td-page .pst { text-align: center; color: #94a3b8; font-weight: 700; width: 30px; min-width: 26px; max-width: 36px; background: #fff; padding: 4px 2px !important; font-size: 10px; }
-        .td-page .pt th.pst-h { text-align: center; background: #000044; color: #fff; padding: 6px 2px !important; font-size: 10px; width: 30px; min-width: 26px; max-width: 36px; }
+        .td-page .pst { text-align: center !important; color: #94a3b8; font-weight: 700; width: 28px; min-width: 22px; max-width: 32px; background: #fff; padding: 2px 1px !important; font-size: 9px; }
+        .td-page .pt th.pst-h { text-align: center; background: #000044; color: #fff; padding: 4px 1px !important; font-size: 9px; width: 28px; min-width: 22px; max-width: 32px; }
 
-        /* Mobile */
+        /* Mobile — ưu tiên mobile trước */
         @media (max-width: 640px) {
-            .td-page .ptw { max-height: 55vh; }
-            .td-page .pt { font-size: 9px; }
-            .td-page .pt thead th { padding: 3px 1px; font-size: 7.5px; line-height: 1.1; }
-            .td-page .pt tbody td { padding: 2px 1px; font-size: 8.5px; }
-            .td-page .pst { min-width: 18px; max-width: 24px; font-size: 7px; padding: 2px 1px !important; }
-            .td-page .pt th.pst-h { padding: 3px 1px !important; font-size: 7px; min-width: 18px; max-width: 24px; }
-            .td-page .dat-badge { font-size: 7px; padding: 1px 2px; }
-            .td-page .thuong-highlight i { font-size: 8px; }
+            .td-page .ptw { max-height: 60vh; }
+            .td-page .pt { font-size: 8px; }
+            .td-page .pt thead th { padding: 2px 1px; font-size: 7px; line-height: 1.05; }
+            .td-page .pt tbody td { padding: 1px 1px; font-size: 8px; line-height: 1.15; }
+            .td-page .pst { min-width: 16px; max-width: 22px; font-size: 7px; padding: 1px 0 !important; }
+            .td-page .pt th.pst-h { padding: 2px 0 !important; font-size: 7px; min-width: 16px; max-width: 22px; }
+            .td-page .dat-badge { font-size: 7px; padding: 0 2px; }
+            .td-page .thuong-highlight i { font-size: 7px; }
+            .td-page .pt td.d-info-left { padding-left: 2px; }
         }
         
         /* Form Elements */
@@ -1971,10 +1972,10 @@
             .td-page .pop-bar h2 { text-align: left; font-size: 1.02rem; }
             .td-page .pop-meta { align-items: flex-start; }
             .td-page .mdl-box { padding: 18px; }
-            .td-page .pt { font-size: 10px; }
-            .td-page .pt thead th { padding: 4px 2px; font-size: 8.5px; overflow-wrap: break-word; word-break: normal; line-height: 1.1; }
-            .td-page .pt tbody td { padding: 3px 2px; font-size: 9.5px; }
-            .td-page .pt td.d-info-left { padding-left: 4px; }
+            .td-page .pt { font-size: 8px; }
+            .td-page .pt thead th { padding: 2px 1px; font-size: 7px; overflow-wrap: break-word; word-break: break-word; line-height: 1.05; }
+            .td-page .pt tbody td { padding: 1px 1px; font-size: 8px; line-height: 1.15; }
+            .td-page .pt td.d-info-left { padding-left: 2px; }
 
             .td-page .pop-ct { }
             .td-page .pop-ct > .ptw { margin-left: 6px; margin-right: 6px; }
@@ -1995,14 +1996,14 @@
             .td-page .pop-subline { font-size: .82rem; padding: 8px 14px; }
             .td-page .pop-ct > .ptw { margin-left: 16px; margin-right: 16px; }
 
-            /* Table readability: compact on desktop too */
-            .td-page .pt { font-size: 12px; }
-            .td-page .pt thead th { padding: 5px 4px; font-size: 10px; line-height: 1.15; }
-            .td-page .pt tbody td { padding: 4px 4px; font-size: 11px; line-height: 1.3; }
-            .td-page .pt td.d-info-left { padding-left: 8px; }
-            .td-page .pt .pst { font-size: 10px; min-width: 28px; }
+            /* Table on desktop — vẫn gọn */
+            .td-page .pt { font-size: 11px; }
+            .td-page .pt thead th { padding: 4px 3px; font-size: 9px; line-height: 1.15; }
+            .td-page .pt tbody td { padding: 3px 3px; font-size: 10px; line-height: 1.25; }
+            .td-page .pt td.d-info-left { padding-left: 6px; }
+            .td-page .pt .pst { font-size: 9px; min-width: 24px; }
             .td-page .pt th.pst-h { font-size: 9px; }
-            .td-page .pt .dat-badge { padding: 1px 5px; font-size: 10px; }
+            .td-page .pt .dat-badge { padding: 1px 4px; font-size: 9px; }
 
             /* Pcard grid desktop */
             .td-page .card-grid { gap: 18px; }
@@ -4019,6 +4020,18 @@ if (ok) { toast('Đã xóa', 'ok'); ccf(); await lfs(); }
                     colCats.push(colCategory(hd[ci], ci));
                 }
 
+                /* ★ QUAN TRỌNG: Scan dữ liệu phát hiện cột condition bị phân loại sai */
+                /* Nếu cột chứa "11111" hoặc "Thiếu..." → chắc chắn là condition, dù header không có >= */
+                for (var sci = infoColCount; sci < dc; sci++) {
+                    if (colCats[sci] === 'condition' || colCats[sci] === 'money' || colCats[sci] === 'percent') continue;
+                    var hasCondVal = false;
+                    for (var sri = 1; sri < all.length; sri++) {
+                        var sv = String(all[sri] && all[sri][sci] || '').trim();
+                        if (sv === '11111' || /^Thiếu/i.test(sv)) { hasCondVal = true; break; }
+                    }
+                    if (hasCondVal) colCats[sci] = 'condition';
+                }
+
                 /* === PHÁT HIỆN NHÓM ĐIỀU KIỆN → TẠO 2 HÀNG TIÊU ĐỀ === */
                 /* Gom các cột condition liên tiếp có cùng "tên danh hiệu/mức" → gộp colspan hàng trên */
                 var condGroups = []; /* {start, end, topLabel} */
@@ -4157,7 +4170,7 @@ if (ok) { toast('Đã xóa', 'ok'); ccf(); await lfs(); }
                         var header = hd[c] || ('Cột ' + (c + 1));
                         var cat2 = colCats[c];
 
-                        /* Format giá trị hiển thị */
+                        /* Format giá trị hiển thị - định dạng số */
                         var displayVal = rawVal;
                         var compact = rawVal.replace(/\s/g, '');
                         if (/^-?\d+(?:[.,]\d+)?$/.test(compact)) {
@@ -4172,67 +4185,62 @@ if (ok) { toast('Đã xóa', 'ok'); ccf(); await lfs(); }
                             }
                         }
 
-                        /* Xác định class và nội dung ô */
+                        /* === BƯỚC 1: Xác định class CSS theo nhóm cột === */
                         var tdCls = '';
-                        var cellContent = '';
-
                         if (cat2 === 'info') {
-                            /* Cột 1–4: nền trắng, chữ #111, căn giữa/trái */
                             var align = infoAlign(c);
                             tdCls = 'd-info-' + align;
-                            /* Nếu là cột STT → dùng class pst */
                             if (c === sttColIdx) tdCls = 'pst';
-                            cellContent = escH(displayVal);
                         } else if (cat2 === 'textInfo') {
-                            /* Thông tin phụ: nền #CAE5E8, chữ trắng, căn giữa */
                             tdCls = 'd-text-info';
-                            cellContent = escH(displayVal);
                         } else if (cat2 === 'numdata') {
-                            /* Số liệu: nền #CCCCFF, chữ #111111, căn giữa */
                             tdCls = 'd-numdata';
-                            cellContent = escH(displayVal);
                         } else if (cat2 === 'percent') {
-                            /* Tỷ lệ % */
                             var pctNum = parseFloat(rawVal.replace('%', '').replace(',', '.'));
                             if (!isNaN(pctNum) && pctNum > 0) {
-                                /* > 0%: nền #FFFFCC, in đậm in nghiêng */
                                 tdCls = 'd-percent-pos';
-                                cellContent = escH(displayVal);
                             } else {
-                                /* Còn lại: in nghiêng, chữ xám */
                                 tdCls = 'd-percent-zero';
-                                cellContent = escH(displayVal);
                             }
                         } else if (cat2 === 'condition') {
-                            /* Điều kiện: nền lemonchiffon, tăng sắc độ theo cột */
                             var shadeIdx = condCounter % 6;
                             condCounter++;
                             if (shadeIdx === 0) tdCls = 'd-cond';
                             else tdCls = 'd-cond d-cond-shade' + Math.min(shadeIdx, 5);
-
-                            /* Giá trị đặc biệt */
-                            if (rawVal === '11111') {
-                                /* Số 11111 → hiển thị "Đạt" với dấu tích nhỏ */
-                                cellContent = '<span class="dat-badge"><i class="fa-solid fa-check"></i>Đạt</span>';
-                            } else if (/^Thiếu/i.test(rawVal) || /^-/.test(rawVal)) {
-                                /* "Thiếu..." hoặc "-...": chữ đỏ, in nghiêng, KHÔNG in đậm */
-                                cellContent = '<span class="thieu-val">' + escH(displayVal) + '</span>';
-                            } else if (rawVal.toLowerCase() === 'đạt') {
-                                cellContent = '<span class="dat-badge"><i class="fa-solid fa-check"></i>Đạt</span>';
-                            } else {
-                                cellContent = escH(displayVal);
-                            }
                         } else if (cat2 === 'money') {
-                            /* Phần thưởng: nền lightyellow, chữ #000044 IN ĐẬM */
                             tdCls = 'd-money';
+                        } else {
+                            tdCls = 'd-numdata';
+                        }
+
+                        /* === BƯỚC 2: Xác định nội dung ô — áp dụng quy tắc giá trị đặc biệt === */
+                        /* ★ QUAN TRỌNG: Các quy tắc này áp dụng cho TẤT CẢ cột, không chỉ condition */
+                        var cellContent = '';
+
+                        if (cat2 === 'info') {
+                            /* Cột info: hiển thị bình thường */
+                            cellContent = escH(displayVal);
+                        } else if (rawVal === '11111') {
+                            /* ★ Số 11111 → luôn chuyển thành "Đạt" với dấu tích nhỏ */
+                            cellContent = '<span class="dat-badge"><i class="fa-solid fa-check"></i>Đạt</span>';
+                        } else if (rawVal.toLowerCase() === 'đạt' || rawVal.toLowerCase() === 'dat') {
+                            /* Chữ "Đạt" → làm nổi bật với dấu tích */
+                            cellContent = '<span class="dat-badge"><i class="fa-solid fa-check"></i>Đạt</span>';
+                        } else if (/^Thiếu/i.test(rawVal)) {
+                            /* ★ "Thiếu..." → đỏ, in nghiêng, KHÔNG in đậm */
+                            cellContent = '<span class="thieu-val">' + escH(displayVal) + '</span>';
+                        } else if (/^-\d/.test(rawVal) && cat2 !== 'money') {
+                            /* ★ Giá trị âm (như -76, -100) trong cột không phải money → đỏ, in nghiêng, KHÔNG in đậm */
+                            cellContent = '<span class="thieu-val">' + escH(displayVal) + '</span>';
+                        } else if (cat2 === 'money') {
+                            /* Phần thưởng: icon + hiệu ứng nếu có giá trị */
                             if (rawVal && rawVal !== '0' && rawVal !== '-' && rawVal !== '') {
-                                /* Ô có giá trị → icon thưởng + hiệu ứng nổi bật */
                                 cellContent = '<span class="thuong-highlight"><i class="fa-solid fa-trophy"></i>' + escH(displayVal) + '</span>';
                             } else {
                                 cellContent = escH(displayVal);
                             }
                         } else {
-                            tdCls = 'd-numdata';
+                            /* Các ô còn lại: hiển thị bình thường */
                             cellContent = escH(displayVal);
                         }
 
@@ -4242,13 +4250,28 @@ if (ok) { toast('Đã xóa', 'ok'); ccf(); await lfs(); }
                 }
 
                 /* === LẮP RÁP BẢNG === */
-                /* Tạo colgroup để quản lý độ rộng cột */
+                /* Tạo colgroup để quản lý độ rộng cột — thu gọn tối đa */
                 var colgroupHtml = '<colgroup>';
                 for (var cgi = 0; cgi < dc; cgi++) {
+                    var cgCat = colCats[cgi];
                     if (cgi === sttColIdx) {
-                        colgroupHtml += '<col style="width:30px;min-width:26px;max-width:36px">';
+                        colgroupHtml += '<col style="width:28px;min-width:22px">';
+                    } else if (cgCat === 'info' || cgi < infoColCount) {
+                        /* Cột info: cố định chiều rộng hẹp */
+                        if (sttAutoInserted) {
+                            if (cgi === 1) colgroupHtml += '<col style="width:55px;min-width:45px">';
+                            else if (cgi === 2) colgroupHtml += '<col style="min-width:60px">';
+                            else if (cgi === 3) colgroupHtml += '<col style="width:40px;min-width:32px">';
+                            else if (cgi === 4) colgroupHtml += '<col style="width:45px;min-width:35px">';
+                            else colgroupHtml += '<col>';
+                        } else {
+                            if (cgi === 1) colgroupHtml += '<col style="min-width:60px">';
+                            else if (cgi === 2) colgroupHtml += '<col style="width:40px;min-width:32px">';
+                            else if (cgi === 3) colgroupHtml += '<col style="width:45px;min-width:35px">';
+                            else colgroupHtml += '<col>';
+                        }
                     } else {
-                        colgroupHtml += '<col>';
+                        colgroupHtml += '<col style="min-width:30px">';
                     }
                 }
                 colgroupHtml += '</colgroup>';
