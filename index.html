@@ -1699,7 +1699,7 @@
         .td-page .pt {
             width: 100%;
             border-collapse: collapse;
-            font-size: 12px;
+            font-size: 11px;
             color: #1e293b;
             table-layout: auto;
             background: #fff;
@@ -1715,15 +1715,15 @@
             font-weight: 900;
             text-align: center;
             vertical-align: middle;
-            padding: 8px 5px;
+            padding: 5px 3px;
             white-space: normal;
             overflow-wrap: break-word;
-            word-break: normal;
-            line-height: 1.2;
+            word-break: break-word;
+            line-height: 1.15;
             position: sticky;
             top: 0;
             z-index: 2;
-            font-size: 11px;
+            font-size: 10px;
             color: #fff;
         }
         /* Cột 1-4 tiêu đề: nền #000044, chữ trắng */
@@ -1775,13 +1775,13 @@
         .td-page .pt tbody tr.is-focus { background: #bfdbfe !important; }
         .td-page .pt tbody tr.is-focus td { color: #1e3a5f !important; font-weight: 700; }
         .td-page .pt tbody td {
-            padding: 5px 4px;
+            padding: 3px 3px;
             color: #334155;
-            font-size: 12px;
+            font-size: 11px;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-            line-height: 1.35;
+            line-height: 1.3;
             text-align: center;
             font-weight: 500;
             background: transparent;
@@ -1883,17 +1883,19 @@
         }
 
         /* STT column */
-        .td-page .pst { text-align: center; color: #94a3b8; font-weight: 700; min-width: 28px; max-width: 36px; background: #fff; }
-        .td-page .pt th.pst-h { text-align: center; background: #000044; }
+        .td-page .pst { text-align: center; color: #94a3b8; font-weight: 700; width: 30px; min-width: 26px; max-width: 36px; background: #fff; padding: 4px 2px !important; font-size: 10px; }
+        .td-page .pt th.pst-h { text-align: center; background: #000044; color: #fff; padding: 6px 2px !important; font-size: 10px; width: 30px; min-width: 26px; max-width: 36px; }
 
         /* Mobile */
         @media (max-width: 640px) {
             .td-page .ptw { max-height: 55vh; }
-            .td-page .pt { font-size: 10px; }
-            .td-page .pt thead th { padding: 4px 2px; font-size: 8.5px; line-height: 1.1; }
-            .td-page .pt tbody td { padding: 3px 2px; font-size: 9.5px; }
-            .td-page .pst { min-width: 20px; max-width: 26px; font-size: 8px; }
-            .td-page .dat-badge { font-size: 8px; padding: 1px 3px; }
+            .td-page .pt { font-size: 9px; }
+            .td-page .pt thead th { padding: 3px 1px; font-size: 7.5px; line-height: 1.1; }
+            .td-page .pt tbody td { padding: 2px 1px; font-size: 8.5px; }
+            .td-page .pst { min-width: 18px; max-width: 24px; font-size: 7px; padding: 2px 1px !important; }
+            .td-page .pt th.pst-h { padding: 3px 1px !important; font-size: 7px; min-width: 18px; max-width: 24px; }
+            .td-page .dat-badge { font-size: 7px; padding: 1px 2px; }
+            .td-page .thuong-highlight i { font-size: 8px; }
         }
         
         /* Form Elements */
@@ -1991,13 +1993,14 @@
             .td-page .pop-subline { font-size: .82rem; padding: 8px 14px; }
             .td-page .pop-ct > .ptw { margin-left: 16px; margin-right: 16px; }
 
-            /* Table readability: larger fonts and padding */
-            .td-page .pt { font-size: 13px; }
-            .td-page .pt thead th { padding: 8px 6px; font-size: 12px; line-height: 1.25; }
-            .td-page .pt tbody td { padding: 6px 6px; font-size: 12px; line-height: 1.4; }
-            .td-page .pt td.d-info-left { padding-left: 10px; }
-            .td-page .pt .pst { font-size: 11px; min-width: 30px; }
-            .td-page .pt .dat-badge { padding: 2px 8px; font-size: 11px; }
+            /* Table readability: compact on desktop too */
+            .td-page .pt { font-size: 12px; }
+            .td-page .pt thead th { padding: 5px 4px; font-size: 10px; line-height: 1.15; }
+            .td-page .pt tbody td { padding: 4px 4px; font-size: 11px; line-height: 1.3; }
+            .td-page .pt td.d-info-left { padding-left: 8px; }
+            .td-page .pt .pst { font-size: 10px; min-width: 28px; }
+            .td-page .pt th.pst-h { font-size: 9px; }
+            .td-page .pt .dat-badge { padding: 1px 5px; font-size: 10px; }
 
             /* Pcard grid desktop */
             .td-page .card-grid { gap: 18px; }
@@ -3914,12 +3917,16 @@ if (ok) { toast('Đã xóa', 'ok'); ccf(); await lfs(); }
                         → body lemonchiffon
                      5) money: phần thưởng/tiền thưởng → header #000044 chữ vàng, body lightyellow
                 */
+                /* Số cột đầu tiên thuộc nhóm "info" (STT + cột 1-4 gốc) */
+                /* Will be set after STT insertion */
+                var infoColCount = 4; /* default: cột 1-4, sẽ cập nhật sau khi chèn STT */
+
                 function colCategory(header, colIdx) {
                     var raw = String(header || '').trim();
                     var k = hk(raw);
 
-                    /* Cột 1–4 (index 0–3) → luôn info */
-                    if (colIdx <= 3) return 'info';
+                    /* Cột info (STT + cột 1-4 gốc) → luôn info */
+                    if (colIdx < infoColCount) return 'info';
 
                     /* ★ QUAN TRỌNG: kiểm tra HEADER GỐC (chưa normalize) cho >=, <= */
                     /* Phải kiểm tra condition TRƯỚC money vì "Thưởng tháng (FYP>=500tr)" có cả 2 */
@@ -3944,9 +3951,15 @@ if (ok) { toast('Đã xóa', 'ok'); ccf(); await lfs(); }
                     return 'numdata';
                 }
 
-                /* Căn chỉnh cột 1–4: cột 1+3 căn giữa, cột 2+4 căn trái (1-indexed) */
-                /* Trong mảng 0-indexed: index 0,2 = center; index 1,3 = left */
+                /* Căn chỉnh cột info: STT(c giữa), cột 1+3 gốc(c giữa), cột 2+4 gốc(c trái) */
+                var sttAutoInserted = false; /* sẽ cập nhật sau khi chèn STT */
                 function infoAlign(colIdx) {
+                    /* Nếu STT được chèn tự động: col 0=STT(center), 1=col1 gốc(center), 2=col2 gốc(left), 3=col3 gốc(center), 4=col4 gốc(left) */
+                    if (sttAutoInserted) {
+                        if (colIdx === 2 || colIdx === 4) return 'left';
+                        return 'center';
+                    }
+                    /* Nếu CSV đã có STT: col 0=STT(center), 1=col2 gốc(left), 2=col3 gốc(center), 3=col4 gốc(left) */
                     if (colIdx === 1 || colIdx === 3) return 'left';
                     return 'center';
                 }
@@ -3973,7 +3986,30 @@ if (ok) { toast('Đã xóa', 'ok'); ccf(); await lfs(); }
                 /* === KIỂM TRA CỘT STT === */
                 /* Nếu cột đầu tiên là STT → dùng STT từ CSV, không thêm auto-STT */
                 var hasSttCol = (hk(hd[0]) === 'stt' || hk(hd[0]).indexOf('stt') === 0 || /xep hang/.test(hk(hd[0])));
-                var sttColIdx = hasSttCol ? 0 : -1;
+                var sttColIdx = -1;
+
+                /* === THÊM CỘT STT TỰ ĐỘNG NẾU CHƯA CÓ === */
+                if (!hasSttCol) {
+                    /* Chèn header "STT" vào đầu */
+                    hd.unshift('STT');
+                    dc++;
+                    /* Chèn số thứ tự vào mỗi dòng dữ liệu */
+                    for (var sr = 1; sr < all.length; sr++) {
+                        if (all[sr]) all[sr].unshift(String(sr));
+                    }
+                    /* Đánh dấu cột STT là index 0 */
+                    hasSttCol = true;
+                    sttColIdx = 0;
+                    sttAutoInserted = true;
+                    /* STT chèn thêm 1 cột → nhóm info mở rộng: STT + cột 1-4 gốc = 5 cột */
+                    infoColCount = 5;
+                    /* Cập nhật groupCol vì tất cả index dịch chuyển +1 */
+                    if (groupCol >= 0) groupCol++;
+                } else {
+                    sttColIdx = 0;
+                    /* CSV đã có cột STT → info group vẫn là 4 cột đầu (STT + 3 cột gốc) */
+                    infoColCount = 4;
+                }
 
                 /* === PHÂN LOẠI TẤT CẢ CỘT === */
                 var colCats = [];
@@ -4204,9 +4240,19 @@ if (ok) { toast('Đã xóa', 'ok'); ccf(); await lfs(); }
                 }
 
                 /* === LẮP RÁP BẢNG === */
-                var tableHtml = '<div class="ptw"><table class="pt"><thead>' + theadHtml + '</thead><tbody>' + bHtml + '</tbody></table></div>';
+                /* Tạo colgroup để quản lý độ rộng cột */
+                var colgroupHtml = '<colgroup>';
+                for (var cgi = 0; cgi < dc; cgi++) {
+                    if (cgi === sttColIdx) {
+                        colgroupHtml += '<col style="width:30px;min-width:26px;max-width:36px">';
+                    } else {
+                        colgroupHtml += '<col>';
+                    }
+                }
+                colgroupHtml += '</colgroup>';
+                var tableHtml = '<div class="ptw"><table class="pt">' + colgroupHtml + '<thead>' + theadHtml + '</thead><tbody>' + bHtml + '</tbody></table></div>';
                 ct.innerHTML = tableHtml;
-                TD_attachGroupFilter(ct, groupCol, 1);
+                TD_attachGroupFilter(ct, groupCol, 0);
 
                 /* === CẬP NHẬT STICKY TOP CHO HÀNG ĐIỀU KIỆN DƯỚI === */
                 if (hasCond) {
