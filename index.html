@@ -1458,8 +1458,6 @@
         #view-detail .detail-topbar { margin-bottom: 0; padding-top: 0; background: transparent !important; box-shadow: none !important; }
         #view-detail .detail-hero { padding: 0 0 2px; margin-top: -4px; }
         #view-detail .detail-title { margin-top: 0; }
-        #view-detail .kpi-phong { margin-top: 12px; }
-        #view-detail .ad-grid { margin-top: 8px; }
         #view-calendar .sub-header { margin-top: 0; padding-top: 0; background: transparent !important; box-shadow: none !important; }
         #view-calendar .cal-filter { margin-top: 6px; }
         .td-page .td-shell { padding-top: 0 !important; padding-bottom: 60px !important; }
@@ -3460,54 +3458,6 @@
             $('group-detail-content').style.display = 'none';
 
             var box = $('detail-list');
-
-            /* Render manager cards at top */
-            var managerHtml = '';
-            var kyRows = DATA.filter(function(x) { return x.ky === dashboardState.ky; });
-            var list = kyRows.filter(function(x) { return x.ten_nhan_vien; });
-            for (var pName in CO_CAU) {
-                var p = { ten: pName, afyp: 0, kh: 0, lhd: 0, td: 0, hdChuan: 0, tyTrong: 0, tyTrongWeighted: 0, tyTrongCount: 0, ads: [], noAds: pName === 'BANCA - PA' };
-                CO_CAU[pName].forEach(function(adKey) {
-                    var row = list.find(function(x) {
-                        var ten = normKey(x.ten_nhan_vien);
-                        var key = normKey(adKey);
-                        return ten && key && (ten === key || ten.indexOf(key) !== -1 || key.indexOf(ten) !== -1);
-                    });
-                    if (row) {
-                        var tyTrong = num(row.ty_trong);
-                        var d = {
-                            ten: row.ten_nhan_vien,
-                            managerKey: adKey,
-                            afyp: num(row.afyp),
-                            kh: num(row.ke_hoach_afyp),
-                            lhd: num(row.luot_hoa_dong),
-                            td: num(row.tuyen_dung),
-                            hdChuan: num(row.luot_hd_chuan),
-                            tyTrong: tyTrong
-                        };
-                        p.ads.push(d);
-                        p.afyp += d.afyp;
-                        p.kh += d.kh;
-                        p.lhd += d.lhd;
-                        p.td += d.td;
-                        p.hdChuan += d.hdChuan;
-                        p.tyTrongWeighted += (d.afyp > 0 ? d.afyp : 1) * tyTrong;
-                        p.tyTrongCount += (d.afyp > 0 ? d.afyp : 1);
-                    }
-                });
-                p.tyTrong = p.tyTrongCount ? (p.tyTrongWeighted / p.tyTrongCount) : 0;
-                if (p.ads.length) {
-                    managerHtml += buildPhongCard(p, 0);
-                    if (!p.noAds) {
-                        managerHtml += '<div class="ad-grid">';
-                        p.ads.forEach(function(ad) {
-                            managerHtml += buildAdCard(ad, 0);
-                        });
-                        managerHtml += '</div>';
-                    }
-                }
-            }
-
             var t = timeState.detail;
             var rows = DATA.filter(function(x) { return x.ten_nhan_vien && x.ten_nhan_vien.indexOf('Nhóm') === 0; });
             
@@ -3532,17 +3482,17 @@
                 var pc = it.pct >= 90 ? '#7de8c8' : it.pct >= 70 ? '#8fd0ff' : '#7a9bbf';
                 /* Find matching adKey for click-to-detail */
                 var groupKey = '';
-                var searchName = 'Nhóm ' + it.name;
+                var activeGroupName = '';
                 for (var ak in dashboardState.adGroups) {
                     var entry = dashboardState.adGroups[ak];
                     if (entry && entry.groups) {
                         for (var gi = 0; gi < entry.groups.length; gi++) {
-                            if (entry.groups[gi].name === it.name) { groupKey = ak; break; }
+                            if (entry.groups[gi].name === it.name) { groupKey = ak; activeGroupName = it.name; break; }
                         }
                     }
                     if (groupKey) break;
                 }
-                var clickAttr = groupKey ? ' onclick="dashboardState.selectedGroupKey=\'' + esc(groupKey) + '\';renderGroupDetail(\'' + esc(groupKey) + '\')" style="cursor:pointer"' : '';
+                var clickAttr = groupKey ? ' onclick="dashboardState.selectedGroupKey=\'' + esc(groupKey) + '\';dashboardState.selectedGroupName=\'' + esc(activeGroupName) + '\';renderGroupDetail(\'' + esc(groupKey) + '\')" style="cursor:pointer"' : '';
                 htmlParts.push('<div class="grp-item ' + (idx < 3 ? 'is-top' : '') + '" style="animation-delay:' + delay + 'ms"' + clickAttr + '>' +
                     '<div class="grp-fill" data-w="' + fill + '%"></div>' +
                     '<div class="grp-top-row">' +
@@ -3556,22 +3506,9 @@
                     '</div>');
                 delay += 40;
             });
-            /* Combine manager cards + group list */
-            var combined = '';
-            if (managerHtml) {
-                combined += '<div class="section-divider" style="margin-top:0">Thẻ nhân viên</div>';
-                combined += managerHtml;
-            }
-            combined += '<div class="section-divider">Tiến độ các nhóm</div>';
-            combined += htmlParts.join('');
-            box.innerHTML = combined;
+            box.innerHTML = htmlParts.join('');
 
-            /* Animate both manager card elements and group items */
             requestAnimationFrame(function() {
-                /* Manager card animations */
-                var mgrFills = box.querySelectorAll('.mini-progress-fill[data-w],.phong-progress-fill[data-w],.ad-progress-fill[data-w]');
-                for (var i = 0; i < mgrFills.length; i++) mgrFills[i].style.width = mgrFills[i].dataset.w;
-                /* Group item animations */
                 var allFills = box.querySelectorAll('.grp-fill[data-w],.grp-prog-fill[data-w]');
                 for (var i = 0; i < allFills.length; i++) allFills[i].style.width = allFills[i].dataset.w;
                 var allCounts = box.querySelectorAll('[data-count]');
@@ -3603,9 +3540,9 @@
                 return;
             }
 
-            var displayName = entry.managerName || adKey;
-            titleEl.textContent = displayName;
-            metaEl.textContent = entry.mode === 'members' ? ('Danh sách TVV — ' + (entry.title || displayName)) : ('Nhóm thuộc quyền — ' + displayName);
+            var displayName = dashboardState.selectedGroupName || entry.managerName || adKey;
+            titleEl.textContent = 'Nhóm ' + displayName;
+            metaEl.textContent = entry.mode === 'members' ? ('Danh sách TVV — ' + (entry.title || entry.managerName)) : ('Nhóm thuộc quyền — ' + (entry.managerName || adKey));
 
             var html = '';
 
@@ -3628,14 +3565,21 @@
                 if (!entry.groups || !entry.groups.length) {
                     html += '<div class="ad-empty">Chưa có nhóm quản lý.</div>';
                 } else {
+                    /* Determine initial active group from selectedGroupName */
+                    var activeIdx = 0;
+                    if (dashboardState.selectedGroupName) {
+                        var found = entry.groups.findIndex(function(g) { return g.name === dashboardState.selectedGroupName; });
+                        if (found >= 0) activeIdx = found;
+                    }
+                    var active = entry.groups[activeIdx];
                     html += '<div class="ad-drill-head" style="margin-bottom:10px"><span>Nhóm thuộc quyền</span><span>' + entry.groups.length + ' nhóm</span></div>';
                     html += '<div class="ad-group-list" id="detail-group-list">';
                     entry.groups.forEach(function(group, idx) {
-                        html += '<button type="button" class="ad-group-btn ' + (idx === 0 ? 'on' : '') + '" data-group-name="' + esc(group.name) + '" data-detail-idx="' + idx + '">' + esc(group.name) + '<span class="cnt">(' + group.members.length + ')</span></button>';
+                        html += '<button type="button" class="ad-group-btn ' + (idx === activeIdx ? 'on' : '') + '" data-group-name="' + esc(group.name) + '" data-detail-idx="' + idx + '">' + esc(group.name) + '<span class="cnt">(' + group.members.length + ')</span></button>';
                     });
                     html += '</div>';
                     html += '<div id="detail-team-board">';
-                    html += buildTeamBoard(entry.groups[0], 0);
+                    html += buildTeamBoard(active, activeIdx);
                     html += '</div>';
 
                     /* Bind group tab clicks after render */
