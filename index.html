@@ -46,7 +46,7 @@
             --track: #201a14;
             --track-fill: #d8bb86;
             --track-soft: #6f5740;
-            --notice-h: 44px;
+
         }
 
         *, *::before, *::after { box-sizing: border-box; }
@@ -101,7 +101,7 @@
             margin: 0 auto;
             padding: 24px 16px 24px;
         }
-        body.has-notice .app-wrap { padding-top: calc(24px + var(--notice-h) + 12px); }
+
 
         .view { display: none; animation: viewIn .4s ease-out; content-visibility: hidden; }
         .view.active { display: block; content-visibility: visible; }
@@ -1052,62 +1052,74 @@
         .link-btn:active { transform: scale(.97); }
         .link-btn i { font-size: 13px; line-height: 1; color: #9bd0ff; }
 
-        .notice-bar {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1200;
-            margin-top: 0;
-            border-radius: 0;
+        /* --- NOTICE BOARD (vertical scrolling) --- */
+        .notice-board {
+            position: relative;
+            height: 340px;
             overflow: hidden;
-            border-top: none;
-            border-left: none;
-            border-right: none;
-            border-bottom: 1px solid #d4a84359;
-            background: linear-gradient(135deg, #0f1825f5, #172438f0);
+            margin-top: 20px;
+            border-radius: 16px;
+            border: 1px solid #d4a84359;
+            background: linear-gradient(180deg, #0f1825f5, #172438f0);
             box-shadow: 0 8px 24px #0000003d, inset 0 1px 0 #ffffff10;
         }
-        .notice-bar.show { display: block; }
-        .notice-bar::before {
+        .notice-board::before,
+        .notice-board::after {
             content: '';
             position: absolute;
-            inset: 0;
-            background: linear-gradient(90deg, transparent, #f4cd6a14, transparent);
+            left: 0;
+            right: 0;
+            height: 48px;
+            z-index: 2;
             pointer-events: none;
         }
-        .notice-track {
+        .notice-board::before {
+            top: 0;
+            background: linear-gradient(180deg, #0f1825f5, transparent);
+            border-radius: 16px 16px 0 0;
+        }
+        .notice-board::after {
+            bottom: 0;
+            background: linear-gradient(0deg, #172438f0, transparent);
+            border-radius: 0 0 16px 16px;
+        }
+        .notice-board-inner {
             display: flex;
-            width: max-content;
-            min-width: 100%;
-            align-items: center;
-            gap: 28px;
-            padding: 11px 0 10px;
-            animation: tickerScroll 22s linear infinite;
+            flex-direction: column;
         }
-        .notice-bar:hover .notice-track { animation-play-state: paused; }
-        .notice-item {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding-left: 18px;
-            color: #f3cc73;
-            font-size: 11px;
+        .notice-board:hover .notice-board-inner {
+            animation-play-state: paused;
+        }
+        .notice-board-item {
+            padding: 16px 24px;
+            font-size: 20px;
             font-weight: 800;
-            white-space: nowrap;
-            text-transform: uppercase;
-            letter-spacing: .05em;
+            color: #f3cc73;
+            border-bottom: 1px solid #ffffff0a;
             text-shadow: 0 0 14px #d4a84333;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
         }
-        .notice-item i {
+        .notice-board-item i {
             color: #ffd56e;
-            font-size: 10px;
-            opacity: .95;
+            font-size: 14px;
+            margin-right: 12px;
+            flex-shrink: 0;
         }
-        @keyframes tickerScroll {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
+        .notice-board-empty {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #7a8fa6;
+            font-size: 14px;
+            font-weight: 700;
+            font-style: italic;
+        }
+        @keyframes noticeScrollUp {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-50%); }
         }
 
         /* --- SUB VIEWS COMMON --- */
@@ -1442,11 +1454,12 @@
         .cal-empty { color: #94a3b8; font-style: italic; font-weight: 500; }
         /* Reduce top spacing on non-main views (detail/calendar/race/policy) */
         .app-wrap:has(#view-main:not(.active)) { padding-top: 0 !important; }
-        body.has-notice .app-wrap:has(#view-main:not(.active)) { padding-top: var(--notice-h) !important; }
         #view-detail .detail-shell { margin-top: 0; padding-top: 0; }
         #view-detail .detail-topbar { margin-bottom: 0; padding-top: 0; background: transparent !important; box-shadow: none !important; }
         #view-detail .detail-hero { padding: 0 0 2px; margin-top: -4px; }
         #view-detail .detail-title { margin-top: 0; }
+        #view-detail .kpi-phong { margin-top: 12px; }
+        #view-detail .ad-grid { margin-top: 8px; }
         #view-calendar .sub-header { margin-top: 0; padding-top: 0; background: transparent !important; box-shadow: none !important; }
         #view-calendar .cal-filter { margin-top: 6px; }
         .td-page .td-shell { padding-top: 0 !important; padding-bottom: 60px !important; }
@@ -1509,6 +1522,9 @@
             .nav-race,
             .nav-policy,
             .nav-clb { border: 1px solid #ffffff14; }
+            .notice-board { height: 260px; margin-top: 14px; border-radius: 12px; }
+            .notice-board-item { font-size: 16px; padding: 12px 16px; min-height: 48px; }
+            .notice-board-item i { font-size: 12px; margin-right: 8px; }
             .link-grid { gap: 7px; margin-top: 6px; }
             .link-btn {
                 min-height: 42px;
@@ -1517,9 +1533,6 @@
                 font-size: 10px;
             }
             .link-btn i { font-size: 12px; }
-            .notice-bar {
-                border-color: #d4a8434d;
-            }
             .ctrl-bar { gap: 6px; margin-top: 14px; }
             .ctrl-select-wrap { min-width: 0; flex: 1 1 0; width: auto; }
             .ctrl-select { width: 100%; height: 44px; padding: 0; border-radius: 10px; font-size: 11px; gap: 4px; }
@@ -1536,14 +1549,6 @@
                 width: 260px;
             }
             .ctrl-select-opt { min-height: 31px; border-radius: 8px; font-size: 10px; }
-            .notice-track { gap: 22px; padding: 8px 0; }
-            .notice-item {
-                font-size: 9.5px;
-                gap: 6px;
-                padding-left: 14px;
-                letter-spacing: .04em;
-            }
-            .notice-item i { font-size: 8px; }
             .signature {
                 left: -1px;
                 padding: 7px 7px 7px 4px;
@@ -1569,7 +1574,7 @@
         .td-page .td-topnav {
             position: sticky; top: 0; z-index: 100; background: #0a1628f8; backdrop-filter: blur(18px); border-bottom: 1px solid #ffffff0d;
         }
-        body.has-notice .td-page .td-topnav { top: var(--notice-h); }
+
         .td-page .td-sub-title { font-size: 10px; font-weight: 700; color: var(--td-accent); text-transform: uppercase; letter-spacing: .18em; }
         .td-page .td-sub-line-wrap { padding: 0 24px; background: #0a1628f8; backdrop-filter: blur(18px); }
         .td-page .td-sub-line { height: 1px; background: linear-gradient(90deg, transparent, #f5c84240, #f5c84266, #f5c84240, transparent); }
@@ -1742,6 +1747,23 @@
             background: #002200;
             color: #fff;
         }
+        /* Nhóm số liệu FYP: nền nhạt hơn, in đậm nổi bật */
+        .td-page .pt thead th.h-num-fyp {
+            background: #1a5c1a;
+            color: #cfc;
+            font-weight: 900;
+        }
+        /* Nhóm số liệu FYC: tiêu đề nền xanh dương, chữ trắng */
+        .td-page .pt thead th.h-num-fyc {
+            background: #0d47a1;
+            color: #ffffff;
+            font-weight: 700;
+        }
+        /* Nhóm số liệu IP tháng: nền nhạt hơn h-num */
+        .td-page .pt thead th.h-num-ip {
+            background: #1a3d1a;
+            color: #cfc;
+        }
         /* Nhóm tỷ lệ %: nền orangered, chữ xanh dương đậm */
         .td-page .pt thead th.h-percent {
             background: orangered;
@@ -1756,6 +1778,135 @@
         .td-page .pt thead th.h-cond-bot {
             background: #EC870E;
             color: #00008B;
+            position: sticky;
+            top: auto;
+            z-index: 3;
+        }
+
+        /* ★ Định dạng "01 vé", "02 vé", "%" trong hàng tiêu đề dưới — đỏ, in đậm, nền nổi bật */
+        .td-page .pt thead th .ve-highlight {
+            color: #ff1a1a;
+            font-weight: 900;
+            background: rgba(255, 26, 26, 0.18);
+            padding: 1px 5px;
+            border-radius: 3px;
+            display: inline-block;
+            margin-top: 2px;
+            white-space: nowrap;
+        }
+
+        /* ★ Định dạng "tỷ lệ thưởng" trong hàng tiêu đề dưới — vàng, in đậm, nền nổi bật */
+        .td-page .pt thead th .ty-le-highlight {
+            color: #FFD700;
+            font-weight: 900;
+            background: rgba(255, 215, 0, 0.22);
+            padding: 1px 4px;
+            border-radius: 3px;
+            display: inline-block;
+            margin-top: 2px;
+            white-space: nowrap;
+        }
+
+        /* ★ Ngày tháng trong tiêu đề cột — xuống dòng, nhỏ hơn */
+        .td-page .pt thead th .hdr-date {
+            font-size: 0.78em;
+            opacity: 0.7;
+            display: inline-block;
+            white-space: normal;
+            line-height: 1.15;
+        }
+
+        /* ★ Cột có ngày tháng — cho phép xuống dòng, thu gọn */
+        .td-page .pt tbody td.d-date-wrap {
+            white-space: normal !important;
+            word-break: break-word;
+            font-size: 8.5px;
+            line-height: 1.1;
+        }
+
+        /* ★ MÀU KHÁC NHAU CHO TỪNG NHÓM ĐIỀU KIỆN */
+        /* Nhóm 0 — Hạng Vàng: vàng */
+        .td-page .pt thead th.h-cond-g0.h-cond-top { background: #B8860B; color: #fff; }
+        .td-page .pt thead th.h-cond-g0.h-cond-bot { background: #D4A017; color: #3a2600; }
+        .td-page .pt tbody td.d-cond-g0 { background: #FFF8DC; color: #4a3500; }
+
+        /* Nhóm 1 — Hạng Bạch Kim: bạc */
+        .td-page .pt thead th.h-cond-g1.h-cond-top { background: #5C6B7A; color: #fff; }
+        .td-page .pt thead th.h-cond-g1.h-cond-bot { background: #8494A7; color: #1a2030; }
+        .td-page .pt tbody td.d-cond-g1 { background: #E8ECF2; color: #2a3040; }
+
+        /* Nhóm 2 — Hạng Kim Cương: xanh diamond */
+        .td-page .pt thead th.h-cond-g2.h-cond-top { background: #2B5EA7; color: #fff; }
+        .td-page .pt thead th.h-cond-g2.h-cond-bot { background: #4A8AD4; color: #fff; }
+        .td-page .pt tbody td.d-cond-g2 { background: #DAE8FC; color: #1a2a50; }
+
+        /* Nhóm 3 — xanh lá */
+        .td-page .pt thead th.h-cond-g3.h-cond-top { background: #2E7D32; color: #fff; }
+        .td-page .pt thead th.h-cond-g3.h-cond-bot { background: #4CAF50; color: #1a3018; }
+        .td-page .pt tbody td.d-cond-g3 { background: #E0F2E0; color: #1a3520; }
+
+        /* Nhóm 4 — đỏ tía */
+        .td-page .pt thead th.h-cond-g4.h-cond-top { background: #7B1FA2; color: #fff; }
+        .td-page .pt thead th.h-cond-g4.h-cond-bot { background: #AB47BC; color: #fff; }
+        .td-page .pt tbody td.d-cond-g4 { background: #F0E0F8; color: #3a1050; }
+
+        /* ★ Cột điều kiện chứa "vé" — nền xanh lá */
+        .td-page .pt thead th.h-cond-ve.h-cond-top { background: #2E7D32 !important; color: #fff !important; }
+        .td-page .pt thead th.h-cond-ve.h-cond-bot { background: #43A047 !important; color: #fff !important; }
+        .td-page .pt tbody td.d-cond-ve { background: #C8E6C9 !important; color: #1B5E20 !important; font-weight: 700; white-space: normal !important; }
+
+        /* ★ Cột điều kiện chứa "%" — nền xanh lá nhạt */
+        .td-page .pt thead th.h-cond-pct.h-cond-top { background: #2E7D32 !important; color: #fff !important; }
+        .td-page .pt thead th.h-cond-pct.h-cond-bot { background: #43A047 !important; color: #fff !important; }
+        .td-page .pt tbody td.d-cond-pct { background: #E8F5E9 !important; color: #1B5E20 !important; font-weight: 700; white-space: normal !important; }
+
+        /* ★ CHỈ TIÊU / THỰC HIỆN — hàng header tầng trên cùng */
+        .td-page .pt thead th.h-chi-tieu {
+            background: #1a237e;
+            color: #FFD700;
+            font-size: 10px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .td-page .pt thead th.h-thuc-hien {
+            background: #004D40;
+            color: #76FF03;
+            font-size: 10px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        /* ★ THỰC HIỆN LŨY KẾ — nền cam đất, chữ trắng */
+        .td-page .pt thead th.h-thuc-hien-lk {
+            background: #BF360C;
+            color: #FFF;
+            font-size: 10px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        /* ★ Khi có phân tầng CHỈ TIÊU/THỰC HIỆN → cột con bằng nhau */
+        .td-page .pt thead tr.chi-thuc-row th {
+            position: sticky;
+            top: 0;
+            z-index: 4;
+        }
+
+        /* ★ % trong header điều kiện — xuống dòng, in đậm, màu vàng nổi bật */
+        .td-page .pt thead th .pct-newline {
+            display: block;
+            color: #FFD700;
+            font-weight: 900;
+            background: rgba(255, 215, 0, 0.18);
+            padding: 1px 4px;
+            border-radius: 3px;
+            margin-top: 2px;
+            white-space: nowrap;
+        }
+        /* ★ % body cell hiển thị con số xuống dòng — màu vàng */
+        .td-page .pt tbody td.d-cond-pct .pct-body-val {
+            display: block;
+            font-size: 9px;
+            color: #B8860B;
+            font-weight: 800;
         }
         /* Phần thưởng / Tiền thưởng: nền #000044, chữ vàng in đậm */
         .td-page .pt thead th.h-money {
@@ -1766,8 +1917,7 @@
         /* Hàng điều kiện dưới sticky phía dưới hàng trên */
         .td-page .pt thead tr.cond-row th {
             position: sticky;
-            top: 0;
-            z-index: 1;
+            z-index: 3;
         }
 
         /* === BODY: không xuống dòng, thu gọn === */
@@ -1815,6 +1965,28 @@
         /* Nhóm số liệu: nền #CCCCFF, chữ #111111, căn giữa */
         .td-page .pt tbody td.d-numdata {
             background: #CCCCFF;
+            color: #111111;
+            text-align: center;
+            font-weight: 600;
+        }
+        /* Nhóm số liệu FYP: nền xanh nhạt, chữ in đậm */
+        .td-page .pt tbody td.d-numdata-fyp {
+            background: #D4EDDA;
+            color: #1a3a1a;
+            text-align: center;
+            font-weight: 700;
+        }
+        /* Nhóm số liệu FYC: bỏ tô nền, in nghiêng, chữ đỏ */
+        .td-page .pt tbody td.d-numdata-fyc {
+            background: transparent;
+            color: #cc0000;
+            text-align: center;
+            font-weight: normal;
+            font-style: italic;
+        }
+        /* Nhóm số liệu IP tháng: nền nhạt hơn numdata, chữ #111111, căn giữa */
+        .td-page .pt tbody td.d-numdata-ip {
+            background: #DBDBFF;
             color: #111111;
             text-align: center;
             font-weight: 600;
@@ -1869,19 +2041,11 @@
             text-align: center;
             font-weight: 900;
         }
-        /* Thưởng có giá trị — icon + hiệu ứng nổi bật */
+        /* Thưởng có giá trị — in nghiêng */
         .td-page .thuong-highlight {
             display: inline-flex; align-items: center; justify-content: center;
             gap: 3px;
-            animation: thuongPulse 1.8s ease-in-out infinite;
-        }
-        .td-page .thuong-highlight i {
-            color: #f59e0b;
-            font-size: 11px;
-        }
-        @keyframes thuongPulse {
-            0%, 100% { text-shadow: 0 0 0 transparent; }
-            50% { text-shadow: 0 0 8px #f59e0b66; }
+            font-style: italic;
         }
 
         /* STT column */
@@ -1897,8 +2061,10 @@
             .td-page .pst { min-width: 16px; max-width: 22px; font-size: 7px; padding: 1px 0 !important; }
             .td-page .pt th.pst-h { padding: 2px 0 !important; font-size: 7px; min-width: 16px; max-width: 22px; }
             .td-page .dat-badge { font-size: 7px; padding: 0 2px; }
-            .td-page .thuong-highlight i { font-size: 7px; }
             .td-page .pt td.d-info-left { padding-left: 2px; }
+            /* ★ Mobile: ngày tháng thu gọn hơn */
+            .td-page .pt thead th .hdr-date { font-size: 0.7em; }
+            .td-page .pt tbody td.d-date-wrap { font-size: 7px; line-height: 1.05; }
         }
         
         /* Form Elements */
@@ -2085,7 +2251,7 @@
             top: 0 !important;
             z-index: 30 !important;
         }
-        body.has-notice .td-page .pop-bar { top: var(--notice-h) !important; }
+
 
         /* Page title (h2) — centered, unified gold/amber color */
         .td-page .pop-bar-main {
@@ -2211,7 +2377,6 @@
                     </button>
                 </div>
             </header>
-            <div id="notice-bar" class="notice-bar" aria-live="polite"></div>
 
             <!-- Loading Skeleton -->
             <div id="skeleton-main">
@@ -2253,8 +2418,7 @@
                 </div>
             </nav>
 
-            <div class="section-divider" id="sec-divider" style="display:none">Chi tiết các phòng</div>
-            <div class="kpi-stack" id="main-content" style="display:none"></div>
+            <div id="notice-board" class="notice-board" style="display:none"></div>
             <div class="section-divider" id="link-divider" style="display:none">Liên kết</div>
             <div class="link-grid" id="link-grid" style="display:none"></div>
         </section>
@@ -2267,13 +2431,14 @@
                     <div class="detail-spacer" aria-hidden="true"></div>
                 </div>
                 <div class="detail-hero">
-                    <div class="detail-title">Chi Tiết Ban Nhóm</div>
+                    <div class="detail-title" id="detail-title-text">Chi Tiết Ban Nhóm</div>
                     <div class="detail-meta" id="detail-meta">Tháng --/----</div>
                 </div>
                 <div class="month-grid" id="dt-months"></div>
                 <div class="func-row" id="dt-funcs"></div>
                 <div id="top3-container"></div>
                 <div id="detail-list" class="detail-list-wrap"></div>
+                <div id="group-detail-content" style="display:none"></div>
             </div>
         </section>
 
@@ -2318,7 +2483,7 @@
         var DATA = [], HIERARCHY_DATA = [], NOW = new Date(), CUR_YEAR = NOW.getFullYear(), CUR_MONTH = String(NOW.getMonth() + 1).padStart(2, '0');
         
         var timeState = { detail: CUR_MONTH, calendar: CUR_MONTH };
-        var dashboardState = { ky: '', adGroups: {} };
+        var dashboardState = { ky: '', adGroups: {}, selectedGroupKey: null, selectedGroupName: null };
         
         var CO_CAU = {
             "PHÒNG 1": ["UY", "TRÍ"],
@@ -2423,13 +2588,23 @@
                 });
             });
 
+            /* Clear selectedGroupKey when going back to main */
+            if (viewId === 'view-main') {
+                dashboardState.selectedGroupKey = null;
+                dashboardState.selectedGroupName = null;
+            }
+
             document.querySelectorAll('.view').forEach(function(v) { v.classList.remove('active'); });
             $(viewId).classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
             if (viewId === 'view-detail') {
                 renderDtPicker();
-                renderDetail();
+                if (dashboardState.selectedGroupKey) {
+                    renderGroupDetail(dashboardState.selectedGroupKey);
+                } else {
+                    renderDetail();
+                }
             } else if (viewId === 'view-calendar') {
                 renderCalFilter();
                 renderCalendar();
@@ -2751,49 +2926,35 @@
             if (document.body.dataset.mainDashBound === '1') return;
             document.body.dataset.mainDashBound = '1';
             document.addEventListener('click', function(e) {
-                // Ad group button click
-                var groupBtn = e.target.closest('.ad-group-btn');
-                if (groupBtn) {
-                    var ownerCard = groupBtn.closest('.kpi-ad[data-ad-key]');
-                    if (ownerCard) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        ownerCard.setAttribute('data-open-group', groupBtn.getAttribute('data-group-name') || '');
-                        renderAdDrill(ownerCard);
-                    }
-                    return;
-                }
-                // Ad card toggle
+                // Ad card — navigate to detail page
                 var adCard = e.target.closest('.kpi-ad[data-ad-key]');
-                if (adCard && $('main-content').contains(adCard) && !e.target.closest('.ad-team-board')) {
-                    var isOpen = adCard.classList.contains('open');
-                    document.querySelectorAll('.kpi-ad.open').forEach(function(card) {
-                        if (card !== adCard) {
-                            card.classList.remove('open');
-                            card.removeAttribute('data-open-group');
-                        }
-                    });
-                    if (isOpen) {
-                        adCard.classList.remove('open');
-                        adCard.removeAttribute('data-open-group');
+                if (adCard && !e.target.closest('.ad-team-board')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    var adKey = adCard.getAttribute('data-ad-key') || '';
+                    dashboardState.selectedGroupKey = adKey;
+                    dashboardState.selectedGroupName = adKey;
+                    var isDetailActive = $('view-detail').classList.contains('active');
+                    if (isDetailActive) {
+                        renderGroupDetail(adKey);
                     } else {
-                        adCard.classList.add('open');
-                        renderAdDrill(adCard);
+                        go('view-detail');
                     }
                     return;
                 }
-                // Phong banca card toggle
+                // Phong banca card — navigate to detail page
                 var phongCard = e.target.closest('.kpi-phong.banca[data-ad-key]');
-                if (phongCard && $('main-content').contains(phongCard) && !e.target.closest('.ad-team-board')) {
-                    var isOpen = phongCard.classList.contains('open');
-                    document.querySelectorAll('.kpi-phong.banca.open').forEach(function(card) {
-                        if (card !== phongCard) card.classList.remove('open');
-                    });
-                    if (isOpen) {
-                        phongCard.classList.remove('open');
+                if (phongCard && !e.target.closest('.ad-team-board')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    var adKey = phongCard.getAttribute('data-ad-key') || '';
+                    dashboardState.selectedGroupKey = adKey;
+                    dashboardState.selectedGroupName = adKey;
+                    var isDetailActive = $('view-detail').classList.contains('active');
+                    if (isDetailActive) {
+                        renderGroupDetail(adKey);
                     } else {
-                        phongCard.classList.add('open');
-                        renderPhongDrill(phongCard);
+                        go('view-detail');
                     }
                 }
             });
@@ -2900,7 +3061,7 @@
             } else {
                 $('skeleton-main').style.display = '';
             }
-            var els = ['error-main', 'kpi-company', 'nav-grid', 'sec-divider', 'main-content', 'link-divider', 'link-grid'];
+            var els = ['error-main', 'kpi-company', 'nav-grid', 'notice-board', 'link-divider', 'link-grid'];
             for (var i = 0; i < els.length; i++) { var el = $(els[i]); if (el) el.style.display = 'none'; }
 
             try {
@@ -2968,34 +3129,8 @@
         }
 
         function renderNoticeBar(ky) {
-            var bar = $('notice-bar');
-            if (!bar) return;
-
-            var seen = {}, items = [];
-            DATA.forEach(function(x) {
-                var msg = (x.thong_bao || '').trim();
-                if (!msg) return;
-                if (ky && x.ky && x.ky !== ky) return;
-                if (!seen[msg]) {
-                    seen[msg] = true;
-                    items.push(msg);
-                }
-            });
-
-            if (!items.length) {
-                bar.classList.remove('show');
-                document.body.classList.remove('has-notice');
-                bar.innerHTML = '';
-                return;
-            }
-
-            var html = items.map(function(msg) {
-                return '<span class="notice-item"><i class="fa-solid fa-bullhorn"></i><span>' + esc(msg) + '</span></span>';
-            }).join('');
-
-            bar.innerHTML = '<div class="notice-track">' + html + html + '</div>';
-            bar.classList.add('show');
-            document.body.classList.add('has-notice');
+            /* Notice bar removed from UI — kept as stub for compatibility */
+            return;
         }
 
         function renderLinkButtons(ky) {
@@ -3035,20 +3170,17 @@
         function renderMain(ky) {
             var kyRows = DATA.filter(function(x) { return x.ky === ky; });
             var list = kyRows.filter(function(x) { return x.ten_nhan_vien; });
-            var box = $('main-content'), ctyBox = $('kpi-company');
+            var ctyBox = $('kpi-company');
             ctyBox.innerHTML = '';
             dashboardState.ky = ky;
             dashboardState.adGroups = {};
-            renderNoticeBar(ky);
+            dashboardState.selectedGroupKey = null;
             renderLinkButtons(ky);
             
             $('kpi-company').style.display = '';
             $('nav-grid').style.display = '';
-            $('sec-divider').style.display = '';
-            $('main-content').style.display = '';
 
-            var total = { ten: 'Công Ty', afyp: 0, kh: 0, lhd: 0, td: 0, hdChuan: 0, tyTrong: 0, tyTrongWeighted: 0, tyTrongCount: 0 }, delay = 0;
-            var htmlParts = [];
+            var total = { ten: 'Công Ty', afyp: 0, kh: 0, lhd: 0, td: 0, hdChuan: 0, tyTrong: 0, tyTrongWeighted: 0, tyTrongCount: 0 };
 
             for (let pName in CO_CAU) {
                 let p = { ten: pName, afyp: 0, kh: 0, lhd: 0, td: 0, hdChuan: 0, tyTrong: 0, tyTrongWeighted: 0, tyTrongCount: 0, ads: [], noAds: pName === 'BANCA - PA' };
@@ -3091,20 +3223,6 @@
 
                 p.tyTrong = p.tyTrongCount? (p.tyTrongWeighted / p.tyTrongCount) : 0;
 
-                htmlParts.push(buildPhongCard(p, delay));
-                delay += 60;
-
-                if (p.ads.length && !p.noAds) {
-                    var adHtml = '<div class="ad-grid">';
-                    p.ads.forEach(function(ad) {
-                        adHtml += buildAdCard(ad, delay);
-                        delay += 30;
-                    });
-                    adHtml += '</div>';
-                    htmlParts.push(adHtml);
-                }
-                delay += 60;
-
                 total.afyp += p.afyp;
                 total.kh += p.kh;
                 total.lhd += p.lhd;
@@ -3116,10 +3234,51 @@
 
             total.tyTrong = total.tyTrongCount? (total.tyTrongWeighted / total.tyTrongCount) : 0;
 
-            box.innerHTML = htmlParts.join('');
             ctyBox.innerHTML = buildCtyCard(total);
+            renderNoticeBoard(ky);
             bindDashboardEvents();
             triggerAnimations();
+        }
+
+        function renderNoticeBoard(ky) {
+            var board = $('notice-board');
+            if (!board) return;
+
+            var seen = {}, items = [];
+            DATA.forEach(function(x) {
+                if (ky && x.ky && x.ky !== ky) return;
+                var msg = (x.thong_bao1 || '').trim() || (x.thong_bao || '').trim();
+                if (!msg) return;
+                if (!seen[msg]) {
+                    seen[msg] = true;
+                    items.push(msg);
+                }
+            });
+
+            if (!items.length) {
+                board.style.display = 'none';
+                board.innerHTML = '';
+                return;
+            }
+
+            var itemHtml = items.map(function(msg) {
+                return '<div class="notice-board-item"><i class="fa-solid fa-bullhorn"></i><span>' + esc(msg) + '</span></div>';
+            }).join('');
+
+            /* Duplicate items for seamless loop */
+            board.innerHTML = '<div class="notice-board-inner">' + itemHtml + itemHtml + '</div>';
+            board.style.display = '';
+
+            /* Calculate scroll duration based on content height for moderate speed */
+            requestAnimationFrame(function() {
+                var inner = board.querySelector('.notice-board-inner');
+                if (inner) {
+                    var totalHeight = inner.scrollHeight / 2; /* half because duplicated */
+                    var speed = 50; /* pixels per second — moderate speed */
+                    var duration = Math.max(10, totalHeight / speed);
+                    inner.style.animation = 'noticeScrollUp ' + duration + 's linear infinite';
+                }
+            });
         }
 
         function subsHTML(lhd, td, hdc, cls) {
@@ -3284,13 +3443,71 @@
 
         window.pickDt = function(v) {
             timeState.detail = v;
+            dashboardState.selectedGroupKey = null;
+            dashboardState.selectedGroupName = null;
             renderDtPicker();
             renderDetail();
         };
 
         function renderDetail() {
-            var box = $('detail-list');
+            /* Show overview mode (all groups with progress bars) */
+            $('detail-title-text').textContent = 'Chi Tiết Ban Nhóm';
             $('detail-meta').textContent = detailMetaText(timeState.detail);
+            $('dt-months').style.display = '';
+            $('dt-funcs').style.display = '';
+            $('top3-container').style.display = '';
+            $('detail-list').style.display = '';
+            $('group-detail-content').style.display = 'none';
+
+            var box = $('detail-list');
+
+            /* Render manager cards at top */
+            var managerHtml = '';
+            var kyRows = DATA.filter(function(x) { return x.ky === dashboardState.ky; });
+            var list = kyRows.filter(function(x) { return x.ten_nhan_vien; });
+            for (var pName in CO_CAU) {
+                var p = { ten: pName, afyp: 0, kh: 0, lhd: 0, td: 0, hdChuan: 0, tyTrong: 0, tyTrongWeighted: 0, tyTrongCount: 0, ads: [], noAds: pName === 'BANCA - PA' };
+                CO_CAU[pName].forEach(function(adKey) {
+                    var row = list.find(function(x) {
+                        var ten = normKey(x.ten_nhan_vien);
+                        var key = normKey(adKey);
+                        return ten && key && (ten === key || ten.indexOf(key) !== -1 || key.indexOf(ten) !== -1);
+                    });
+                    if (row) {
+                        var tyTrong = num(row.ty_trong);
+                        var d = {
+                            ten: row.ten_nhan_vien,
+                            managerKey: adKey,
+                            afyp: num(row.afyp),
+                            kh: num(row.ke_hoach_afyp),
+                            lhd: num(row.luot_hoa_dong),
+                            td: num(row.tuyen_dung),
+                            hdChuan: num(row.luot_hd_chuan),
+                            tyTrong: tyTrong
+                        };
+                        p.ads.push(d);
+                        p.afyp += d.afyp;
+                        p.kh += d.kh;
+                        p.lhd += d.lhd;
+                        p.td += d.td;
+                        p.hdChuan += d.hdChuan;
+                        p.tyTrongWeighted += (d.afyp > 0 ? d.afyp : 1) * tyTrong;
+                        p.tyTrongCount += (d.afyp > 0 ? d.afyp : 1);
+                    }
+                });
+                p.tyTrong = p.tyTrongCount ? (p.tyTrongWeighted / p.tyTrongCount) : 0;
+                if (p.ads.length) {
+                    managerHtml += buildPhongCard(p, 0);
+                    if (!p.noAds) {
+                        managerHtml += '<div class="ad-grid">';
+                        p.ads.forEach(function(ad) {
+                            managerHtml += buildAdCard(ad, 0);
+                        });
+                        managerHtml += '</div>';
+                    }
+                }
+            }
+
             var t = timeState.detail;
             var rows = DATA.filter(function(x) { return x.ten_nhan_vien && x.ten_nhan_vien.indexOf('Nhóm') === 0; });
             
@@ -3313,7 +3530,20 @@
             items.forEach(function(it, idx) {
                 var fill = Math.min(it.pct, 100);
                 var pc = it.pct >= 90 ? '#7de8c8' : it.pct >= 70 ? '#8fd0ff' : '#7a9bbf';
-                htmlParts.push('<div class="grp-item ' + (idx < 3 ? 'is-top' : '') + '" style="animation-delay:' + delay + 'ms">' +
+                /* Find matching adKey for click-to-detail */
+                var groupKey = '';
+                var searchName = 'Nhóm ' + it.name;
+                for (var ak in dashboardState.adGroups) {
+                    var entry = dashboardState.adGroups[ak];
+                    if (entry && entry.groups) {
+                        for (var gi = 0; gi < entry.groups.length; gi++) {
+                            if (entry.groups[gi].name === it.name) { groupKey = ak; break; }
+                        }
+                    }
+                    if (groupKey) break;
+                }
+                var clickAttr = groupKey ? ' onclick="dashboardState.selectedGroupKey=\'' + esc(groupKey) + '\';renderGroupDetail(\'' + esc(groupKey) + '\')" style="cursor:pointer"' : '';
+                htmlParts.push('<div class="grp-item ' + (idx < 3 ? 'is-top' : '') + '" style="animation-delay:' + delay + 'ms"' + clickAttr + '>' +
                     '<div class="grp-fill" data-w="' + fill + '%"></div>' +
                     '<div class="grp-top-row">' +
                     '<span class="grp-name">Nhóm ' + esc(it.name) + '</span>' +
@@ -3326,9 +3556,22 @@
                     '</div>');
                 delay += 40;
             });
-            box.innerHTML = htmlParts.join('');
+            /* Combine manager cards + group list */
+            var combined = '';
+            if (managerHtml) {
+                combined += '<div class="section-divider" style="margin-top:0">Thẻ nhân viên</div>';
+                combined += managerHtml;
+            }
+            combined += '<div class="section-divider">Tiến độ các nhóm</div>';
+            combined += htmlParts.join('');
+            box.innerHTML = combined;
 
+            /* Animate both manager card elements and group items */
             requestAnimationFrame(function() {
+                /* Manager card animations */
+                var mgrFills = box.querySelectorAll('.mini-progress-fill[data-w],.phong-progress-fill[data-w],.ad-progress-fill[data-w]');
+                for (var i = 0; i < mgrFills.length; i++) mgrFills[i].style.width = mgrFills[i].dataset.w;
+                /* Group item animations */
                 var allFills = box.querySelectorAll('.grp-fill[data-w],.grp-prog-fill[data-w]');
                 for (var i = 0; i < allFills.length; i++) allFills[i].style.width = allFills[i].dataset.w;
                 var allCounts = box.querySelectorAll('[data-count]');
@@ -3336,6 +3579,89 @@
                 var allPcts = box.querySelectorAll('[data-pct]');
                 for (var i = 0; i < allPcts.length; i++) animatePct(allPcts[i], parseFloat(allPcts[i].dataset.pct), 900, 1);
             });
+        }
+
+        function renderGroupDetail(adKey) {
+            /* Show group detail mode (specific team board) */
+            var entry = dashboardState.adGroups[adKey];
+            var groupContent = $('group-detail-content');
+            var titleEl = $('detail-title-text');
+            var metaEl = $('detail-meta');
+
+            /* Hide overview elements, show group detail */
+            $('dt-months').style.display = 'none';
+            $('dt-funcs').style.display = 'none';
+            $('top3-container').style.display = 'none';
+            $('detail-list').style.display = 'none';
+            groupContent.style.display = '';
+
+            if (!entry) {
+                titleEl.textContent = 'Chi Tiết Nhóm';
+                metaEl.textContent = '';
+                groupContent.innerHTML = '<div class="empty-state">Không tìm thấy dữ liệu nhóm</div>' +
+                    '<button class="btn-retry" onclick="dashboardState.selectedGroupKey=null;dashboardState.selectedGroupName=null;renderDetail();" style="margin-top:12px">Quay lại danh sách</button>';
+                return;
+            }
+
+            var displayName = entry.managerName || adKey;
+            titleEl.textContent = displayName;
+            metaEl.textContent = entry.mode === 'members' ? ('Danh sách TVV — ' + (entry.title || displayName)) : ('Nhóm thuộc quyền — ' + displayName);
+
+            var html = '';
+
+            /* Back to list button */
+            html += '<div style="margin-bottom:16px">' +
+                '<button type="button" onclick="dashboardState.selectedGroupKey=null;dashboardState.selectedGroupName=null;renderDetail();" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:999px;border:1px solid #d4a84373;background:rgba(212,168,67,0.08);color:#f2d38d;font-weight:800;font-size:12px;font-family:inherit;cursor:pointer">' +
+                '<i class="fa-solid fa-arrow-left" style="font-size:10px"></i> Quay lại danh sách' +
+                '</button></div>';
+
+            if (entry.mode === 'members') {
+                /* Members-only mode (Banca) */
+                if (!entry.members || !entry.members.length) {
+                    html += '<div class="ad-empty">Chưa có TVV.</div>';
+                } else {
+                    html += '<div class="ad-drill-head" style="margin-bottom:10px"><span>Danh sách TVV</span><span>' + entry.members.length + ' TVV</span></div>';
+                    html += buildMemberOnlyBoard(entry.title || entry.managerName, entry.members);
+                }
+            } else {
+                /* Groups mode */
+                if (!entry.groups || !entry.groups.length) {
+                    html += '<div class="ad-empty">Chưa có nhóm quản lý.</div>';
+                } else {
+                    html += '<div class="ad-drill-head" style="margin-bottom:10px"><span>Nhóm thuộc quyền</span><span>' + entry.groups.length + ' nhóm</span></div>';
+                    html += '<div class="ad-group-list" id="detail-group-list">';
+                    entry.groups.forEach(function(group, idx) {
+                        html += '<button type="button" class="ad-group-btn ' + (idx === 0 ? 'on' : '') + '" data-group-name="' + esc(group.name) + '" data-detail-idx="' + idx + '">' + esc(group.name) + '<span class="cnt">(' + group.members.length + ')</span></button>';
+                    });
+                    html += '</div>';
+                    html += '<div id="detail-team-board">';
+                    html += buildTeamBoard(entry.groups[0], 0);
+                    html += '</div>';
+
+                    /* Bind group tab clicks after render */
+                    requestAnimationFrame(function() {
+                        var listEl = $('detail-group-list');
+                        if (listEl && !listEl.dataset.bound) {
+                            listEl.dataset.bound = '1';
+                            listEl.addEventListener('click', function(ev) {
+                                var btn = ev.target.closest('.ad-group-btn[data-group-name]');
+                                if (!btn) return;
+                                var groupName = btn.getAttribute('data-group-name');
+                                var idx = entry.groups.findIndex(function(g) { return g.name === groupName; });
+                                if (idx < 0) return;
+                                /* Update active button */
+                                listEl.querySelectorAll('.ad-group-btn').forEach(function(b) { b.classList.remove('on'); });
+                                btn.classList.add('on');
+                                /* Update team board */
+                                var boardEl = $('detail-team-board');
+                                if (boardEl) boardEl.innerHTML = buildTeamBoard(entry.groups[idx], idx);
+                            });
+                        }
+                    });
+                }
+            }
+
+            groupContent.innerHTML = html;
         }
 
         function renderTop3(items) {
@@ -3883,7 +4209,7 @@ if (ok) { toast('Đã xóa', 'ok'); ccf(); await lfs(); }
                 // Load real data
                 try {
                     var csv = await TD_fetchText([TD_gtc(p.sheetName), TD_gtcAlt(p.sheetName)]);
-                    rpt(ct, csv, p.cols, p.rows);
+                    rpt(ct, csv, p.cols, p.rows, P, p.name);
                 } catch (err) {
                     ct.innerHTML = '<div style="text-align:center;padding:50px 20px;color:var(--td-fgm)"><i class="fa-solid fa-circle-exclamation block text-3xl mb-3" style="color:var(--td-red)"></i><p class="text-base font-semibold mb-1">Lỗi tải dữ liệu</p><p class="text-sm mb-4">' + esc(err.message || '') + '</p><button onclick="' + pv + '.rpop()" class="bp text-sm"><i class="fa-solid fa-rotate mr-1"></i>Thử lại</button></div>';
                 }
@@ -3894,7 +4220,7 @@ if (ok) { toast('Đã xóa', 'ok'); ccf(); await lfs(); }
             function efp() { if (!s.pd) return; var idx = s.programs.indexOf(s.pd); cpop(); na(function() { setTimeout(function() { oe(idx); }, 350); }); }
 
             /* === UNIFIED TABLE RENDERER — cùng 1 quy tắc cho 3 trang === */
-            function rpt(ct, csv, cols, rows) {
+            function rpt(ct, csv, cols, rows, pagePrefix, programName) {
                 var all = TD_csv(csv);
                 if (!all.length) { ct.innerHTML = '<div style="text-align:center;padding:40px;color:var(--td-fgm)">Tab trống</div>'; return; }
 
@@ -3931,39 +4257,52 @@ if (ok) { toast('Đã xóa', 'ok'); ccf(); await lfs(); }
                     /* Cột info (STT + cột 1-4 gốc) → luôn info */
                     if (colIdx < infoColCount) return 'info';
 
-                    /* ★ QUAN TRỌNG: kiểm tra HEADER GỐC (chưa normalize) cho >=, <= */
+                    /* ★ Phát hiện cột "vé" (01 vé, 02 vé...) → luôn là condition (phân hạng) */
+                    /* VD: "01 vé vàng", "02 vé Bạch kim", "01 vé Kim cương (FYP≥680tr)" */
+                    if (/\d+\s*vé/i.test(raw) || /\bve\b/i.test(k) && /vàng|bach kim|bạc kim|kim cương|kim cuong/i.test(k)) return 'condition';
+
+                    /* ★ Phát hiện >=/≥ chỉ nằm trong ngoặc → là số liệu có điều kiện phụ, KHÔNG phải cột phân hạng */
+                    /* VD: "IP tháng 4 (Đk ≥ 12 triệu)" → numdataIp, không phải condition */
+                    var rawNoParen = raw.replace(/\([^)]*\)/g, '');
+                    if (!/>=|<=|[\u2265\u2264]/.test(rawNoParen) && />=|<=|[\u2265\u2264]/.test(raw)) {
+                        return 'numdataIp';
+                    }
+
+                    /* ★ QUAN TRỌNG: kiểm tra HEADER GỐC (chưa normalize) cho >=, <=, ≥, ≤ */
                     /* Phải kiểm tra condition TRƯỚC money vì "Thưởng tháng (FYP>=500tr)" có cả 2 */
-                    if (/>=|<=|>[^=]|<(?!=)/.test(raw)) return 'condition';
+                    if (/>=|<=|>[^=]|<(?!=)|[\u2265\u2264]/.test(raw)) return 'condition';
                     if (/chi\s*tieu|dieu\s*kien/i.test(raw)) return 'condition';
 
                     /* Phần thưởng / tiền thưởng */
-                    if (/thuong|ph.*thuong|tien.*thuong|thu.*nhap|du.*kien/i.test(raw)) return 'money';
-                    if (/(thuong|ph^n thuong|tien thuong|thu nhap|du kien thuong)/.test(k)) return 'money';
+                    if (/thuong|ph\s+thuong|tien.*thuong|thu.*nhap|du.*kien/i.test(raw)) return 'money';
+                    if (/(thuong|ph thuong|tien thuong|thu nhap|du kien thuong)/.test(k)) return 'money';
 
                     /* Tỷ lệ % — kiểm tra % trên header gốc trước */
+                    /* ★ NHƯNG: "FYC (TLHH 25%)" → phải là FYC, không phải percent → kiểm tra FYC trước % */
+                    if (/\bfyc\b/i.test(raw) || /\bfyc\b/.test(k)) return 'numdataFyc';
+
                     if (raw.indexOf('%') >= 0) return 'percent';
                     if (/(ty le|tlht|phan tram)/.test(k)) return 'percent';
 
                     /* Thông tin phụ (cột 5+) */
                     if (/(ngay|thang lam|chang|so luong|sl tvv|ngay hieu luc|ngay cap|thoi gian|chuc vu|^cv$|thoi han|ngay bat dau|ngay ket thuc|han)/.test(k)) return 'textInfo';
 
+                    /* ★ Số liệu FYP: nền xanh nhạt + in đậm */
+                    if (/^fyp|fyp/i.test(raw) || /\bfyp\b/.test(k)) return 'numdataFyp';
+
                     /* Số liệu */
-                    if (/(fyp|afyp|ip|tong|quy mo|tvv hd|doanh so|so tien|fyc|hdc|thuc hien|kenh|so hd)/.test(k)) return 'numdata';
+                    if (/(afyp|ip|tong|quy mo|tvv hd|doanh so|so tien|hdc|thuc hien|kenh|so hd)/.test(k)) return 'numdata';
 
                     /* Mặc định cột 5+ → numdata */
                     return 'numdata';
                 }
 
-                /* Căn chỉnh cột info: STT(c giữa), cột 1+3 gốc(c giữa), cột 2+4 gốc(c trái) */
+                /* Căn chỉnh cột info: col1 STT(center), col2(left), col3(center), col4(left), col5(center) */
                 var sttAutoInserted = false; /* sẽ cập nhật sau khi chèn STT */
                 function infoAlign(colIdx) {
-                    /* Nếu STT được chèn tự động: col 0=STT(center), 1=col1 gốc(center), 2=col2 gốc(left), 3=col3 gốc(center), 4=col4 gốc(left) */
-                    if (sttAutoInserted) {
-                        if (colIdx === 2 || colIdx === 4) return 'left';
-                        return 'center';
-                    }
-                    /* Nếu CSV đã có STT: col 0=STT(center), 1=col2 gốc(left), 2=col3 gốc(center), 3=col4 gốc(left) */
-                    if (colIdx === 1 || colIdx === 3) return 'left';
+                    /* Quy tắc: cột chẵn (0,2,4...) = center, cột lẻ (1,3...) = left */
+                    /* → STT(center), Nhóm(left), col3(center), Họ tên(left), col5(center) */
+                    if (colIdx % 2 === 1) return 'left';
                     return 'center';
                 }
 
@@ -4010,8 +4349,8 @@ if (ok) { toast('Đã xóa', 'ok'); ccf(); await lfs(); }
                     if (groupCol >= 0) groupCol++;
                 } else {
                     sttColIdx = 0;
-                    /* CSV đã có cột STT → info group vẫn là 4 cột đầu (STT + 3 cột gốc) */
-                    infoColCount = 4;
+                    /* CSV đã có cột STT → info group: STT + 4 cột gốc = 5 cột */
+                    infoColCount = 5;
                 }
 
                 /* === PHÂN LOẠI TẤT CẢ CỘT === */
@@ -4023,103 +4362,731 @@ if (ok) { toast('Đã xóa', 'ok'); ccf(); await lfs(); }
                 /* ★ QUAN TRỌNG: Scan dữ liệu phát hiện cột condition bị phân loại sai */
                 /* Nếu cột chứa "11111" hoặc "Thiếu..." → chắc chắn là condition, dù header không có >= */
                 for (var sci = infoColCount; sci < dc; sci++) {
-                    if (colCats[sci] === 'condition' || colCats[sci] === 'money' || colCats[sci] === 'percent') continue;
+                    if (colCats[sci] === 'condition' || colCats[sci] === 'money' || colCats[sci] === 'percent' || colCats[sci] === 'numdataIp' || colCats[sci] === 'numdataFyp' || colCats[sci] === 'numdataFyc') continue;
                     var hasCondVal = false;
                     for (var sri = 1; sri < all.length; sri++) {
                         var sv = String(all[sri] && all[sri][sci] || '').trim();
-                        if (sv === '11111' || /^Thiếu/i.test(sv)) { hasCondVal = true; break; }
+                        var svNorm = sv.replace(/[\s\u00A0]+/g, '');
+                        if (svNorm === '11111' || /^Thiếu/i.test(sv) || /^Chưa\s*đạt/i.test(sv)) { hasCondVal = true; break; }
                     }
                     if (hasCondVal) colCats[sci] = 'condition';
                 }
 
                 /* === PHÁT HIỆN NHÓM ĐIỀU KIỆN → TẠO 2 HÀNG TIÊU ĐỀ === */
                 /* Gom các cột condition liên tiếp có cùng "tên danh hiệu/mức" → gộp colspan hàng trên */
-                var condGroups = []; /* {start, end, topLabel} */
+                var condGroups = []; /* {start, end, topLabel, groupIdx} */
+
+                /* Hàm trích topLabel: cắt tại boundary markers để lấy tên danh hiệu */
+                function extractTopLabel(rawHdr) {
+                    /* ★ Ưu tiên: phát hiện header "vé" → trích tên hạng */
+                    /* VD: "01 vé vàng" → "Hạng Vàng", "02 vé Bạch kim" → "Hạng Bạch Kim" */
+                    var veMatch = rawHdr.match(/(\d+)\s*vé\s+(vàng|bạc\s*kim|bach\s*kim|bạch\s*kim|kim\s*cương|kim\s*cuong)/i);
+                    if (veMatch) {
+                        var rankPart = veMatch[2].trim();
+                        if (/vàng/i.test(rankPart)) return 'Hạng Vàng';
+                        if (/bạch\s*kim|bach\s*kim|bạc\s*kim/i.test(rankPart)) return 'Hạng Bạch Kim';
+                        if (/kim\s*cương|kim\s*cuong/i.test(rankPart)) return 'Hạng Kim Cương';
+                        return 'Hạng ' + rankPart;
+                    }
+
+                    var pCut = rawHdr.length;
+                    /* Boundary markers: ( , >= , <= , ≥ , ≤ , > , < , FYP , AFYP , SL (số lượng) */
+                    var mParen = rawHdr.indexOf('(');
+                    var mGe = rawHdr.indexOf('>=');
+                    var mLe = rawHdr.indexOf('<=');
+                    var mUge = rawHdr.indexOf('\u2265'); /* ≥ */
+                    var mUle = rawHdr.indexOf('\u2264'); /* ≤ */
+                    var mGt = rawHdr.indexOf('>');
+                    var mLt = rawHdr.indexOf('<');
+                    /* FYP/AFYP boundary: tìm vị trí từ FYP/AFYP đứng sau khoảng trắng */
+                    var mFyp = -1, mAfyp = -1;
+                    var fypMatch = rawHdr.match(/\sFYP/i); if (fypMatch) mFyp = rawHdr.indexOf(fypMatch[0]);
+                    var afypMatch = rawHdr.match(/\sAFYP/i); if (afypMatch) mAfyp = rawHdr.indexOf(afypMatch[0]);
+                    /* SL boundary: "SL TVVm", "SL HD", v.v. — từ SL đứng sau khoảng trắng */
+                    var mSl = -1;
+                    var slMatch = rawHdr.match(/\sSL[\s\u00A0]/i); if (slMatch) mSl = rawHdr.indexOf(slMatch[0]);
+                    if (mParen > 0) pCut = Math.min(pCut, mParen);
+                    if (mGe > 0) pCut = Math.min(pCut, mGe);
+                    if (mLe > 0) pCut = Math.min(pCut, mLe);
+                    if (mUge > 0) pCut = Math.min(pCut, mUge);
+                    if (mUle > 0) pCut = Math.min(pCut, mUle);
+                    if (mGt > 0 && mGt !== mGe && mGt !== mUge) pCut = Math.min(pCut, mGt);
+                    if (mLt > 0 && mLt !== mLe && mLt !== mUle) pCut = Math.min(pCut, mLt);
+                    if (mFyp > 0) pCut = Math.min(pCut, mFyp);
+                    if (mAfyp > 0) pCut = Math.min(pCut, mAfyp);
+                    if (mSl > 0) pCut = Math.min(pCut, mSl);
+                    return rawHdr.substring(0, pCut).trim();
+                }
+
+                /* Hàm trích botText: lấy phần header SAU topLabel (chỉ tiêu/điều kiện) */
+                function extractBotText(rawHdr, topLbl) {
+                    /* ★ Ưu tiên: phát hiện header "vé" → trích phần "01 vé"/"02 vé" + điều kiện */
+                    /* VD: "01 vé vàng (FYP≥250tr)" → "01 vé (FYP≥250tr)" */
+                    /* VD: "02 vé Bạch kim" → "02 vé" */
+                    var veBotMatch = rawHdr.match(/^(\d+\s*vé)\s+/i);
+                    if (veBotMatch) {
+                        var vePart = veBotMatch[1]; /* "01 vé" or "02 vé" */
+                        /* Tìm phần điều kiện sau tên hạng (trong ngoặc hoặc sau tên hạng) */
+                        var afterVeAndRank = rawHdr.substring(veBotMatch.index + veBotMatch[0].length);
+                        /* Bỏ phần tên hạng (vàng, Bạch kim, Kim cương...) */
+                        var afterRank = afterVeAndRank.replace(/^(vàng|bạc\s*kim|bach\s*kim|bạch\s*kim|kim\s*cương|kim\s*cuong)\s*/i, '');
+                        if (afterRank.trim()) return vePart + ' ' + afterRank.trim();
+                        return vePart;
+                    }
+
+                    /* Tìm vị trí bắt đầu của topLabel trong header */
+                    var topPos = rawHdr.indexOf(topLbl);
+                    if (topPos >= 0) {
+                        var afterTop = rawHdr.substring(topPos + topLbl.length).trim();
+                        if (afterTop) return afterTop;
+                    }
+                    /* Fallback: dùng logic cũ */
+                    var bParen = rawHdr.indexOf('(');
+                    var bGe = rawHdr.indexOf('>=');
+                    var bLe = rawHdr.indexOf('<=');
+                    var bUge = rawHdr.indexOf('\u2265');
+                    var bUle = rawHdr.indexOf('\u2264');
+                    if (bParen >= 0) return rawHdr.substring(bParen);
+                    if (bGe >= 0) return rawHdr.substring(bGe);
+                    if (bLe >= 0) return rawHdr.substring(bLe);
+                    if (bUge >= 0) return rawHdr.substring(bUge);
+                    if (bUle >= 0) return rawHdr.substring(bUle);
+                    return rawHdr;
+                }
+
                 var ii = 0;
+                var groupIdxCounter = 0;
+                /* Kiểm tra topLabel có chứa từ khóa phân hạng không */
+                var rankKeywordRe = /hang|vàng|bach kim|kim cuong|chiến|sao|cup|sieu/i;
                 while (ii < dc) {
                     if (colCats[ii] === 'condition') {
                         var cStart = ii;
-                        /* Trích tên danh hiệu/mức từ header GỐC: phần trước ( ) hoặc trước >= */
                         var rawHdr = String(hd[ii] || '').trim();
-                        var topLabel = rawHdr;
-                        var pCut = rawHdr.length;
-                        /* Ưu tiên cắt tại '(' hoặc '>=' hoặc '<=' hoặc '>' */
-                        var mParen = rawHdr.indexOf('(');
-                        var mGe = rawHdr.indexOf('>=');
-                        var mLe = rawHdr.indexOf('<=');
-                        var mGt = rawHdr.indexOf('>');
-                        var mLt = rawHdr.indexOf('<');
-                        if (mParen > 0) pCut = Math.min(pCut, mParen);
-                        if (mGe > 0) pCut = Math.min(pCut, mGe);
-                        if (mLe > 0) pCut = Math.min(pCut, mLe);
-                        if (mGt > 0 && mGt !== mGe) pCut = Math.min(pCut, mGt);
-                        if (mLt > 0 && mLt !== mLe) pCut = Math.min(pCut, mLt);
-                        topLabel = rawHdr.substring(0, pCut).trim();
+                        var topLabel = extractTopLabel(rawHdr);
 
-                        /* Gom các cột condition liên tiếp có cùng topLabel */
+                        var hasRankKeyword = rankKeywordRe.test(topLabel);
+
+                        /* Gom các cột condition liên tiếp */
                         var cEnd = ii;
-                        while (cEnd + 1 < dc && colCats[cEnd + 1] === 'condition') {
-                            var nextRaw = String(hd[cEnd + 1] || '').trim();
-                            var nextTop = nextRaw;
-                            var nCut = nextRaw.length;
-                            var np = nextRaw.indexOf('(');
-                            var nge = nextRaw.indexOf('>=');
-                            var nle = nextRaw.indexOf('<=');
-                            var ngt = nextRaw.indexOf('>');
-                            var nlt = nextRaw.indexOf('<');
-                            if (np > 0) nCut = Math.min(nCut, np);
-                            if (nge > 0) nCut = Math.min(nCut, nge);
-                            if (nle > 0) nCut = Math.min(nCut, nle);
-                            if (ngt > 0 && ngt !== nge) nCut = Math.min(nCut, ngt);
-                            if (nlt > 0 && nlt !== nle) nCut = Math.min(nCut, nlt);
-                            nextTop = nextRaw.substring(0, nCut).trim();
-                            if (nextTop === topLabel) {
-                                cEnd++;
-                            } else {
-                                break;
+                        if (hasRankKeyword) {
+                            /* Có từ khóa phân hạng → gom cùng topLabel */
+                            while (cEnd + 1 < dc && colCats[cEnd + 1] === 'condition') {
+                                var nextRaw = String(hd[cEnd + 1] || '').trim();
+                                var nextTop = extractTopLabel(nextRaw);
+                                if (nextTop === topLabel) {
+                                    cEnd++;
+                                } else {
+                                    break;
+                                }
+                            }
+                        } else {
+                            /* ★ Không có từ khóa phân hạng → gom theo cặp chỉ tiêu */
+                            /* Cột có topLabel KHÁC với cột trước = cùng 1 hạng (VD: FYP TVVm + TVVm HDC) */
+                            /* Cột có topLabel GIỐNG cột đầu = hạng mới (VD: FYP TVVm lặp lại → hạng khác) */
+                            var firstTopLabel = topLabel;
+                            while (cEnd + 1 < dc && colCats[cEnd + 1] === 'condition') {
+                                var pairNextRaw = String(hd[cEnd + 1] || '').trim();
+                                var pairNextTop = extractTopLabel(pairNextRaw);
+                                if (pairNextTop !== firstTopLabel) {
+                                    /* Khác topLabel → cùng hạng (chỉ tiêu khác của cùng mức) → gom */
+                                    cEnd++;
+                                } else {
+                                    /* Trùng topLabel với cột đầu → hạng mới → dừng */
+                                    break;
+                                }
                             }
                         }
-                        condGroups.push({ start: cStart, end: cEnd, topLabel: topLabel });
+                        condGroups.push({ start: cStart, end: cEnd, topLabel: topLabel, groupIdx: groupIdxCounter });
+                        groupIdxCounter++;
                         ii = cEnd + 1;
                     } else {
                         ii++;
                     }
                 }
 
+                /* ★ Gán tên phân hạng cho các nhóm không có từ khóa phân hạng */
+                /* Thứ tự: Hạng Vàng → Hạng Bạch Kim → Hạng Kim Cương */
+                var RANK_NAMES = ['Hạng Vàng', 'Hạng Bạch Kim', 'Hạng Kim Cương'];
+                for (var rni = 0; rni < condGroups.length; rni++) {
+                    /* Kiểm tra cả topLabel và header gốc có chứa từ khóa phân hạng không */
+                    var hasRankInGroup = rankKeywordRe.test(condGroups[rni].topLabel);
+                    if (!hasRankInGroup) {
+                        for (var rhni = condGroups[rni].start; rhni <= condGroups[rni].end; rhni++) {
+                            if (rankKeywordRe.test(String(hd[rhni] || ''))) { hasRankInGroup = true; break; }
+                        }
+                    }
+                    if (!hasRankInGroup && rni < RANK_NAMES.length) {
+                        condGroups[rni].topLabel = RANK_NAMES[rni];
+                    }
+                }
+
+                /* ★ GỘP CÁC NHÓM ĐIỀU KIỆN KHÔNG PHÂN HẠNG (CHƯƠNG TRÌNH THƯỞNG QUÝ) */
+                /* Khi các cột condition có header bắt đầu bằng "FYP" + chứa tỷ lệ % → không phân hạng */
+                /* → Gộp tất cả thành 1 nhóm với topLabel = "FYP/tỷ lệ thưởng" */
+                /* ★ Sao Việt 5 cột → 1 Vàng + 2 Bạch Kim + 2 Kim Cương, KHÔNG gộp */
+                if (condGroups.length > 1) {
+                    var allFypPercent = true;
+                    var firstCondIdx = condGroups[0].start;
+                    var lastCondIdx = condGroups[condGroups.length - 1].end;
+                    var totalCondCols = lastCondIdx - firstCondIdx + 1;
+                    for (var fpei = firstCondIdx; fpei <= lastCondIdx; fpei++) {
+                        if (colCats[fpei] !== 'condition') { allFypPercent = false; break; }
+                        var fpHdr = String(hd[fpei] || '').trim();
+                        /* Kiểm tra: header bắt đầu bằng FYP và có chứa % */
+                        if (!/^FYP/i.test(fpHdr) || fpHdr.indexOf('%') < 0) {
+                            allFypPercent = false; break;
+                        }
+                    }
+                    if (allFypPercent && totalCondCols >= 6) {
+                        /* Gộp tất cả thành 1 nhóm duy nhất: "FYP/tỷ lệ thưởng" */
+                        condGroups = [{
+                            start: firstCondIdx,
+                            end: lastCondIdx,
+                            topLabel: 'FYP/tỷ lệ thưởng',
+                            groupIdx: 0
+                        }];
+                        groupIdxCounter = 1;
+                    }
+                }
+
                 var hasCond = condGroups.length > 0;
 
+                var isPolicyPage = (pagePrefix === 'po');
+                var isCSTuyenNgang = programName && /tuyen\s*ngang/i.test(hk(programName));
+
+                /* ★ TRANG CHÍNH SÁCH KHÔNG PHÂN HẠNG → gộp tất cả cột điều kiện thành 1 nhóm */
+                /* ★ NGOẠI LỆ: CS Tuyển Ngang 2026 → KHÔNG gộp, sẽ xử lý riêng phía dưới */
+                if (isPolicyPage && condGroups.length >= 1 && !isCSTuyenNgang) {
+                    var poFirstIdx = condGroups[0].start;
+                    var poLastIdx = condGroups[condGroups.length - 1].end;
+                    /* Kiểm tra tất cả đều là condition */
+                    var poAllCond = true;
+                    for (var poi = poFirstIdx; poi <= poLastIdx; poi++) {
+                        if (colCats[poi] !== 'condition') { poAllCond = false; break; }
+                    }
+                    if (poAllCond) {
+                        /* Gộp tất cả thành 1 nhóm duy nhất, không phân hạng */
+                        condGroups = [{
+                            start: poFirstIdx,
+                            end: poLastIdx,
+                            topLabel: 'FYP/tỷ lệ thưởng',
+                            groupIdx: 0
+                        }];
+                        groupIdxCounter = 1;
+                    }
+                }
+
+                /* ★ ÉP PHÂN NHÓM CỘT ĐIỀU KIỆN THEO QUY TẮC CỐ ĐỊNH */
+                /* 5 cột → 1 Vàng + 2 Bạch Kim + 2 Kim Cương */
+                /* 4 cột → 2 Vàng + 2 Bạch Kim */
+                /* 3 cột → 1 Vàng + 1 Bạch Kim + 1 Kim Cương */
+                /* CHỈ áp dụng khi KHÔNG phải trang Chính Sách và KHÔNG phải chương trình thưởng quý */
+                if (condGroups.length > 0 && !isPolicyPage) {
+                    var firstCondGrp = condGroups[0];
+                    var lastCondGrp = condGroups[condGroups.length - 1];
+                    var condStart = firstCondGrp.start;
+                    var condEnd = lastCondGrp.end;
+                    var condTotal = condEnd - condStart + 1;
+                    /* Kiểm tra tất cả cột giữa condStart và condEnd đều là condition */
+                    var allCondBetween = true;
+                    for (var acbi = condStart; acbi <= condEnd; acbi++) {
+                        if (colCats[acbi] !== 'condition') { allCondBetween = false; break; }
+                    }
+                    /* Kiểm tra có phải chương trình thưởng quý (FYP + %, 6+ cột) không — Sao Việt 5 cột cũng có FYP+% nhưng vẫn phân hạng */
+                    var isThuongProgram = false;
+                    if (allCondBetween && condTotal >= 6) {
+                        var allFypPct = true;
+                        for (var fpi = condStart; fpi <= condEnd; fpi++) {
+                            var fpH = String(hd[fpi] || '').trim();
+                            if (!/^FYP/i.test(fpH) || fpH.indexOf('%') < 0) { allFypPct = false; break; }
+                        }
+                        if (allFypPct) isThuongProgram = true;
+                    }
+                    if (allCondBetween && !isThuongProgram) {
+                        if (condTotal === 5) {
+                            /* ★ 5 cột → 1 Vàng + 2 Bạch Kim + 2 Kim Cương */
+                            var t5_1 = extractTopLabel(String(hd[condStart] || '').trim());
+                            var t5_2 = extractTopLabel(String(hd[condStart + 1] || '').trim());
+                            var t5_3 = extractTopLabel(String(hd[condStart + 3] || '').trim());
+                            if (!rankKeywordRe.test(t5_1)) t5_1 = 'Hạng Vàng';
+                            if (!rankKeywordRe.test(t5_2)) t5_2 = 'Hạng Bạch Kim';
+                            if (!rankKeywordRe.test(t5_3)) t5_3 = 'Hạng Kim Cương';
+                            condGroups = [
+                                { start: condStart, end: condStart, topLabel: t5_1, groupIdx: 0 },
+                                { start: condStart + 1, end: condStart + 2, topLabel: t5_2, groupIdx: 1 },
+                                { start: condStart + 3, end: condEnd, topLabel: t5_3, groupIdx: 2 }
+                            ];
+                            groupIdxCounter = 3;
+                        } else if (condTotal === 3) {
+                            /* ★ 3 cột → 1 Vàng + 1 Bạch Kim + 1 Kim Cương */
+                            var t3_1 = extractTopLabel(String(hd[condStart] || '').trim());
+                            var t3_2 = extractTopLabel(String(hd[condStart + 1] || '').trim());
+                            var t3_3 = extractTopLabel(String(hd[condStart + 2] || '').trim());
+                            if (!rankKeywordRe.test(t3_1)) t3_1 = 'Hạng Vàng';
+                            if (!rankKeywordRe.test(t3_2)) t3_2 = 'Hạng Bạch Kim';
+                            if (!rankKeywordRe.test(t3_3)) t3_3 = 'Hạng Kim Cương';
+                            condGroups = [
+                                { start: condStart, end: condStart, topLabel: t3_1, groupIdx: 0 },
+                                { start: condStart + 1, end: condStart + 1, topLabel: t3_2, groupIdx: 1 },
+                                { start: condStart + 2, end: condEnd, topLabel: t3_3, groupIdx: 2 }
+                            ];
+                            groupIdxCounter = 3;
+                        } else if (condTotal === 4) {
+                            /* ★ 4 cột → 2 Vàng + 2 Bạch Kim */
+                            var t4_1 = extractTopLabel(String(hd[condStart] || '').trim());
+                            var t4_2 = extractTopLabel(String(hd[condStart + 2] || '').trim());
+                            if (!rankKeywordRe.test(t4_1)) t4_1 = 'Hạng Vàng';
+                            if (!rankKeywordRe.test(t4_2)) t4_2 = 'Hạng Bạch Kim';
+                            condGroups = [
+                                { start: condStart, end: condStart + 1, topLabel: t4_1, groupIdx: 0 },
+                                { start: condStart + 2, end: condEnd, topLabel: t4_2, groupIdx: 1 }
+                            ];
+                            groupIdxCounter = 2;
+                        }
+                    }
+                }
+
+                /* ★ XỬ LÝ RIÊNG: CS Tuyển Ngang 2026 — ép phân tầng CHỈ TIÊU / THỰC HIỆN / THỰC HIỆN LŨY KẾ */
+                /* Mẫu: 3 cột condition → CHỈ TIÊU, 3 cột numdata → THỰC HIỆN, bỏ qua cột THƯỞNG, 3 cột cuối → THỰC HIỆN LŨY KẾ */
+
+                /* ★ PHÁT HIỆN MẪU CHỈ TIÊU / THỰC HIỆN / THỰC HIỆN LŨY KẾ */
+                /* Khi có block condition columns theo sau bởi block numdata/numdataFyp/numdataIp/percent */
+                /* → condition cols = CHỈ TIÊU, numdata cols = THỰC HIỆN */
+                /* Nếu sau đó còn block numdata thứ 2 → THỰC HIỆN LŨY KẾ */
+                /* HOẶC khi có 6+ condition columns liên tiếp (không phải thưởng quý) → chia đôi: nửa đầu = CHỈ TIÊU, nửa sau = THỰC HIỆN */
+                /* → Tạo hàng header thứ 3 (hRow0) ở trên cùng */
+                var chiTieuRange = null;   /* {start, end} — cột CHỈ TIÊU */
+                var thucHienRange = null;  /* {start, end} — cột THỰC HIỆN */
+                var thucHienLKRange = null; /* {start, end} — cột THỰC HIỆN LŨY KẾ */
+                var hasChiThucGrouping = false;
+                var thucHienAllCond = false; /* true nếu THỰC HIỆN cũng là condition columns */
+                var tuyenNgangSkipMoney = -1; /* cột THƯỞNG cần bỏ qua trong CS Tuyển Ngang */
+
+                if (isCSTuyenNgang) {
+                    /* ★ XỬ LÝ RIÊNG CS Tuyển Ngang 2026 */
+                    /* Mẫu: 3 cột condition → CHỈ TIÊU | 3 cột numdata → THỰC HIỆN | THƯỞNG (bỏ qua) | 3 cột cuối → THỰC HIỆN LŨY KẾ */
+                    var condStart = -1, condEnd = -1;
+                    for (var tni = infoColCount; tni < dc; tni++) {
+                        if (colCats[tni] === 'condition') {
+                            if (condStart < 0) condStart = tni;
+                            condEnd = tni;
+                        } else if (condStart >= 0) {
+                            break; /* dừng khi hết block condition liên tiếp đầu tiên */
+                        }
+                    }
+                    if (condStart >= 0 && condEnd >= condStart) {
+                        chiTieuRange = { start: condStart, end: condEnd };
+                        hasChiThucGrouping = true;
+
+                        /* Tìm 3 cột numdata ngay sau condition → THỰC HIỆN */
+                        var thStartTN = condEnd + 1;
+                        var thEndTN = thStartTN - 1;
+                        for (var tni2 = thStartTN; tni2 < dc; tni2++) {
+                            var tnCat = colCats[tni2];
+                            if (tnCat === 'numdata' || tnCat === 'numdataFyp' || tnCat === 'numdataFyc' || tnCat === 'numdataIp' || tnCat === 'percent') {
+                                thEndTN = tni2;
+                            } else {
+                                break;
+                            }
+                        }
+                        if (thEndTN >= thStartTN) {
+                            thucHienRange = { start: thStartTN, end: thEndTN };
+                        }
+
+                        /* Tìm cột THƯỞNG (money) sau THỰC HIỆN để bỏ qua */
+                        var afterTH = (thEndTN >= thStartTN) ? thEndTN + 1 : condEnd + 1;
+                        for (var tni3 = afterTH; tni3 < dc; tni3++) {
+                            if (colCats[tni3] === 'money') {
+                                tuyenNgangSkipMoney = tni3;
+                                break;
+                            }
+                        }
+
+                        /* Tìm 3 cột numdata cuối cùng → THỰC HIỆN LŨY KẾ */
+                        /* Bắt đầu tìm từ sau cột THƯỞNG (hoặc sau THỰC HIỆN nếu không có THƯỞNG) */
+                        var lkSearchTN = tuyenNgangSkipMoney >= 0 ? tuyenNgangSkipMoney + 1 : afterTH;
+                        var lkStartTN = -1, lkEndTN = -1;
+                        for (var tni4 = lkSearchTN; tni4 < dc; tni4++) {
+                            var tnCat2 = colCats[tni4];
+                            if (tnCat2 === 'numdata' || tnCat2 === 'numdataFyp' || tnCat2 === 'numdataFyc' || tnCat2 === 'numdataIp' || tnCat2 === 'percent') {
+                                if (lkStartTN < 0) lkStartTN = tni4;
+                                lkEndTN = tni4;
+                            } else if (lkStartTN >= 0) {
+                                break;
+                            }
+                        }
+                        if (lkStartTN >= 0 && lkEndTN >= lkStartTN) {
+                            thucHienLKRange = { start: lkStartTN, end: lkEndTN };
+                        }
+                    }
+                } else if (condGroups.length > 0) {
+                    var ctFirstStart = condGroups[0].start;
+                    var ctLastEnd = condGroups[condGroups.length - 1].end;
+                    /* Trường hợp 1: condition columns theo sau bởi numdata/numdataFyp/numdataFyc/numdataIp/percent */
+                    var thStart = ctLastEnd + 1;
+                    var thEnd = thStart - 1;
+                    for (var thi2 = thStart; thi2 < dc; thi2++) {
+                        var thCat = colCats[thi2];
+                        if (thCat === 'numdata' || thCat === 'numdataFyp' || thCat === 'numdataFyc' || thCat === 'numdataIp' || thCat === 'percent') {
+                            thEnd = thi2;
+                        } else {
+                            break;
+                        }
+                    }
+                    if (thEnd >= thStart) {
+                        chiTieuRange = { start: ctFirstStart, end: ctLastEnd };
+                        thucHienRange = { start: thStart, end: thEnd };
+                        hasChiThucGrouping = true;
+
+                        /* ★ Tìm thêm block THỰC HIỆN LŨY KẾ: block numdata thứ 2 sau THỰC HIỆN */
+                        /* Có thể có cột gap (money, percent...) giữa 2 block numdata */
+                        var lkSearchStart = thEnd + 1;
+                        var lkStart = -1, lkEnd = -1;
+                        /* Bỏ qua các cột không phải numdata (gap columns) */
+                        for (var lki = lkSearchStart; lki < dc; lki++) {
+                            var lkCat = colCats[lki];
+                            if (lkCat === 'numdata' || lkCat === 'numdataFyp' || lkCat === 'numdataFyc' || lkCat === 'numdataIp' || lkCat === 'percent') {
+                                if (lkStart < 0) lkStart = lki;
+                                lkEnd = lki;
+                            } else if (lkStart >= 0) {
+                                /* Đã tìm thấy block → dừng */
+                                break;
+                            }
+                            /* Nếu chưa tìm thấy block → tiếp tục tìm (bỏ qua gap) */
+                        }
+                        if (lkStart >= 0 && lkEnd >= lkStart) {
+                            thucHienLKRange = { start: lkStart, end: lkEnd };
+                        }
+                    } else {
+                        /* Trường hợp 2: Tất cả là condition columns, đủ số → chia đôi */
+                        var totalCondCols2 = ctLastEnd - ctFirstStart + 1;
+                        /* Kiểm tra không phải thưởng quý (6+ FYP+%) */
+                        var isCTThuong = false;
+                        if (totalCondCols2 >= 6) {
+                            var allFP2 = true;
+                            for (var fpi2 = ctFirstStart; fpi2 <= ctLastEnd; fpi2++) {
+                                var fpH2 = String(hd[fpi2] || '').trim();
+                                if (!/^FYP/i.test(fpH2) || fpH2.indexOf('%') < 0) { allFP2 = false; break; }
+                            }
+                            if (allFP2) isCTThuong = true;
+                        }
+                        if (totalCondCols2 >= 6 && !isCTThuong && !isPolicyPage) {
+                            var halfPoint = Math.ceil(totalCondCols2 / 2);
+                            chiTieuRange = { start: ctFirstStart, end: ctFirstStart + halfPoint - 1 };
+                            thucHienRange = { start: ctFirstStart + halfPoint, end: ctLastEnd };
+                            hasChiThucGrouping = true;
+                            thucHienAllCond = true;
+                        }
+                    }
+                }
+
+                /* ★ Phát hiện cột có nội dung ngày tháng → xuống dòng, thu gọn */
+                var dateColSet = {};
+                for (var dci = infoColCount; dci < dc; dci++) {
+                    if (colCats[dci] === 'condition' || colCats[dci] === 'money') continue;
+                    /* Kiểm tra header có chứa ngày */
+                    var hdrRaw = String(hd[dci] || '').trim();
+                    var hasDateInHeader = /\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4}/.test(hdrRaw);
+                    /* Kiểm tra body có chứa ngày (5 dòng đầu) */
+                    var dateCount = 0, totalNonEmpty = 0;
+                    for (var dri = 1; dri < Math.min(all.length, 6); dri++) {
+                        var dv = String(all[dri] && all[dri][dci] || '').trim();
+                        if (dv) {
+                            totalNonEmpty++;
+                            if (/\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4}/.test(dv)) dateCount++;
+                        }
+                    }
+                    var hasDateInBody = totalNonEmpty > 0 && dateCount / totalNonEmpty > 0.3;
+                    if (hasDateInHeader || hasDateInBody) {
+                        dateColSet[dci] = true;
+                    }
+                }
+
+                /* ★ Hàm định dạng tiêu đề cột có ngày tháng */
+                /* Phần ngày (dd/mm/yy) → xuống hàng mới, nhỏ hơn */
+                function formatHeaderText(rawHeader) {
+                    var text = String(rawHeader || '').trim();
+                    if (!text) return '';
+                    /* Tìm pattern ngày: dd/mm/yy hoặc dd/mm/yyyy hoặc dd-mm-yy */
+                    var datePattern = /(\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4})/;
+                    var match = text.match(datePattern);
+                    if (!match) return escH(text);
+                    var dateIdx = match.index;
+                    var before = text.substring(0, dateIdx).trim();
+                    var datePart = text.substring(dateIdx);
+                    if (before) {
+                        return escH(before) + '<br><span class="hdr-date">' + escH(datePart) + '</span>';
+                    }
+                    return '<span class="hdr-date">' + escH(datePart) + '</span>';
+                }
+
+                /* ★ Hàm định dạng text hàng tiêu đề dưới */
+                /* "01 vé", "02 vé", "%" → xuống hàng, đỏ, in đậm, nền nổi bật */
+                /* ★ "tỷ lệ thưởng" (tỷ lệ %) → xuống hàng mới, đỏ, in đậm, nền nổi bật */
+                function formatCondBotText(text, rawHeader) {
+                    if (!text) return '';
+                    var rawH = String(rawHeader || '').trim();
+
+                    /* ★ Xử lý đặc biệt: header FYP + tỷ lệ % (chương trình thưởng) */
+                    /* VD: "FYP ≥ 450tr+TVVm 18%" → dòng 1: "FYP ≥ 450tr+TVVm", dòng 2: "tỷ lệ thưởng 18%" */
+                    if (/^FYP/i.test(rawH) && rawH.indexOf('%') >= 0) {
+                        /* Tách phần trước số % và phần tỷ lệ */
+                        var pctMatch = rawH.match(/^(.+?)\s+(\d+(?:[.,]\d+)?%)\s*$/);
+                        if (pctMatch) {
+                            var fypPart = pctMatch[1].trim(); /* "FYP ≥ 450tr+TVVm" */
+                            var ratePart = pctMatch[2].trim(); /* "18%" */
+                            return escH(fypPart) + '<br><span class="ty-le-highlight">tỷ lệ thưởng ' + escH(ratePart) + '</span>';
+                        }
+                        /* Fallback: tìm số % cuối cùng */
+                        var lastPctIdx = rawH.lastIndexOf('%');
+                        if (lastPctIdx > 0) {
+                            /* Tìm bắt đầu của số trước % */
+                            var beforePct = rawH.substring(0, lastPctIdx);
+                            var numBeforeMatch = beforePct.match(/(\d+(?:[.,]\d+)?)\s*$/);
+                            if (numBeforeMatch) {
+                                var fypBefore = rawH.substring(0, numBeforeMatch.index).trim();
+                                var rateValue = numBeforeMatch[1] + '%';
+                                return escH(fypBefore) + '<br><span class="ty-le-highlight">tỷ lệ thưởng ' + escH(rateValue) + '</span>';
+                            }
+                        }
+                    }
+
+                    /* Xử lý chung: tìm các pattern "01 vé", "02 vé", "XX vé" hoặc "%" */
+                    var remaining = text;
+                    var vePattern = /(\d+\s*vé)/gi;
+                    var parts = [];
+                    var lastIdx = 0;
+                    vePattern.lastIndex = 0;
+                    var veMatch;
+                    while ((veMatch = vePattern.exec(remaining)) !== null) {
+                        if (veMatch.index > lastIdx) {
+                            parts.push({ text: remaining.substring(lastIdx, veMatch.index), highlight: false });
+                        }
+                        parts.push({ text: veMatch[1], highlight: true });
+                        lastIdx = veMatch.index + veMatch[1].length;
+                    }
+                    var afterVe = remaining.substring(lastIdx);
+                    if (afterVe.indexOf('%') >= 0) {
+                        /* Tìm số trước % để đưa xuống dòng mới */
+                        var pctIdx = afterVe.indexOf('%');
+                        var beforePctSign = afterVe.substring(0, pctIdx);
+                        var afterPctSign = afterVe.substring(pctIdx + 1);
+                        /* Tìm số liền trước % */
+                        var numBeforeMatch = beforePctSign.match(/(\d+(?:[.,]\d+)?)\s*$/);
+                        if (numBeforeMatch) {
+                            var numBefore = numBeforeMatch[1];
+                            var textBeforeNum = beforePctSign.substring(0, numBeforeMatch.index);
+                            if (textBeforeNum) parts.push({ text: textBeforeNum, highlight: false });
+                            /* Số + % → xuống dòng mới, nổi bật */
+                            parts.push({ text: numBefore + '%', highlight: true, newline: true });
+                        } else {
+                            if (beforePctSign) parts.push({ text: beforePctSign, highlight: false });
+                            parts.push({ text: '%', highlight: true, newline: true });
+                        }
+                        if (afterPctSign) parts.push({ text: afterPctSign, highlight: false });
+                    } else if (afterVe) {
+                        parts.push({ text: afterVe, highlight: false });
+                    }
+                    var hasHighlight = false;
+                    for (var pi = 0; pi < parts.length; pi++) {
+                        if (parts[pi].highlight) { hasHighlight = true; break; }
+                    }
+                    if (!hasHighlight) return escH(text);
+                    var html = '';
+                    var needBr = false;
+                    for (var pj = 0; pj < parts.length; pj++) {
+                        if (parts[pj].highlight) {
+                            if (parts[pj].newline) {
+                                html += '<span class="pct-newline">' + escH(parts[pj].text) + '</span>';
+                            } else {
+                                if (needBr) html += '<br>';
+                                html += '<span class="ve-highlight">' + escH(parts[pj].text) + '</span>';
+                            }
+                            needBr = false;
+                        } else {
+                            var t = escH(parts[pj].text);
+                            if (t) {
+                                html += t;
+                                needBr = true;
+                            }
+                        }
+                    }
+                    return html;
+                }
+
                 /* === TẠO HTML TIÊU ĐỀ === */
+                /* ★ Hỗ trợ 2 hoặc 3 hàng header:
+                   - Không có condition + CHỈ TIÊU/THỰC HIỆN: 1 hàng
+                   - Có condition, không CHỈ TIÊU/THỰC HIỆN: 2 hàng (hRow1 + hRow2)
+                   - Có CHỈ TIÊU/THỰC HIỆN: 3 hàng (hRow0 + hRow1 + hRow2)
+                */
+                var totalHeaderRows = 1;
+                if (hasCond) totalHeaderRows = 2;
+                if (hasChiThucGrouping) totalHeaderRows = 3;
+
+                var hRow0 = ''; /* Hàng 0 (top): CHỈ TIÊU / THỰC HIỆN grouping — chỉ khi hasChiThucGrouping */
                 var hRow1 = ''; /* Hàng 1: info + numdata + percent + cond-top(gộp) + money */
                 var hRow2 = ''; /* Hàng 2: chỉ cond-bot (chi tiết điều kiện) */
 
-                /* --- Hàng 1 --- */
+                var chiTieuProcessed = false;
+                var thucHienProcessed = false;
+                var thucHienLKProcessed = false;
                 var condProcessed = {};
+
                 for (var hi = 0; hi < dc; hi++) {
                     var cat = colCats[hi];
-                    var hdrText = escH(hd[hi] || ('Cột ' + (hi + 1)));
-                    var rowSpan = hasCond ? 2 : 1;
+                    var hdrText = formatHeaderText(hd[hi] || ('Cột ' + (hi + 1)));
                     var hCls = '';
 
+                    /* ★ Kiểm tra cột có thuộc CHỈ TIÊU, THỰC HIỆN, hoặc THỰC HIỆN LŨY KẾ không */
+                    var inChiTieu = hasChiThucGrouping && chiTieuRange && hi >= chiTieuRange.start && hi <= chiTieuRange.end;
+                    var inThucHien = hasChiThucGrouping && thucHienRange && hi >= thucHienRange.start && hi <= thucHienRange.end;
+                    var inThucHienLK = hasChiThucGrouping && thucHienLKRange && hi >= thucHienLKRange.start && hi <= thucHienLKRange.end;
+
                     if (cat === 'info') {
-                        /* Cột 1–4: nền #000044, chữ trắng */
+                        /* Cột 1–4: nền #000044, chữ trắng → rowspan = totalHeaderRows */
                         hCls = 'h-info';
-                        /* Nếu là cột STT → thêm class pst-h */
                         if (hi === sttColIdx) hCls += ' pst-h';
-                        hRow1 += '<th class="' + hCls + '" rowspan="' + rowSpan + '">' + hdrText + '</th>';
+                        if (hasChiThucGrouping) {
+                            hRow0 += '<th class="' + hCls + '" rowspan="3">' + hdrText + '</th>';
+                        } else {
+                            hRow1 += '<th class="' + hCls + '" rowspan="' + totalHeaderRows + '">' + hdrText + '</th>';
+                        }
                     } else if (cat === 'textInfo') {
-                        /* Thông tin phụ: nền #103667, chữ trắng */
                         hCls = 'h-text-info';
-                        hRow1 += '<th class="' + hCls + '" rowspan="' + rowSpan + '">' + hdrText + '</th>';
+                        if (hasChiThucGrouping) {
+                            hRow0 += '<th class="' + hCls + '" rowspan="3">' + hdrText + '</th>';
+                        } else {
+                            hRow1 += '<th class="' + hCls + '" rowspan="' + totalHeaderRows + '">' + hdrText + '</th>';
+                        }
                     } else if (cat === 'numdata') {
                         hCls = 'h-num';
-                        hRow1 += '<th class="' + hCls + '" rowspan="' + rowSpan + '">' + hdrText + '</th>';
+                        if (inThucHienLK) {
+                            /* ★ THỰC HIỆN LŨY KẾ group */
+                            if (!thucHienLKProcessed) {
+                                var lkSpan = thucHienLKRange.end - thucHienLKRange.start + 1;
+                                hRow0 += '<th class="h-thuc-hien-lk" colspan="' + lkSpan + '">THỰC HIỆN LŨY KẾ</th>';
+                                thucHienLKProcessed = true;
+                            }
+                            hRow1 += '<th class="' + hCls + '" rowspan="2">' + hdrText + '</th>';
+                        } else if (inThucHien) {
+                            /* ★ THỰC HIỆN group: thêm hRow0 header (1 lần) + hRow1 header */
+                            if (!thucHienProcessed) {
+                                var thSpan = thucHienRange.end - thucHienRange.start + 1;
+                                hRow0 += '<th class="h-thuc-hien" colspan="' + thSpan + '">THỰC HIỆN</th>';
+                                thucHienProcessed = true;
+                            }
+                            hRow1 += '<th class="' + hCls + '" rowspan="2">' + hdrText + '</th>';
+                        } else if (hasChiThucGrouping) {
+                            hRow0 += '<th class="' + hCls + '" rowspan="3">' + hdrText + '</th>';
+                        } else {
+                            hRow1 += '<th class="' + hCls + '" rowspan="' + totalHeaderRows + '">' + hdrText + '</th>';
+                        }
+                    } else if (cat === 'numdataFyp') {
+                        hCls = 'h-num-fyp';
+                        if (inThucHienLK) {
+                            if (!thucHienLKProcessed) {
+                                var lkSpan2 = thucHienLKRange.end - thucHienLKRange.start + 1;
+                                hRow0 += '<th class="h-thuc-hien-lk" colspan="' + lkSpan2 + '">THỰC HIỆN LŨY KẾ</th>';
+                                thucHienLKProcessed = true;
+                            }
+                            hRow1 += '<th class="' + hCls + '" rowspan="2">' + hdrText + '</th>';
+                        } else if (inThucHien) {
+                            if (!thucHienProcessed) {
+                                var thSpan2 = thucHienRange.end - thucHienRange.start + 1;
+                                hRow0 += '<th class="h-thuc-hien" colspan="' + thSpan2 + '">THỰC HIỆN</th>';
+                                thucHienProcessed = true;
+                            }
+                            hRow1 += '<th class="' + hCls + '" rowspan="2">' + hdrText + '</th>';
+                        } else if (hasChiThucGrouping) {
+                            hRow0 += '<th class="' + hCls + '" rowspan="3">' + hdrText + '</th>';
+                        } else {
+                            hRow1 += '<th class="' + hCls + '" rowspan="' + totalHeaderRows + '">' + hdrText + '</th>';
+                        }
+                    } else if (cat === 'numdataFyc') {
+                        hCls = 'h-num-fyc';
+                        if (inThucHienLK) {
+                            if (!thucHienLKProcessed) {
+                                var lkSpanFyc = thucHienLKRange.end - thucHienLKRange.start + 1;
+                                hRow0 += '<th class="h-thuc-hien-lk" colspan="' + lkSpanFyc + '">THỰC HIỆN LŨY KẾ</th>';
+                                thucHienLKProcessed = true;
+                            }
+                            hRow1 += '<th class="' + hCls + '" rowspan="2">' + hdrText + '</th>';
+                        } else if (inThucHien) {
+                            if (!thucHienProcessed) {
+                                var thSpanFyc = thucHienRange.end - thucHienRange.start + 1;
+                                hRow0 += '<th class="h-thuc-hien" colspan="' + thSpanFyc + '">THỰC HIỆN</th>';
+                                thucHienProcessed = true;
+                            }
+                            hRow1 += '<th class="' + hCls + '" rowspan="2">' + hdrText + '</th>';
+                        } else if (hasChiThucGrouping) {
+                            hRow0 += '<th class="' + hCls + '" rowspan="3">' + hdrText + '</th>';
+                        } else {
+                            hRow1 += '<th class="' + hCls + '" rowspan="' + totalHeaderRows + '">' + hdrText + '</th>';
+                        }
+                    } else if (cat === 'numdataIp') {
+                        hCls = 'h-num-ip';
+                        if (inThucHienLK) {
+                            if (!thucHienLKProcessed) {
+                                var lkSpan3 = thucHienLKRange.end - thucHienLKRange.start + 1;
+                                hRow0 += '<th class="h-thuc-hien-lk" colspan="' + lkSpan3 + '">THỰC HIỆN LŨY KẾ</th>';
+                                thucHienLKProcessed = true;
+                            }
+                            hRow1 += '<th class="' + hCls + '" rowspan="2">' + hdrText + '</th>';
+                        } else if (inThucHien) {
+                            if (!thucHienProcessed) {
+                                var thSpan3 = thucHienRange.end - thucHienRange.start + 1;
+                                hRow0 += '<th class="h-thuc-hien" colspan="' + thSpan3 + '">THỰC HIỆN</th>';
+                                thucHienProcessed = true;
+                            }
+                            hRow1 += '<th class="' + hCls + '" rowspan="2">' + hdrText + '</th>';
+                        } else if (hasChiThucGrouping) {
+                            hRow0 += '<th class="' + hCls + '" rowspan="3">' + hdrText + '</th>';
+                        } else {
+                            hRow1 += '<th class="' + hCls + '" rowspan="' + totalHeaderRows + '">' + hdrText + '</th>';
+                        }
                     } else if (cat === 'percent') {
                         hCls = 'h-percent';
-                        hRow1 += '<th class="' + hCls + '" rowspan="' + rowSpan + '">' + hdrText + '</th>';
+                        if (inThucHienLK) {
+                            if (!thucHienLKProcessed) {
+                                var lkSpan4 = thucHienLKRange.end - thucHienLKRange.start + 1;
+                                hRow0 += '<th class="h-thuc-hien-lk" colspan="' + lkSpan4 + '">THỰC HIỆN LŨY KẾ</th>';
+                                thucHienLKProcessed = true;
+                            }
+                            hRow1 += '<th class="' + hCls + '" rowspan="2">' + hdrText + '</th>';
+                        } else if (inThucHien) {
+                            if (!thucHienProcessed) {
+                                var thSpan4 = thucHienRange.end - thucHienRange.start + 1;
+                                hRow0 += '<th class="h-thuc-hien" colspan="' + thSpan4 + '">THỰC HIỆN</th>';
+                                thucHienProcessed = true;
+                            }
+                            hRow1 += '<th class="' + hCls + '" rowspan="2">' + hdrText + '</th>';
+                        } else if (hasChiThucGrouping) {
+                            hRow0 += '<th class="' + hCls + '" rowspan="3">' + hdrText + '</th>';
+                        } else {
+                            hRow1 += '<th class="' + hCls + '" rowspan="' + totalHeaderRows + '">' + hdrText + '</th>';
+                        }
                     } else if (cat === 'money') {
                         hCls = 'h-money';
-                        hRow1 += '<th class="' + hCls + '" rowspan="' + rowSpan + '">' + hdrText + '</th>';
+                        if (hasChiThucGrouping) {
+                            hRow0 += '<th class="' + hCls + '" rowspan="3">' + hdrText + '</th>';
+                        } else {
+                            hRow1 += '<th class="' + hCls + '" rowspan="' + totalHeaderRows + '">' + hdrText + '</th>';
+                        }
                     } else if (cat === 'condition') {
+                        /* ★ Xử lý THỰC HIỆN header cho condition columns trong thucHienRange */
+                        if (inThucHien && !thucHienProcessed) {
+                            var thSpanCond = thucHienRange.end - thucHienRange.start + 1;
+                            hRow0 += '<th class="h-thuc-hien" colspan="' + thSpanCond + '">THỰC HIỆN</th>';
+                            thucHienProcessed = true;
+                        }
+                        /* ★ CHỈ TIÊU group: condition columns */
+                        if (inChiTieu && !chiTieuProcessed) {
+                            /* hRow0: CHỈ TIÊU header */
+                            var ctSpan = chiTieuRange.end - chiTieuRange.start + 1;
+                            hRow0 += '<th class="h-chi-tieu" colspan="' + ctSpan + '">CHỈ TIÊU</th>';
+                            chiTieuProcessed = true;
+                        }
                         /* Tìm group chứa cột này */
                         var grp = null;
                         for (var gci = 0; gci < condGroups.length; gci++) {
@@ -4128,36 +5095,112 @@ if (ok) { toast('Đã xóa', 'ok'); ccf(); await lfs(); }
                         if (grp && !condProcessed[grp.start]) {
                             /* Hàng trên: gộp colspan, chỉ hiện tên danh hiệu/mức */
                             var span = grp.end - grp.start + 1;
-                            hRow1 += '<th class="h-cond-top" colspan="' + span + '">' + escH(grp.topLabel) + '</th>';
+                            var gCls = 'h-cond-top h-cond-g' + (grp.groupIdx % 5);
+                            /* ★ Phát hiện nhóm điều kiện chứa vé hoặc % → thêm class xanh lá */
+                            var gHasVe = false, gHasPct = false;
+                            for (var gvei = grp.start; gvei <= grp.end; gvei++) {
+                                var gveHdr = String(hd[gvei] || '').trim();
+                                if (/\d+\s*vé/i.test(gveHdr)) gHasVe = true;
+                                if (gveHdr.indexOf('%') >= 0) gHasPct = true;
+                            }
+                            if (gHasVe) gCls += ' h-cond-ve';
+                            if (gHasPct) gCls += ' h-cond-pct';
+                            hRow1 += '<th class="' + gCls + '" colspan="' + span + '">' + escH(grp.topLabel) + '</th>';
                             condProcessed[grp.start] = true;
                         }
-                        /* Hàng dưới: chi tiết điều kiện — trích phần sau tên danh hiệu */
+                        /* Hàng dưới: chi tiết điều kiện — trích phần SAU topLabel */
                         var rawH = String(hd[hi] || '').trim();
-                        var botText = '';
-                        var bParen = rawH.indexOf('(');
-                        var bGe = rawH.indexOf('>=');
-                        var bLe = rawH.indexOf('<=');
-                        /* Ưu tiên lấy phần trong ngoặc hoặc từ >= trở đi */
-                        if (bParen >= 0) {
-                            botText = rawH.substring(bParen);
-                        } else if (bGe >= 0) {
-                            botText = rawH.substring(bGe);
-                        } else if (bLe >= 0) {
-                            botText = rawH.substring(bLe);
-                        } else {
-                            botText = rawH;
+                        /* Tìm group chứa cột này để lấy topLabel */
+                        var condGrpForBot = null;
+                        for (var bgci2 = 0; bgci2 < condGroups.length; bgci2++) {
+                            if (hi >= condGroups[bgci2].start && hi <= condGroups[bgci2].end) { condGrpForBot = condGroups[bgci2]; break; }
                         }
-                        hRow2 += '<th class="h-cond-bot">' + escH(botText) + '</th>';
+                        var botText = (condGrpForBot && rawH.indexOf(condGrpForBot.topLabel) === 0)
+                            ? extractBotText(rawH, condGrpForBot.topLabel)
+                            : extractBotText(rawH, extractTopLabel(rawH));
+                        /* ★ Định dạng botText: "01 vé", "02 vé", "%" → xuống hàng, đỏ, in đậm, nền nổi bật */
+                        var formattedBot = formatCondBotText(botText, rawH);
+                        /* Group class cho màu */
+                        var botCls = 'h-cond-bot';
+                        if (condGrpForBot) botCls += ' h-cond-g' + (condGrpForBot.groupIdx % 5);
+                        /* ★ Phát hiện cột điều kiện chứa vé hoặc % → thêm class xanh lá */
+                        if (/\d+\s*vé/i.test(rawH)) botCls += ' h-cond-ve';
+                        if (rawH.indexOf('%') >= 0) botCls += ' h-cond-pct';
+                        hRow2 += '<th class="' + botCls + '">' + formattedBot + '</th>';
                     }
                 }
 
-                var theadHtml = '<tr>' + hRow1 + '</tr>';
-                if (hasCond) {
+                var theadHtml = '';
+                if (hasChiThucGrouping) {
+                    theadHtml += '<tr class="chi-thuc-row">' + hRow0 + '</tr>';
+                    theadHtml += '<tr>' + hRow1 + '</tr>';
                     theadHtml += '<tr class="cond-row">' + hRow2 + '</tr>';
+                } else {
+                    theadHtml += '<tr>' + hRow1 + '</tr>';
+                    if (hasCond) {
+                        theadHtml += '<tr class="cond-row">' + hRow2 + '</tr>';
+                    }
                 }
 
                 /* === TẠO HTML NỘI DUNG === */
                 var data = all.slice(1);
+
+                /* ★ SẮP XẾP DÒNG THEO TỔNG IP / TỔNG FYP GIẢM DẦN */
+                (function sortDataByMainCol() {
+                    /* Ưu tiên 1: cột "Tổng IP" */
+                    /* Ưu tiên 2: cột "Tổng FYP" */
+                    /* Ưu tiên 3: cột có chứa "tong" + ("ip" hoặc "fyp") */
+                    /* Ưu tiên 4: cột numdata/numdataFyp cuối cùng */
+                    var sortCol = -1;
+                    for (var sci = 0; sci < dc; sci++) {
+                        var sh = hk(hd[sci] || '');
+                        if (sh === 'tong ip') { sortCol = sci; break; }
+                    }
+                    if (sortCol < 0) {
+                        for (var sci2 = 0; sci2 < dc; sci2++) {
+                            var sh2 = hk(hd[sci2] || '');
+                            if (sh2 === 'tong fyp') { sortCol = sci2; break; }
+                        }
+                    }
+                    if (sortCol < 0) {
+                        /* Tìm cột header chứa "tong" + ("ip" hoặc "fyp") */
+                        for (var sci3 = 0; sci3 < dc; sci3++) {
+                            var sh3 = hk(hd[sci3] || '');
+                            if (/tong/.test(sh3) && /(ip|fyp)/.test(sh3)) { sortCol = sci3; break; }
+                        }
+                    }
+                    if (sortCol < 0) {
+                        /* Fallback: cột numdata hoặc numdataFyp hoặc numdataFyc cuối cùng */
+                        for (var sci4 = dc - 1; sci4 >= infoColCount; sci4--) {
+                            var cat = colCats[sci4];
+                            if (cat === 'numdata' || cat === 'numdataFyp' || cat === 'numdataFyc' || cat === 'numdataIp') { sortCol = sci4; break; }
+                        }
+                    }
+                    if (sortCol < 0) return; /* không tìm thấy cột sắp xếp → giữ nguyên */
+
+                    /* Hàm parse số từ chuỗi CSV (hỗ trợ định dạng Việt Nam: 1.234,56) */
+                    function parseNum(s) {
+                        var v = String(s || '').trim().replace(/\s/g, '');
+                        if (!v) return -Infinity;
+                        /* Dấu chấm = hàng nghìn, dấu phẩy = thập phân (Việt Nam) */
+                        var n = Number(v.replace(/\./g, '').replace(',', '.'));
+                        return isFinite(n) ? n : -Infinity;
+                    }
+
+                    data.sort(function(a, b) {
+                        var va = parseNum(a[sortCol]);
+                        var vb = parseNum(b[sortCol]);
+                        return vb - va; /* giảm dần */
+                    });
+
+                    /* Cập nhật lại số thứ tự STT sau khi sắp xếp */
+                    if (sttColIdx >= 0) {
+                        for (var si = 0; si < data.length; si++) {
+                            if (data[si]) data[si][sttColIdx] = String(si + 1);
+                        }
+                    }
+                })();
+
                 var bHtml = '';
                 for (var r = 0; r < data.length; r++) {
                     var rc = data[r] || [];
@@ -4177,7 +5220,7 @@ if (ok) { toast('Đã xóa', 'ok'); ccf(); await lfs(); }
                             var n = Number(compact.replace(/\./g, '').replace(',', '.'));
                             if (isFinite(n)) {
                                 var kh2 = hk(header);
-                                if (/(thuong|thu nhap|du kien|afyp|doanh so|tien|tong fyp|tong fyc)/.test(kh2)) {
+                                if (/(thuong|thu nhap|du kien|fyp|fyc|afyp|doanh so|tien|tong fyp|tong fyc)/.test(kh2)) {
                                     displayVal = n.toLocaleString('vi-VN');
                                 } else if (/(sl|so luong|tvv|count|tong|quy mo)/.test(kh2)) {
                                     displayVal = n.toLocaleString('vi-VN');
@@ -4195,6 +5238,12 @@ if (ok) { toast('Đã xóa', 'ok'); ccf(); await lfs(); }
                             tdCls = 'd-text-info';
                         } else if (cat2 === 'numdata') {
                             tdCls = 'd-numdata';
+                        } else if (cat2 === 'numdataFyp') {
+                            tdCls = 'd-numdata-fyp';
+                        } else if (cat2 === 'numdataFyc') {
+                            tdCls = 'd-numdata-fyc';
+                        } else if (cat2 === 'numdataIp') {
+                            tdCls = 'd-numdata-ip';
                         } else if (cat2 === 'percent') {
                             var pctNum = parseFloat(rawVal.replace('%', '').replace(',', '.'));
                             if (!isNaN(pctNum) && pctNum > 0) {
@@ -4203,45 +5252,74 @@ if (ok) { toast('Đã xóa', 'ok'); ccf(); await lfs(); }
                                 tdCls = 'd-percent-zero';
                             }
                         } else if (cat2 === 'condition') {
-                            var shadeIdx = condCounter % 6;
+                            /* Tìm group index cho cột này → dùng màu theo nhóm */
+                            var cellGrp = null;
+                            for (var cgci = 0; cgci < condGroups.length; cgci++) {
+                                if (c >= condGroups[cgci].start && c <= condGroups[cgci].end) { cellGrp = condGroups[cgci]; break; }
+                            }
+                            if (cellGrp) {
+                                tdCls = 'd-cond d-cond-g' + (cellGrp.groupIdx % 5);
+                            } else {
+                                tdCls = 'd-cond';
+                            }
+                            /* ★ Phát hiện cột điều kiện chứa vé hoặc % → thêm class xanh lá */
+                            var hdrForCls = String(hd[c] || '').trim();
+                            if (/\d+\s*vé/i.test(hdrForCls)) tdCls += ' d-cond-ve';
+                            if (hdrForCls.indexOf('%') >= 0) tdCls += ' d-cond-pct';
                             condCounter++;
-                            if (shadeIdx === 0) tdCls = 'd-cond';
-                            else tdCls = 'd-cond d-cond-shade' + Math.min(shadeIdx, 5);
                         } else if (cat2 === 'money') {
                             tdCls = 'd-money';
                         } else {
                             tdCls = 'd-numdata';
                         }
 
+                        /* ★ Thêm class d-date-wrap cho cột có ngày tháng */
+                        if (dateColSet[c]) {
+                            tdCls += ' d-date-wrap';
+                        }
+
                         /* === BƯỚC 2: Xác định nội dung ô — áp dụng quy tắc giá trị đặc biệt === */
                         /* ★ QUAN TRỌNG: Các quy tắc này áp dụng cho TẤT CẢ cột, không chỉ condition */
                         var cellContent = '';
 
+                        /* ★ Chuẩn hóa giá trị để kiểm tra */
+                        var valNorm = rawVal.replace(/[\s\u00A0]+/g, '').toLowerCase();
+                        /* ★ Chuẩn hóa thêm: bỏ dấu chấm (ngàn) để bắt "11.111" = 11111 */
+                        var valNormNoDot = valNorm.replace(/\./g, '');
+
                         if (cat2 === 'info') {
                             /* Cột info: hiển thị bình thường */
                             cellContent = escH(displayVal);
-                        } else if (rawVal === '11111') {
-                            /* ★ Số 11111 → luôn chuyển thành "Đạt" với dấu tích nhỏ */
+                        } else if (valNorm === '11111' || valNormNoDot === '11111') {
+                            /* ★ Số 11111 (có thể có khoảng trắng) → luôn chuyển thành "Đạt" với dấu tích */
                             cellContent = '<span class="dat-badge"><i class="fa-solid fa-check"></i>Đạt</span>';
-                        } else if (rawVal.toLowerCase() === 'đạt' || rawVal.toLowerCase() === 'dat') {
+                        } else if (valNorm === 'đạt' || valNorm === 'dat') {
                             /* Chữ "Đạt" → làm nổi bật với dấu tích */
                             cellContent = '<span class="dat-badge"><i class="fa-solid fa-check"></i>Đạt</span>';
-                        } else if (/^Thiếu/i.test(rawVal)) {
-                            /* ★ "Thiếu..." → đỏ, in nghiêng, KHÔNG in đậm */
+                        } else if (/^thiếu/i.test(rawVal) || /^chưa\s*đạt/i.test(rawVal) || valNorm === 'chuadat' || valNorm === 'chuađat') {
+                            /* ★ "Thiếu...", "chưa đạt" → đỏ, in nghiêng, KHÔNG in đậm */
                             cellContent = '<span class="thieu-val">' + escH(displayVal) + '</span>';
-                        } else if (/^-\d/.test(rawVal) && cat2 !== 'money') {
-                            /* ★ Giá trị âm (như -76, -100) trong cột không phải money → đỏ, in nghiêng, KHÔNG in đậm */
+                        } else if (/^-\d[\d.,]*/.test(rawVal) && cat2 !== 'money') {
+                            /* ★ Giá trị âm (như -76, -100, -0.5, -1,234) trong cột không phải money → đỏ, in nghiêng, KHÔNG in đậm */
                             cellContent = '<span class="thieu-val">' + escH(displayVal) + '</span>';
                         } else if (cat2 === 'money') {
-                            /* Phần thưởng: icon + hiệu ứng nếu có giá trị */
+                            /* Phần thưởng: in nghiêng, bỏ icon cúp */
                             if (rawVal && rawVal !== '0' && rawVal !== '-' && rawVal !== '') {
-                                cellContent = '<span class="thuong-highlight"><i class="fa-solid fa-trophy"></i>' + escH(displayVal) + '</span>';
+                                cellContent = '<span class="thuong-highlight">' + escH(displayVal) + '</span>';
                             } else {
                                 cellContent = escH(displayVal);
                             }
                         } else {
                             /* Các ô còn lại: hiển thị bình thường */
                             cellContent = escH(displayVal);
+                        }
+
+                        /* ★ Nếu cột điều kiện có % trong header → thêm con số % xuống dòng */
+                        if (cat2 === 'condition' && String(hd[c] || '').indexOf('%') >= 0 && rawVal && rawVal !== '0' && rawVal !== '') {
+                            /* Thêm label % dưới giá trị */
+                            if (cellContent.indexOf('dat-badge') < 0 && cellContent.indexOf('thieu-val') < 0) {
+                                cellContent = cellContent + '<span class="pct-body-val">%</span>';
+                            }
                         }
 
                         bHtml += '<td class="' + tdCls + '">' + cellContent + '</td>';
@@ -4251,25 +5329,55 @@ if (ok) { toast('Đã xóa', 'ok'); ccf(); await lfs(); }
 
                 /* === LẮP RÁP BẢNG === */
                 /* Tạo colgroup để quản lý độ rộng cột — thu gọn tối đa */
+                /* ★ Khi có phân tầng CHỈ TIÊU/THỰC HIỆN → các cột con trong cùng nhóm phải bằng nhau */
                 var colgroupHtml = '<colgroup>';
+                /* Tính chiều rộng bằng nhau cho CHỈ TIÊU, THỰC HIỆN và THỰC HIỆN LŨY KẾ groups */
+                var chiTieuColWidth = '';
+                var thucHienColWidth = '';
+                var thucHienLKColWidth = '';
+                if (hasChiThucGrouping) {
+                    /* CHỈ TIÊU columns: condition cols — rộng vừa */
+                    var ctColCount = chiTieuRange.end - chiTieuRange.start + 1;
+                    chiTieuColWidth = 'width:' + Math.max(50, Math.floor(350 / ctColCount)) + 'px;min-width:40px';
+                    /* THỰC HIỆN columns: numdata cols — rộng vừa */
+                    var thColCount = thucHienRange.end - thucHienRange.start + 1;
+                    thucHienColWidth = 'width:' + Math.max(50, Math.floor(350 / thColCount)) + 'px;min-width:40px';
+                    /* THỰC HIỆN LŨY KẾ columns */
+                    if (thucHienLKRange) {
+                        var lkColCount = thucHienLKRange.end - thucHienLKRange.start + 1;
+                        thucHienLKColWidth = 'width:' + Math.max(50, Math.floor(350 / lkColCount)) + 'px;min-width:40px';
+                    }
+                }
                 for (var cgi = 0; cgi < dc; cgi++) {
                     var cgCat = colCats[cgi];
+                    /* ★ Kiểm tra cột có thuộc CHỈ TIÊU, THỰC HIỆN, hoặc THỰC HIỆN LŨY KẾ group không */
+                    var cgInChiTieu = hasChiThucGrouping && chiTieuRange && cgi >= chiTieuRange.start && cgi <= chiTieuRange.end;
+                    var cgInThucHien = hasChiThucGrouping && thucHienRange && cgi >= thucHienRange.start && cgi <= thucHienRange.end;
+                    var cgInThucHienLK = hasChiThucGrouping && thucHienLKRange && cgi >= thucHienLKRange.start && cgi <= thucHienLKRange.end;
+
                     if (cgi === sttColIdx) {
                         colgroupHtml += '<col style="width:28px;min-width:22px">';
                     } else if (cgCat === 'info' || cgi < infoColCount) {
-                        /* Cột info: cố định chiều rộng hẹp */
-                        if (sttAutoInserted) {
-                            if (cgi === 1) colgroupHtml += '<col style="width:55px;min-width:45px">';
-                            else if (cgi === 2) colgroupHtml += '<col style="min-width:60px">';
-                            else if (cgi === 3) colgroupHtml += '<col style="width:40px;min-width:32px">';
-                            else if (cgi === 4) colgroupHtml += '<col style="width:45px;min-width:35px">';
-                            else colgroupHtml += '<col>';
+                        /* Cột info: quy tắc — cột lẻ (Nhóm, Họ tên...) rộng hơn, cột chẵn hẹp */
+                        if (cgi % 2 === 1) {
+                            /* Cột lẻ = Nhóm, Họ tên → rộng hơn, căn trái */
+                            colgroupHtml += '<col style="min-width:60px">';
                         } else {
-                            if (cgi === 1) colgroupHtml += '<col style="min-width:60px">';
-                            else if (cgi === 2) colgroupHtml += '<col style="width:40px;min-width:32px">';
-                            else if (cgi === 3) colgroupHtml += '<col style="width:45px;min-width:35px">';
-                            else colgroupHtml += '<col>';
+                            /* Cột chẵn = STT, mã, số... → hẹp, căn giữa */
+                            colgroupHtml += '<col style="width:45px;min-width:32px">';
                         }
+                    } else if (cgInChiTieu) {
+                        /* ★ CHỈ TIÊU group → cột bằng nhau */
+                        colgroupHtml += '<col style="' + chiTieuColWidth + '">';
+                    } else if (cgInThucHien) {
+                        /* ★ THỰC HIỆN group → cột bằng nhau */
+                        colgroupHtml += '<col style="' + thucHienColWidth + '">';
+                    } else if (cgInThucHienLK) {
+                        /* ★ THỰC HIỆN LŨY KẾ group → cột bằng nhau */
+                        colgroupHtml += '<col style="' + thucHienLKColWidth + '">';
+                    } else if (dateColSet[cgi]) {
+                        /* ★ Cột có ngày tháng → thu gọn */
+                        colgroupHtml += '<col style="width:55px;min-width:40px">';
                     } else {
                         colgroupHtml += '<col style="min-width:30px">';
                     }
@@ -4279,8 +5387,33 @@ if (ok) { toast('Đã xóa', 'ok'); ccf(); await lfs(); }
                 ct.innerHTML = tableHtml;
                 TD_attachGroupFilter(ct, groupCol, 0);
 
-                /* === CẬP NHẬT STICKY TOP CHO HÀNG ĐIỀU KIỆN DƯỚI === */
-                if (hasCond) {
+                /* === CẬP NHẬT STICKY TOP CHO HÀNG HEADER === */
+                if (hasChiThucGrouping) {
+                    /* 3 hàng header: chi-thuc-row → row1 → cond-row */
+                    try {
+                        var row0El = ct.querySelector('.pt thead tr.chi-thuc-row');
+                        var row1El = ct.querySelector('.pt thead tr:nth-child(2)');
+                        var row2El = ct.querySelector('.pt thead tr.cond-row');
+                        if (row0El) {
+                            var h0 = row0El.offsetHeight;
+                            /* Row 1: sticky top = h0 */
+                            if (row1El) {
+                                row1El.querySelectorAll('th').forEach(function(th) {
+                                    th.style.top = h0 + 'px';
+                                    th.style.zIndex = '3';
+                                });
+                            }
+                            /* Row 2 (cond-row): sticky top = h0 + h1 */
+                            if (row2El && row1El) {
+                                var h1 = row1El.offsetHeight;
+                                row2El.querySelectorAll('th').forEach(function(th) {
+                                    th.style.top = (h0 + h1) + 'px';
+                                    th.style.zIndex = '3';
+                                });
+                            }
+                        }
+                    } catch(e) {}
+                } else if (hasCond) {
                     try {
                         var firstRowH = ct.querySelector('.pt thead tr:first-child');
                         if (firstRowH) {
